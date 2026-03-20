@@ -1050,7 +1050,69 @@ for(let i=0; i<20; i++){
 }
 </script>
       </div>
+<div id="cards-container"></div>
 
+<script>
+const laligaMatches = [
+  {home:"Alavés", away:"Villarreal", homeColor:"🔵⚪", awayColor:"🟡", homeForm:["L","L","D","W","L"], awayForm:["W","D","W","L","W"], pred:"⚪ Away Win (Villarreal)", confidence:70, tips:["Away Win","Over 2.5"]},
+  {home:"Real Madrid", away:"Sevilla", homeColor:"⚪", awayColor:"🔴⚪", homeForm:["W","W","D","W","L"], awayForm:["W","D","L","W","D"], pred:"🏠 Home Win (Real Madrid)", confidence:85, tips:["Home Win","Over 3.0"]},
+  {home:"Barcelona", away:"Athletic Bilbao", homeColor:"🔵🔴", awayColor:"🔴⚫", homeForm:["W","D","W","W","D"], awayForm:["L","D","W","L","D"], pred:"🏠 Home Win (Barcelona)", confidence:80, tips:["Home Win","Over 2.5"]},
+  {home:"Atletico Madrid", away:"Real Sociedad", homeColor:"🔴⚪", awayColor:"🔵⚪", homeForm:["W","D","L","W","D"], awayForm:["D","W","L","D","W"], pred:"🏠 Home Win (Atletico)", confidence:78, tips:["Home Win","Under 3.5"]},
+  {home:"Valencia", away:"Celta Vigo", homeColor:"🔴🟠", awayColor:"🔵⚪", homeForm:["L","D","W","D","L"], awayForm:["W","L","D","W","D"], pred:"⚪ Away Win (Celta)", confidence:65, tips:["Away Win","Over 2.5"]},
+];
+
+const container = document.getElementById("cards-container");
+
+for(let i=0; i<20; i++){
+  const match = laligaMatches[i % laligaMatches.length];
+  const hour = 16 + (i % 5); // gukwirakwiza amahora ku mikino
+  const card = `
+<div class="pred-card" data-league="laliga">
+  <div class="pred-card-header">
+    <div class="pred-league">🇪🇸 La Liga</div>
+    <div class="pred-time">⏰ Today ${hour}:30</div>
+  </div>
+  <div class="pred-card-body">
+    <div class="team-side">
+      <div class="team-logo-wrap">${match.homeColor}</div>
+      <div class="team-name">${match.home}</div>
+      <div class="team-form">${match.homeForm.map(f=>`<div class="form-dot ${f.toLowerCase()}">${f}</div>`).join('')}</div>
+    </div>
+    <div class="vs-block">
+      <span class="vs-label">VS</span>
+      <span class="vs-time-badge">${hour}:30</span>
+    </div>
+    <div class="team-side right">
+      <div class="team-logo-wrap" style="margin-left:auto;">${match.awayColor}</div>
+      <div class="team-name">${match.away}</div>
+      <div class="team-form">${match.awayForm.map(f=>`<div class="form-dot ${f.toLowerCase()}">${f}</div>`).join('')}</div>
+    </div>
+  </div>
+  <div class="pred-card-footer">
+    <div class="pred-result-row">
+      <div class="pred-pick">
+        <div>
+          <div class="pred-pick-label">Prediction</div>
+          <div class="pred-pick-value">${match.pred}</div>
+        </div>
+      </div>
+    </div>
+    <div class="confidence-wrap">
+      <div class="conf-label"><span>Confidence</span><span>${match.confidence}%</span></div>
+      <div class="conf-bar"><div class="conf-fill ${match.confidence>80 ? 'high' : 'mid'}" style="width:${match.confidence}%"></div></div>
+    </div>
+    <div class="tip-chips">
+      ${match.tips.map(t=>{
+        let color = t.includes("Home") ? "green" : t.includes("Away") ? "red" : t.includes("BTTS") ? "blue" : "yellow";
+        return `<span class="chip ${color}">${t}</span>`;
+      }).join('')}
+    </div>
+  </div>
+</div>
+  `;
+  container.innerHTML += card;
+}
+</script>
       <div class="pagination">
         <button class="page-btn" onclick="goPage(2)">Next Page ▶</button>
       </div>
