@@ -802,7 +802,7 @@ footer .logo { justify-content: center; margin-bottom: 10px; }
         <div class="pred-card" data-league="epl">
           <div class="pred-card-header">
             <div class="pred-league">⚽ Premier League</div>
-            <div class="pred-time">⏰ Today 16:30</div>
+            <div class="pred-time">⏰ Today /div>
           </div>
           <div class="pred-card-body">
             <div class="team-side">
@@ -1033,52 +1033,65 @@ footer .logo { justify-content: center; margin-bottom: 10px; }
           </div>
         </div>
 
-        <!-- CARD 6 -->
-        <div class="pred-card" data-league="bundesliga">
-          <div class="pred-card-header">
-            <div class="pred-league">🇩🇪 Bundesliga</div>
-            <div class="pred-time">⏰ Today 18:30</div>
-          </div>
-          <div class="pred-card-body">
-            <div class="team-side">
-              <div class="team-logo-wrap">🟡⚫</div>
-              <div class="team-name">Dortmund</div>
-              <div class="team-form">
-                <div class="form-dot w">W</div><div class="form-dot d">D</div><div class="form-dot w">W</div><div class="form-dot w">W</div><div class="form-dot l">L</div>
-              </div>
-            </div>
-            <div class="vs-block">
-              <span class="vs-label">VS</span>
-              <span class="vs-time-badge">18:30</span>
-            </div>
-            <div class="team-side right">
-              <div class="team-logo-wrap" style="margin-left:auto;">🔴</div>
-              <div class="team-name">Leipzig</div>
-              <div class="team-form">
-                <div class="form-dot l">L</div><div class="form-dot w">W</div><div class="form-dot l">L</div><div class="form-dot d">D</div><div class="form-dot l">L</div>
-              </div>
-            </div>
-          </div>
-          <div class="pred-card-footer">
-            <div class="pred-result-row">
-              <div class="pred-pick">
-                <div>
-                  <div class="pred-pick-label">Prediction</div>
-                  <div class="pred-pick-value">🏠 Home Win (Dortmund)</div>
-                </div>
-              </div>
-            </div>
-            <div class="confidence-wrap">
-              <div class="conf-label"><span>Confidence</span><span>73%</span></div>
-              <div class="conf-bar"><div class="conf-fill mid" style="width:73%"></div></div>
-            </div>
-            <div class="tip-chips">
-              <span class="chip green">Home Win</span>
-              <span class="chip blue">Over 2.5</span>
-            </div>
-          </div>
-        </div>
+        <div id="cards-container"></div>
 
+<script>
+const matches = [
+  {home:"Dortmund", away:"Leipzig", homeColor:"🟡⚫", awayColor:"🔴", homeForm:["W","D","W","W","L"], awayForm:["L","W","L","D","L"], pred:"🏠 Home Win (Dortmund)", confidence:73, tips:["Home Win","Over 2.5"]},
+  {home:"Bayern", away:"Gladbach", homeColor:"🔴⚪", awayColor:"🟢⚪", homeForm:["W","W","W","D","W"], awayForm:["L","D","L","L","D"], pred:"🏠 Home Win (Bayern)", confidence:85, tips:["Home Win","Over 3.5"]},
+  {home:"Stuttgart", away:"Union Berlin", homeColor:"🔴⚫", awayColor:"🔵⚪", homeForm:["L","D","W","W","D"], awayForm:["W","D","W","L","W"], pred:"⚪ Away Win (Union Berlin)", confidence:68, tips:["Away Win","Under 3.5"]},
+  {home:"Frankfurt", away:"Leverkusen", homeColor:"⚫⚪", awayColor:"🔴⚫", homeForm:["D","W","L","D","W"], awayForm:["W","L","D","W","L"], pred:"🏠 Home Win (Frankfurt)", confidence:70, tips:["Home Win","Over 2.5"]},
+  {home:"Wolfsburg", away:"Hoffenheim", homeColor:"🟢⚪", awayColor:"🔵⚫", homeForm:["W","L","D","W","W"], awayForm:["L","D","L","W","D"], pred:"🏠 Home Win (Wolfsburg)", confidence:65, tips:["Home Win","Under 3.0"]},
+];
+
+const container = document.getElementById("cards-container");
+
+for(let i=0; i<20; i++){
+  const match = matches[i % matches.length]; // izunguruka mu makipe
+  const card = `
+<div class="pred-card" data-league="bundesliga">
+  <div class="pred-card-header">
+    <div class="pred-league">🇩🇪 Bundesliga</div>
+    <div class="pred-time">⏰ Today ${18 + (i%5)}:30</div>
+  </div>
+  <div class="pred-card-body">
+    <div class="team-side">
+      <div class="team-logo-wrap">${match.homeColor}</div>
+      <div class="team-name">${match.home}</div>
+      <div class="team-form">${match.homeForm.map(f=>`<div class="form-dot ${f.toLowerCase()}">${f}</div>`).join('')}</div>
+    </div>
+    <div class="vs-block">
+      <span class="vs-label">VS</span>
+      <span class="vs-time-badge">${18 + (i%5)}:30</span>
+    </div>
+    <div class="team-side right">
+      <div class="team-logo-wrap" style="margin-left:auto;">${match.awayColor}</div>
+      <div class="team-name">${match.away}</div>
+      <div class="team-form">${match.awayForm.map(f=>`<div class="form-dot ${f.toLowerCase()}">${f}</div>`).join('')}</div>
+    </div>
+  </div>
+  <div class="pred-card-footer">
+    <div class="pred-result-row">
+      <div class="pred-pick">
+        <div>
+          <div class="pred-pick-label">Prediction</div>
+          <div class="pred-pick-value">${match.pred}</div>
+        </div>
+      </div>
+    </div>
+    <div class="confidence-wrap">
+      <div class="conf-label"><span>Confidence</span><span>${match.confidence}%</span></div>
+      <div class="conf-bar"><div class="conf-fill mid" style="width:${match.confidence}%"></div></div>
+    </div>
+    <div class="tip-chips">
+      ${match.tips.map(t=>`<span class="chip ${t.includes("Home")?"green":"blue"}">${t}</span>`).join('')}
+    </div>
+  </div>
+</div>
+  `;
+  container.innerHTML += card;
+}
+</script>
       </div>
 
       <div class="pagination">
