@@ -794,91 +794,42 @@ footer .logo { justify-content: center; margin-bottom: 10px; }
       <button class="filter-tab" onclick="filterTab(this,'bundesliga')">Bundesliga</button>
     </div>
 
-    <!-- PAGE 1 -->
-    <div id="page1">
-      <div class="predictions-grid">
+   <div id="page1">
+  <div class="predictions-grid">
+    <div id="cards-container"></div>
 
-       <div id="cards-container"></div>
+    <script>
+      // Amakipe ya Page 1
+      const matchesPage1 = [
+        {league:"bundesliga", leagueFlag:"🇩🇪 Bundesliga", home:"Dortmund", away:"Leipzig", homeColor:"🟡⚫", awayColor:"🔴", homeForm:["W","D","W","W","L"], awayForm:["L","W","L","D","L"], pred:"🏠 Home Win (Dortmund)", confidence:73, tips:["Home Win","Over 2.5"]},
+        {league:"bundesliga", leagueFlag:"🇩🇪 Bundesliga", home:"Bayern", away:"Gladbach", homeColor:"🔴⚪", awayColor:"🟢⚪", homeForm:["W","W","W","D","W"], awayForm:["L","D","L","L","D"], pred:"🏠 Home Win (Bayern)", confidence:85, tips:["Home Win","Over 3.5"]},
+        {league:"serie", leagueFlag:"🇮🇹 Serie A", home:"Inter Milan", away:"AC Milan", homeColor:"⚫🔵", awayColor:"⚫🔴", homeForm:["W","W","D","W","W"], awayForm:["D","W","L","D","W"], pred:"🏠 Home Win (Inter)", confidence:78, tips:["Home Win","Under 3.5","BTTS"]},
+        {league:"serie", leagueFlag:"🇮🇹 Serie A", home:"Juventus", away:"Napoli", homeColor:"⚫⚪", awayColor:"🔴🔵", homeForm:["L","W","D","W","L"], awayForm:["W","D","W","W","D"], pred:"⚪ Away Win (Napoli)", confidence:80, tips:["Away Win","Over 2.5"]},
+        {league:"laliga", leagueFlag:"🇪🇸 La Liga", home:"Barcelona", away:"Real Madrid", homeColor:"🔵🔴", awayColor:"⚪", homeForm:["W","W","W","D","W"], awayForm:["W","D","W","W","L"], pred:"⚽ Both Teams Score", confidence:79, tips:["BTTS","Over 2.5","Draw possible"]},
+        {league:"laliga", leagueFlag:"🇪🇸 La Liga", home:"Alavés", away:"Villarreal", homeColor:"🔵⚪", awayColor:"🟡", homeForm:["L","L","D","W","L"], awayForm:["W","D","W","L","W"], pred:"⚪ Away Win (Villarreal)", confidence:70, tips:["Away Win","Over 2.5"]},
+        {league:"epl", leagueFlag:"⚽ Premier League", home:"Arsenal", away:"Chelsea", homeColor:"🔴", awayColor:"🔵", homeForm:["W","W","D","W","W"], awayForm:["L","W","D","L","W"], pred:"🏠 Home Win (Arsenal)", confidence:85, tips:["Home Win","Over 2.5 Goals","BTTS"]},
+        {league:"epl", leagueFlag:"⚽ Premier League", home:"Man United", away:"Liverpool", homeColor:"🔴", awayColor:"🔴", homeForm:["L","D","L","W","D"], awayForm:["W","W","W","D","W"], pred:"✈️ Away Win (Liverpool)", confidence:77, tips:["Away Win","Over 2.5","-0.5 Asian"]},
+        {league:"ucl", leagueFlag:"🌟 Champions League", home:"PSG", away:"Bayern Munich", homeColor:"🔵🔴", awayColor:"🔴", homeForm:["W","W","W","W","D"], awayForm:["W","L","W","W","D"], pred:"🏠 Home Win (PSG)", confidence:91, tips:["Home Win","Over 2.5","1st Half Win"]},
+        {league:"ucl", leagueFlag:"🌟 Champions League", home:"Manchester City", away:"Real Madrid", homeColor:"🔵", awayColor:"⚪", homeForm:["W","W","W","D","W"], awayForm:["W","D","W","L","W"], pred:"🏠 Home Win (Man City)", confidence:88, tips:["Home Win","Over 3.0","BTTS"]},
+      ];
 
-<script>
-// Umubare w'amakipe na shampiyona
-const allMatches = [
-  // Bundesliga
-  {league:"bundesliga", leagueFlag:"🇩🇪 Bundesliga", home:"Dortmund", away:"Leipzig", homeColor:"🟡⚫", awayColor:"🔴", homeForm:["W","D","W","W","L"], awayForm:["L","W","L","D","L"], pred:"🏠 Home Win (Dortmund)", confidence:73, tips:["Home Win","Over 2.5"]},
-  {league:"bundesliga", leagueFlag:"🇩🇪 Bundesliga", home:"Bayern", away:"Gladbach", homeColor:"🔴⚪", awayColor:"🟢⚪", homeForm:["W","W","W","D","W"], awayForm:["L","D","L","L","D"], pred:"🏠 Home Win (Bayern)", confidence:85, tips:["Home Win","Over 3.5"]},
-  // Serie A
-  {league:"serie", leagueFlag:"🇮🇹 Serie A", home:"Inter Milan", away:"AC Milan", homeColor:"⚫🔵", awayColor:"⚫🔴", homeForm:["W","W","D","W","W"], awayForm:["D","W","L","D","W"], pred:"🏠 Home Win (Inter)", confidence:78, tips:["Home Win","Under 3.5","BTTS"]},
-  {league:"serie", leagueFlag:"🇮🇹 Serie A", home:"Juventus", away:"Napoli", homeColor:"⚫⚪", awayColor:"🔴🔵", homeForm:["L","W","D","W","L"], awayForm:["W","D","W","W","D"], pred:"⚪ Away Win (Napoli)", confidence:80, tips:["Away Win","Over 2.5"]},
-  // La Liga
-  {league:"laliga", leagueFlag:"🇪🇸 La Liga", home:"Barcelona", away:"Real Madrid", homeColor:"🔵🔴", awayColor:"⚪", homeForm:["W","W","W","D","W"], awayForm:["W","D","W","W","L"], pred:"⚽ Both Teams Score", confidence:79, tips:["BTTS","Over 2.5","Draw possible"]},
-  {league:"laliga", leagueFlag:"🇪🇸 La Liga", home:"Alavés", away:"Villarreal", homeColor:"🔵⚪", awayColor:"🟡", homeForm:["L","L","D","W","L"], awayForm:["W","D","W","L","W"], pred:"⚪ Away Win (Villarreal)", confidence:70, tips:["Away Win","Over 2.5"]},
-  // Premier League
-  {league:"epl", leagueFlag:"⚽ Premier League", home:"Arsenal", away:"Chelsea", homeColor:"🔴", awayColor:"🔵", homeForm:["W","W","D","W","W"], awayForm:["L","W","D","L","W"], pred:"🏠 Home Win (Arsenal)", confidence:85, tips:["Home Win","Over 2.5 Goals","BTTS"]},
-  {league:"epl", leagueFlag:"⚽ Premier League", home:"Man United", away:"Liverpool", homeColor:"🔴", awayColor:"🔴", homeForm:["L","D","L","W","D"], awayForm:["W","W","W","D","W"], pred:"✈️ Away Win (Liverpool)", confidence:77, tips:["Away Win","Over 2.5","-0.5 Asian"]},
-  // Champions League
-  {league:"ucl", leagueFlag:"🌟 Champions League", home:"PSG", away:"Bayern Munich", homeColor:"🔵🔴", awayColor:"🔴", homeForm:["W","W","W","W","D"], awayForm:["W","L","W","W","D"], pred:"🏠 Home Win (PSG)", confidence:91, tips:["Home Win","Over 2.5","1st Half Win"]},
-  {league:"ucl", leagueFlag:"🌟 Champions League", home:"Manchester City", away:"Real Madrid", homeColor:"🔵", awayColor:"⚪", homeForm:["W","W","W","D","W"], awayForm:["W","D","W","L","W"], pred:"🏠 Home Win (Man City)", confidence:88, tips:["Home Win","Over 3.0","BTTS"]},
-];
+      const container1 = document.getElementById("cards-container");
 
-// Container
-const container = document.getElementById("cards-container");
+      // Gukora cards 20 kuri Page 1
+      for(let i=0; i<20; i++){
+        const match = matchesPage1[i % matchesPage1.length];
+        const hour = 16 + (i % 6);
+        const card = createCardHTML(match, hour);
+        container1.innerHTML += card;
+      }
+    </script>
 
-// Gukora cards 20 zivanze muri shampiyona zitandukanye
-for(let i=0; i<20; i++){
-  const match = allMatches[i % allMatches.length];
-  const hour = 16 + (i % 6); // guha buri match isaha itandukanye
-  const card = `
-<div class="pred-card" data-league="${match.league}">
-  <div class="pred-card-header">
-    <div class="pred-league">${match.leagueFlag}</div>
-    <div class="pred-time">⏰ Today ${hour}:30</div>
-  </div>
-  <div class="pred-card-body">
-    <div class="team-side">
-      <div class="team-logo-wrap">${match.homeColor}</div>
-      <div class="team-name">${match.home}</div>
-      <div class="team-form">${match.homeForm.map(f=>`<div class="form-dot ${f.toLowerCase()}">${f}</div>`).join('')}</div>
-    </div>
-    <div class="vs-block">
-      <span class="vs-label">VS</span>
-      <span class="vs-time-badge">${hour}:30</span>
-    </div>
-    <div class="team-side right">
-      <div class="team-logo-wrap" style="margin-left:auto;">${match.awayColor}</div>
-      <div class="team-name">${match.away}</div>
-      <div class="team-form">${match.awayForm.map(f=>`<div class="form-dot ${f.toLowerCase()}">${f}</div>`).join('')}</div>
-    </div>
-  </div>
-  <div class="pred-card-footer">
-    <div class="pred-result-row">
-      <div class="pred-pick">
-        <div>
-          <div class="pred-pick-label">Prediction</div>
-          <div class="pred-pick-value">${match.pred}</div>
-        </div>
-      </div>
-    </div>
-    <div class="confidence-wrap">
-      <div class="conf-label"><span>Confidence</span><span>${match.confidence}%</span></div>
-      <div class="conf-bar"><div class="conf-fill ${match.confidence>80?'high':'mid'}" style="width:${match.confidence}%"></div></div>
-    </div>
-    <div class="tip-chips">
-      ${match.tips.map(t=>{
-        let color = t.includes("Home") ? "green" : t.includes("Away") ? "red" : t.includes("BTTS") ? "blue" : "yellow";
-        return `<span class="chip ${color}">${t}</span>`;
-      }).join('')}
+    <div class="pagination">
+      <button class="page-btn" onclick="goPage(2)">Next Page ▶</button>
     </div>
   </div>
 </div>
-  `;
-  container.innerHTML += card;
-}
-</script>
-      <div class="pagination">
-        <button class="page-btn" onclick="goPage(2)">Next Page ▶</button>
-      </div>
-    </div>
-     <!-- PAGE 2 -->
+
 <div id="page2" style="display:none;">
   <div class="predictions-grid">
     <div id="cards-container-page2"></div>
@@ -891,66 +842,77 @@ for(let i=0; i<20; i++){
 </div>
 
 <script>
-// Ensure script runs after container exists
-document.addEventListener("DOMContentLoaded", function() {
-  const page2Matches = [
-    {home:"Sevilla", away:"Barcelona", homeColor:"🔴⚪", awayColor:"🔵🔴", homeForm:["D","W","L","D","W"], awayForm:["W","W","D","W","L"], pred:"Draw", confidence:63, tips:["Draw","Over 2.5"]},
-    {home:"Real Sociedad", away:"Valencia", homeColor:"🔵⚪", awayColor:"🔴🟠", homeForm:["W","D","W","L","D"], awayForm:["L","W","D","W","D"], pred:"🏠 Home Win (Real Sociedad)", confidence:71, tips:["Home Win","Over 2.5"]},
-    {home:"Celta Vigo", away:"Real Betis", homeColor:"🔵⚪", awayColor:"🟢⚪", homeForm:["L","D","W","D","L"], awayForm:["W","D","W","D","W"], pred:"⚪ Away Win (Real Betis)", confidence:69, tips:["Away Win","Over 2.5"]},
-    // ... add the rest of your 20 matches
+  // Amakipe ya Page 2
+  const matchesPage2 = [
+    {league:"laliga", leagueFlag:"🇪🇸 La Liga", home:"Sevilla", away:"Barcelona", homeColor:"🔴⚪", awayColor:"🔵🔴", homeForm:["D","W","L","D","W"], awayForm:["W","W","D","W","L"], pred:"Draw", confidence:63, tips:["Draw","Over 2.5"]},
+    {league:"laliga", leagueFlag:"🇪🇸 La Liga", home:"Real Sociedad", away:"Valencia", homeColor:"🔵⚪", awayColor:"🔴🟠", homeForm:["W","D","W","L","D"], awayForm:["L","W","D","W","D"], pred:"🏠 Home Win (Real Soc)", confidence:71, tips:["Home Win","Over 2.5"]},
+    {league:"laliga", leagueFlag:"🇪🇸 La Liga", home:"Celta Vigo", away:"Real Betis", homeColor:"🔵⚪", awayColor:"🟢⚪", homeForm:["L","D","W","D","L"], awayForm:["W","D","W","D","W"], pred:"⚪ Away Win (Real Betis)", confidence:69, tips:["Away Win","Over 2.5"]},
+    {league:"epl", leagueFlag:"⚽ Premier League", home:"Tottenham", away:"Aston Villa", homeColor:"⚪🔵", awayColor:"🟣🟡", homeForm:["W","L","W","W","D"], awayForm:["D","W","W","L","W"], pred:"🏠 Home Win (Spurs)", confidence:75, tips:["Home Win","BTTS"]},
   ];
 
-  const container2 = document.getElementById("cards-container-page2");
-
-  page2Matches.forEach((match, i) => {
-    const hour = 16 + (i % 6);
-    const card = `
-<div class="pred-card" data-league="laliga">
-  <div class="pred-card-header">
-    <div class="pred-league">🇪🇸 La Liga</div>
-    <div class="pred-time">⏰ Today ${hour}:30</div>
-  </div>
-  <div class="pred-card-body">
-    <div class="team-side">
-      <div class="team-logo-wrap">${match.homeColor}</div>
-      <div class="team-name">${match.home}</div>
-      <div class="team-form">${match.homeForm.map(f=>`<div class="form-dot ${f.toLowerCase()}">${f}</div>`).join('')}</div>
-    </div>
-    <div class="vs-block">
-      <span class="vs-label">VS</span>
-      <span class="vs-time-badge">${hour}:30</span>
-    </div>
-    <div class="team-side right">
-      <div class="team-logo-wrap" style="margin-left:auto;">${match.awayColor}</div>
-      <div class="team-name">${match.away}</div>
-      <div class="team-form">${match.awayForm.map(f=>`<div class="form-dot ${f.toLowerCase()}">${f}</div>`).join('')}</div>
-    </div>
-  </div>
-  <div class="pred-card-footer">
-    <div class="pred-result-row">
-      <div class="pred-pick">
-        <div>
-          <div class="pred-pick-label">Prediction</div>
-          <div class="pred-pick-value">${match.pred}</div>
+  // Function yo gukora HTML ya buri card (kugira ngo kode itaba ndende cyane)
+  function createCardHTML(match, hour) {
+    return `
+    <div class="pred-card" data-league="${match.league}">
+      <div class="pred-card-header">
+        <div class="pred-league">${match.leagueFlag}</div>
+        <div class="pred-time">⏰ Today ${hour}:30</div>
+      </div>
+      <div class="pred-card-body">
+        <div class="team-side">
+          <div class="team-logo-wrap">${match.homeColor}</div>
+          <div class="team-name">${match.home}</div>
+          <div class="team-form">${match.homeForm.map(f=>`<div class="form-dot ${f.toLowerCase()}">${f}</div>`).join('')}</div>
+        </div>
+        <div class="vs-block">
+          <span class="vs-label">VS</span>
+          <span class="vs-time-badge">${hour}:30</span>
+        </div>
+        <div class="team-side right">
+          <div class="team-logo-wrap" style="margin-left:auto;">${match.awayColor}</div>
+          <div class="team-name">${match.away}</div>
+          <div class="team-form">${match.awayForm.map(f=>`<div class="form-dot ${f.toLowerCase()}">${f}</div>`).join('')}</div>
         </div>
       </div>
-    </div>
-    <div class="confidence-wrap">
-      <div class="conf-label"><span>Confidence</span><span>${match.confidence}%</span></div>
-      <div class="conf-bar"><div class="conf-fill ${match.confidence>80?'high':'mid'}" style="width:${match.confidence}%"></div></div>
-    </div>
-    <div class="tip-chips">
-      ${match.tips.map(t=>{
-        let color = t.includes("Home") ? "green" : t.includes("Away") ? "red" : t.includes("BTTS") ? "blue" : "yellow";
-        return `<span class="chip ${color}">${t}</span>`;
-      }).join('')}
-    </div>
-  </div>
-</div>
-    `;
-    container2.innerHTML += card;
+      <div class="pred-card-footer">
+        <div class="pred-result-row">
+          <div class="pred-pick">
+            <div>
+              <div class="pred-pick-label">Prediction</div>
+              <div class="pred-pick-value">${match.pred}</div>
+            </div>
+          </div>
+        </div>
+        <div class="confidence-wrap">
+          <div class="conf-label"><span>Confidence</span><span>${match.confidence}%</span></div>
+          <div class="conf-bar"><div class="conf-fill ${match.confidence>80?'high':'mid'}" style="width:${match.confidence}%"></div></div>
+        </div>
+        <div class="tip-chips">
+          ${match.tips.map(t=>{
+            let color = t.includes("Home") ? "green" : t.includes("Away") ? "red" : t.includes("BTTS") ? "blue" : "yellow";
+            return `<span class="chip ${color}">${t}</span>`;
+          }).join('')}
+        </div>
+      </div>
+    </div>`;
+  }
+
+  // Navigation ya paji
+  function goPage(pageNum) {
+    document.getElementById('page1').style.display = (pageNum === 1) ? 'block' : 'none';
+    document.getElementById('page2').style.display = (pageNum === 2) ? 'block' : 'none';
+    window.scrollTo(0, 0);
+  }
+
+  // Gushyira cards 20 kuri Page 2
+  document.addEventListener("DOMContentLoaded", function() {
+    const container2 = document.getElementById("cards-container-page2");
+    for(let i=0; i<20; i++){
+      const match = matchesPage2[i % matchesPage2.length];
+      const hour = 16 + (i % 6);
+      container2.innerHTML += createCardHTML(match, hour);
+    }
   });
-});
 </script>
 <!-- FOOTER -->
 <footer>
