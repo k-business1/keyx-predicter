@@ -961,6 +961,93 @@ for(let i=0; i<laligaMatches.length; i++){
         <button class="page-btn" onclick="goPage(1)">◀ Back</button>
         <span class="page-info">Page 2 of 2</span>
       </div>
+      <!-- PAGE 2 -->
+<div id="page2" style="display:none;">
+  <div class="predictions-grid">
+    <div id="cards-container-page2"></div>
+
+    <script>
+    const page2Matches = [
+      {home:"Sevilla", away:"Barcelona", homeColor:"🔴⚪", awayColor:"🔵🔴", homeForm:["D","W","L","D","W"], awayForm:["W","W","D","W","L"], pred:"Draw", confidence:63, tips:["Draw","Over 2.5"]},
+      {home:"Real Sociedad", away:"Valencia", homeColor:"🔵⚪", awayColor:"🔴🟠", homeForm:["W","D","W","L","D"], awayForm:["L","W","D","W","D"], pred:"🏠 Home Win (Real Sociedad)", confidence:71, tips:["Home Win","Over 2.5"]},
+      {home:"Celta Vigo", away:"Real Betis", homeColor:"🔵⚪", awayColor:"🟢⚪", homeForm:["L","D","W","D","L"], awayForm:["W","D","W","D","W"], pred:"⚪ Away Win (Real Betis)", confidence:69, tips:["Away Win","Over 2.5"]},
+      {home:"Mallorca", away:"Atletico Madrid", homeColor:"🔴🟠", awayColor:"🔴⚪", homeForm:["L","D","L","W","D"], awayForm:["W","D","L","W","D"], pred:"⚪ Away Win (Atletico)", confidence:74, tips:["Away Win","Under 3.0"]},
+      {home:"Athletic Bilbao", away:"Real Madrid", homeColor:"🔴⚫", awayColor:"⚪", homeForm:["W","D","L","D","W"], awayForm:["W","W","D","W","L"], pred:"⚪ Away Win (Real Madrid)", confidence:82, tips:["Away Win","Over 2.5"]},
+      {home:"Elche", away:"Getafe", homeColor:"⚪🔴", awayColor:"🔵⚫", homeForm:["D","L","W","D","L"], awayForm:["D","W","L","D","W"], pred:"🏠 Home Win (Elche)", confidence:66, tips:["Home Win","Under 3.0"]},
+      {home:"Granada", away:"Espanyol", homeColor:"🔴⚪", awayColor:"🔵⚪", homeForm:["L","D","L","D","W"], awayForm:["W","D","L","W","D"], pred:"⚪ Away Win (Espanyol)", confidence:68, tips:["Away Win","Over 2.5"]},
+      {home:"Cádiz", away:"Rayo Vallecano", homeColor:"🟡🔵", awayColor:"🔴⚪", homeForm:["D","L","D","L","W"], awayForm:["W","D","L","D","W"], pred:"Draw", confidence:61, tips:["Draw","Under 2.5"]},
+      {home:"Osasuna", away:"Sevilla", homeColor:"🔴⚪", awayColor:"🔴⚪", homeForm:["L","D","L","W","D"], awayForm:["W","D","W","L","D"], pred:"⚪ Away Win (Sevilla)", confidence:75, tips:["Away Win","Over 2.5"]},
+      {home:"Villarreal", away:"Valladolid", homeColor:"🟡", awayColor:"🔴⚪", homeForm:["W","D","W","L","D"], awayForm:["L","D","L","W","D"], pred:"🏠 Home Win (Villarreal)", confidence:70, tips:["Home Win","Over 2.5"]},
+      {home:"Real Madrid", away:"Celta Vigo", homeColor:"⚪", awayColor:"🔵⚪", homeForm:["W","D","W","W","L"], awayForm:["L","D","W","D","L"], pred:"🏠 Home Win (Real Madrid)", confidence:80, tips:["Home Win","Over 2.5"]},
+      {home:"Barcelona", away:"Valencia", homeColor:"🔵🔴", awayColor:"🔴🟠", homeForm:["W","W","D","W","D"], awayForm:["L","W","D","L","D"], pred:"🏠 Home Win (Barcelona)", confidence:78, tips:["Home Win","Over 2.5"]},
+      {home:"Sevilla", away:"Betis", homeColor:"🔴⚪", awayColor:"🟢⚪", homeForm:["D","W","D","W","L"], awayForm:["W","D","L","D","W"], pred:"Draw", confidence:65, tips:["Draw","Over 2.5"]},
+      {home:"Atlético Madrid", away:"Real Sociedad", homeColor:"🔴⚪", awayColor:"🔵⚪", homeForm:["W","D","L","W","D"], awayForm:["D","W","L","D","W"], pred:"🏠 Home Win (Atlético)", confidence:77, tips:["Home Win","Under 3.5"]},
+      {home:"Mallorca", away:"Espanyol", homeColor:"🔴🟠", awayColor:"🔵⚪", homeForm:["L","D","W","L","D"], awayForm:["W","D","L","D","W"], pred:"⚪ Away Win (Espanyol)", confidence:66, tips:["Away Win","Over 2.5"]},
+      {home:"Getafe", away:"Alavés", homeColor:"🔵⚫", awayColor:"🔵⚪", homeForm:["D","L","W","D","L"], awayForm:["L","L","D","W","L"], pred:"Draw", confidence:60, tips:["Draw","Under 2.5"]},
+      {home:"Valladolid", away:"Athletic Bilbao", homeColor:"🔴⚪", awayColor:"🔴⚫", homeForm:["L","D","W","L","D"], awayForm:["W","D","L","D","W"], pred:"⚪ Away Win (Athletic)", confidence:68, tips:["Away Win","Over 2.5"]},
+      {home:"Cádiz", away:"Elche", homeColor:"🟡🔵", awayColor:"⚪🔴", homeForm:["D","L","D","L","W"], awayForm:["D","L","W","D","L"], pred:"Draw", confidence:62, tips:["Draw","Under 2.5"]},
+      {home:"Betis", away:"Villarreal", homeColor:"🟢⚪", awayColor:"🟡", homeForm:["W","D","W","L","W"], awayForm:["W","D","W","L","W"], pred:"🏠 Home Win (Betis)", confidence:73, tips:["Home Win","Over 2.5"]},
+      {home:"Real Sociedad", away:"Sevilla", homeColor:"🔵⚪", awayColor:"🔴⚪", homeForm:["W","D","W","L","D"], awayForm:["D","W","L","D","W"], pred:"🏠 Home Win (Real Sociedad)", confidence:70, tips:["Home Win","Over 2.5"]},
+    ];
+
+    const container2 = document.getElementById("cards-container-page2");
+
+    for(let i=0; i<page2Matches.length; i++){
+      const match = page2Matches[i];
+      const hour = 16 + (i % 6);
+      const card = `
+<div class="pred-card" data-league="laliga">
+  <div class="pred-card-header">
+    <div class="pred-league">🇪🇸 La Liga</div>
+    <div class="pred-time">⏰ Today ${hour}:30</div>
+  </div>
+  <div class="pred-card-body">
+    <div class="team-side">
+      <div class="team-logo-wrap">${match.homeColor}</div>
+      <div class="team-name">${match.home}</div>
+      <div class="team-form">${match.homeForm.map(f=>`<div class="form-dot ${f.toLowerCase()}">${f}</div>`).join('')}</div>
+    </div>
+    <div class="vs-block">
+      <span class="vs-label">VS</span>
+      <span class="vs-time-badge">${hour}:30</span>
+    </div>
+    <div class="team-side right">
+      <div class="team-logo-wrap" style="margin-left:auto;">${match.awayColor}</div>
+      <div class="team-name">${match.away}</div>
+      <div class="team-form">${match.awayForm.map(f=>`<div class="form-dot ${f.toLowerCase()}">${f}</div>`).join('')}</div>
+    </div>
+  </div>
+  <div class="pred-card-footer">
+    <div class="pred-result-row">
+      <div class="pred-pick">
+        <div>
+          <div class="pred-pick-label">Prediction</div>
+          <div class="pred-pick-value">${match.pred}</div>
+        </div>
+      </div>
+    </div>
+    <div class="confidence-wrap">
+      <div class="conf-label"><span>Confidence</span><span>${match.confidence}%</span></div>
+      <div class="conf-bar"><div class="conf-fill ${match.confidence>80?'high':'mid'}" style="width:${match.confidence}%"></div></div>
+    </div>
+    <div class="tip-chips">
+      ${match.tips.map(t=>{
+        let color = t.includes("Home") ? "green" : t.includes("Away") ? "red" : t.includes("BTTS") ? "blue" : "yellow";
+        return `<span class="chip ${color}">${t}</span>`;
+      }).join('')}
+    </div>
+  </div>
+</div>
+      `;
+      container2.innerHTML += card;
+    }
+    </script>
+
+    <div class="pagination">
+      <button class="page-btn" onclick="goPage(1)">◀ Back</button>
+      <span class="page-info">Page 2 of 2</span>
+    </div>
+</div>
     </div>
 
   </div>
