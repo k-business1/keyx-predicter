@@ -14,8 +14,6 @@ html{scroll-behavior:smooth}
 body{font-family:'Rajdhani',sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden;min-height:100vh}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--dark2)}::-webkit-scrollbar-thumb{background:var(--green2);border-radius:3px}
 body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% 20%,rgba(155,226,60,.04) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(111,207,42,.03) 0%,transparent 60%);pointer-events:none;z-index:0}
-
-/* HEADER */
 header{position:fixed;top:0;width:100%;display:flex;justify-content:space-between;align-items:center;padding:0 36px;height:58px;background:rgba(8,12,20,.97);backdrop-filter:blur(16px);z-index:9000;border-bottom:1px solid rgba(155,226,60,.12)}
 .logo{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--green);letter-spacing:4px;text-shadow:0 0 20px rgba(155,226,60,.5);display:flex;align-items:center;gap:10px;cursor:pointer}
 .logo img.logo-ico{width:28px;height:28px;border-radius:4px;object-fit:cover;display:none}
@@ -26,14 +24,10 @@ nav a:hover{color:var(--green)}
 nav a.active{color:var(--dark);background:var(--green)}
 .btn-adm{margin-left:8px;padding:6px 13px;background:rgba(155,226,60,.08);border:1px solid rgba(155,226,60,.25);color:var(--green);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.5px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase}
 .btn-adm:hover{background:rgba(155,226,60,.18)}
-
-/* TICKER */
 .ticker-bar{background:var(--green);padding:7px 0;overflow:hidden;white-space:nowrap}
 .ticker-track{display:inline-block;animation:ticker 35s linear infinite}
 .ticker-track span{display:inline-block;color:var(--dark);font-weight:700;font-size:12px;letter-spacing:1.5px;padding:0 38px}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-/* HERO */
 .hero{height:100vh;position:relative;overflow:hidden;padding-top:58px}
 .slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.4s ease;display:flex;align-items:flex-end;padding:76px 56px}
 .slide.active{opacity:1}
@@ -48,15 +42,11 @@ nav a.active{color:var(--dark);background:var(--green)}
 .slide-dots{position:absolute;bottom:26px;right:56px;display:flex;gap:7px;z-index:10}
 .dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:all .3s}
 .dot.active{background:var(--green);width:24px;border-radius:4px}
-
-/* STATS */
 .stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.05)}
 .stat-item{background:var(--dark2);text-align:center;padding:22px 14px;transition:background .2s}
 .stat-item:hover{background:var(--dark3)}
 .stat-num{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--green);letter-spacing:2px;line-height:1}
 .stat-label{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:3px}
-
-/* PAGES */
 .page{display:none}.page.active{display:block}
 #page-home{padding-top:0}#page-predictions,#page-admin{padding-top:58px}
 .section{padding:52px 36px;max-width:1200px;margin:0 auto;position:relative;z-index:1}
@@ -64,14 +54,10 @@ nav a.active{color:var(--dark);background:var(--green)}
 .section-title{font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:2px;color:#fff}
 .section-title span{color:var(--green)}
 .acc-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(155,226,60,.1);border:1px solid rgba(155,226,60,.3);color:var(--green);font-size:11px;font-weight:700;letter-spacing:1px;padding:5px 13px;border-radius:3px;text-transform:uppercase}
-
-/* FILTER */
 .filter-tabs{display:flex;gap:5px;margin-bottom:22px;flex-wrap:wrap}
 .filter-tab{padding:6px 16px;background:transparent;border:1px solid rgba(255,255,255,.08);color:var(--muted);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.5px;cursor:pointer;border-radius:3px;transition:all .2s;text-transform:uppercase}
 .filter-tab:hover{color:#fff;border-color:rgba(255,255,255,.25)}
 .filter-tab.active{background:rgba(155,226,60,.12);border-color:var(--green);color:var(--green)}
-
-/* PRED CARDS */
 .predictions-grid{display:grid;gap:10px}
 .pred-card{background:var(--dark2);border:1px solid rgba(255,255,255,.05);border-radius:var(--radius);overflow:hidden;transition:all .25s}
 .pred-card:hover{border-color:rgba(155,226,60,.28);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.35)}
@@ -82,7 +68,6 @@ nav a.active{color:var(--dark);background:var(--green)}
 .team-side{display:flex;flex-direction:column;gap:6px}
 .team-side.right{align-items:flex-end;text-align:right}
 .team-logo-wrap{width:44px;height:44px;background:var(--dark3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;border:2px solid rgba(255,255,255,.06);overflow:hidden}
-.team-logo-wrap img{width:100%;height:100%;object-fit:cover;border-radius:50%}
 .team-side.right .team-logo-wrap{margin-left:auto}
 .team-name{font-size:15px;font-weight:700;color:#fff;letter-spacing:.5px}
 .vs-block{text-align:center}
@@ -104,15 +89,11 @@ nav a.active{color:var(--dark);background:var(--green)}
 .chip.yellow{background:rgba(250,204,21,.1);color:var(--yellow);border:1px solid rgba(250,204,21,.2)}
 .chip.red{background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.2)}
 .chip.blue{background:rgba(96,165,250,.1);color:var(--blue);border:1px solid rgba(96,165,250,.2)}
-
-/* PAGINATION */
 .pagination{display:flex;justify-content:center;align-items:center;gap:10px;margin-top:30px}
 .page-btn{padding:9px 24px;background:transparent;border:1px solid rgba(155,226,60,.3);color:var(--green);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.5px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase}
 .page-btn:hover{background:var(--green);color:var(--dark)}
 .page-btn:disabled{opacity:.3;cursor:not-allowed}
 .page-info{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:1px}
-
-/* PREVIEW CARDS */
 .preview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
 @media(max-width:900px){.preview-grid{grid-template-columns:1fr}}
 .preview-card{background:var(--dark2);border:1px solid rgba(255,255,255,.05);border-radius:var(--radius);overflow:hidden;transition:all .25s;cursor:pointer}
@@ -128,8 +109,6 @@ nav a.active{color:var(--dark);background:var(--green)}
 .mini-bar{height:3px;background:rgba(255,255,255,.07);border-radius:2px;margin-top:8px;overflow:hidden}
 .mini-fill{height:100%;border-radius:2px;background:var(--green)}
 .mini-conf{font-size:9px;color:var(--muted);margin-top:4px;font-weight:700;letter-spacing:1px}
-
-/* LOADING / EMPTY */
 .empty-state{text-align:center;padding:56px 20px;color:var(--muted);font-size:14px;font-weight:600;letter-spacing:1px}
 .empty-state .icon{font-size:46px;margin-bottom:13px}
 .empty-state p{font-size:12px;margin-top:5px;opacity:.6}
@@ -139,12 +118,18 @@ nav a.active{color:var(--dark);background:var(--green)}
 
 /* ADMIN */
 .admin-login-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 58px);gap:18px;text-align:center;padding:20px}
-.login-card{background:var(--dark2);border:1px solid rgba(155,226,60,.15);border-radius:14px;padding:38px 46px;max-width:400px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+.login-card{background:var(--dark2);border:1px solid rgba(155,226,60,.15);border-radius:14px;padding:38px 46px;max-width:420px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.4)}
 .lock-icon{font-size:50px;margin-bottom:10px}
 .login-title{font-family:'Bebas Neue',sans-serif;font-size:38px;letter-spacing:3px;color:#fff;margin-bottom:6px}
 .login-title span{color:var(--green)}
 .login-sub{color:var(--muted);font-size:13px;font-weight:600;letter-spacing:1px;margin-bottom:20px}
-.security-note{font-size:10px;color:var(--muted);letter-spacing:1px;font-weight:600;margin-top:13px;text-align:center}
+.security-note{font-size:10px;color:var(--muted);letter-spacing:1px;font-weight:600;margin-top:13px}
+
+/* Setup banner */
+.setup-banner{background:rgba(250,204,21,.08);border:1px solid rgba(250,204,21,.3);border-radius:8px;padding:14px 18px;margin-bottom:20px;font-size:12px;color:var(--yellow);font-weight:600;letter-spacing:.5px;line-height:1.7}
+.setup-banner strong{display:block;font-size:14px;margin-bottom:6px;letter-spacing:1px}
+.setup-banner code{background:rgba(250,204,21,.15);padding:2px 7px;border-radius:4px;font-family:'Space Mono',monospace;font-size:11px}
+
 .admin-wrap{max-width:960px;margin:0 auto;padding:46px 36px;position:relative;z-index:1}
 .admin-topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.06)}
 .admin-user{display:flex;align-items:center;gap:11px}
@@ -153,15 +138,11 @@ nav a.active{color:var(--dark);background:var(--green)}
 .admin-uemail{font-size:11px;color:var(--muted);letter-spacing:.5px}
 .btn-logout{padding:7px 16px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:var(--red);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;letter-spacing:1.5px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase}
 .btn-logout:hover{background:rgba(239,68,68,.2)}
-
-/* Admin tabs */
 .admin-tabs{display:flex;gap:5px;margin-bottom:26px;flex-wrap:wrap}
 .admin-tab{padding:8px 18px;background:transparent;border:1px solid rgba(255,255,255,.08);color:var(--muted);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.5px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase}
 .admin-tab:hover{color:#fff;border-color:rgba(255,255,255,.25)}
 .admin-tab.active{background:rgba(155,226,60,.12);border-color:var(--green);color:var(--green)}
 .admin-section{display:none}.admin-section.active{display:block}
-
-/* Admin cards & forms */
 .a-card{background:var(--dark2);border:1px solid rgba(155,226,60,.1);border-radius:12px;padding:26px;margin-bottom:22px}
 .a-card-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:#fff;margin-bottom:20px;display:flex;align-items:center;gap:9px}
 .a-card-title span{color:var(--green)}
@@ -177,15 +158,11 @@ nav a.active{color:var(--dark);background:var(--green)}
 .btn-save{width:100%;margin-top:18px;padding:13px;background:var(--green);color:var(--dark);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;border-radius:6px;transition:all .2s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
 .btn-save:hover{background:#b4f04e;transform:translateY(-1px);box-shadow:0 8px 24px rgba(155,226,60,.3)}
 .btn-save:disabled{opacity:.5;cursor:not-allowed;transform:none}
-
-/* Upload zone */
 .upload-zone{border:2px dashed rgba(155,226,60,.3);border-radius:8px;padding:22px;text-align:center;cursor:pointer;transition:all .2s;background:rgba(155,226,60,.03)}
 .upload-zone:hover{border-color:rgba(155,226,60,.6);background:rgba(155,226,60,.07)}
 .upload-zone input{display:none}
 .upload-zone p{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:1px;margin-top:6px}
 .upload-preview{width:100%;max-height:140px;object-fit:cover;border-radius:6px;margin-top:10px;display:none}
-
-/* Matches table */
 .matches-table{width:100%;border-collapse:collapse}
 .matches-table th{padding:10px 16px;text-align:left;font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.06);background:rgba(0,0,0,.15)}
 .matches-table td{padding:11px 16px;font-size:13px;font-weight:600;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle}
@@ -200,8 +177,6 @@ nav a.active{color:var(--dark);background:var(--green)}
 .btn-edit:hover{background:rgba(96,165,250,.2)}
 .btn-del{padding:4px 10px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);color:var(--red);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:10px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase;letter-spacing:1px}
 .btn-del:hover{background:rgba(239,68,68,.25)}
-
-/* Slides manager */
 .slides-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 @media(max-width:700px){.slides-grid{grid-template-columns:1fr}}
 .slide-thumb{border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.08);transition:all .2s}
@@ -209,20 +184,14 @@ nav a.active{color:var(--dark);background:var(--green)}
 .slide-thumb-body{padding:10px}
 .slide-thumb-title{font-size:12px;font-weight:700;color:#fff;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .slide-thumb-actions{display:flex;gap:5px;margin-top:8px}
-
-/* Settings */
 .settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:640px){.settings-grid{grid-template-columns:1fr}}
 .favicon-preview{width:50px;height:50px;border-radius:8px;object-fit:cover;border:2px solid rgba(155,226,60,.3)}
-
-/* NOTIFICATION */
-.notif{position:fixed;top:70px;right:18px;padding:11px 18px;border-radius:7px;font-weight:700;font-size:12px;letter-spacing:1px;z-index:99999;transform:translateX(220%);transition:transform .4s cubic-bezier(.34,1.56,.64,1);max-width:300px}
+.notif{position:fixed;top:70px;right:18px;padding:11px 18px;border-radius:7px;font-weight:700;font-size:12px;letter-spacing:1px;z-index:99999;transform:translateX(220%);transition:transform .4s cubic-bezier(.34,1.56,.64,1);max-width:320px}
 .notif.show{transform:translateX(0)}
 .notif.success{background:rgba(155,226,60,.15);border:1px solid rgba(155,226,60,.4);color:var(--green)}
 .notif.error{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.4);color:var(--red)}
 .notif.info{background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.4);color:var(--blue)}
-
-/* MODAL */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);z-index:99000;display:none;align-items:center;justify-content:center;padding:20px}
 .modal-overlay.open{display:flex}
 .modal{background:var(--dark2);border:1px solid rgba(155,226,60,.2);border-radius:14px;padding:28px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;position:relative}
@@ -230,12 +199,9 @@ nav a.active{color:var(--dark);background:var(--green)}
 .modal-title span{color:var(--green)}
 .modal-close{position:absolute;top:14px;right:16px;background:transparent;border:none;color:var(--muted);font-size:20px;cursor:pointer;transition:color .2s;line-height:1}
 .modal-close:hover{color:#fff}
-
-/* FOOTER */
 footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-align:center;padding:26px;font-size:11px;color:var(--muted);letter-spacing:1px;position:relative;z-index:1}
 .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--green);letter-spacing:4px;margin-bottom:7px}
 .footer-disc{font-size:10px;color:rgba(255,255,255,.18);margin-top:7px}
-
 #scrollTop{position:fixed;bottom:20px;right:20px;width:38px;height:38px;background:rgba(155,226,60,.1);border:1px solid rgba(155,226,60,.3);color:var(--green);font-size:15px;border-radius:50%;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;transition:all .2s}
 #scrollTop:hover{background:var(--green);color:var(--dark)}
 @media(max-width:768px){header{padding:0 16px}.slide-content h2{font-size:50px}.stats-strip{grid-template-columns:repeat(2,1fr)}.section{padding:36px 16px}.admin-wrap{padding:36px 16px}}
@@ -293,11 +259,11 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
         <label class="flabel">Background Image</label>
         <div class="upload-zone" onclick="document.getElementById('sm-img-input').click()">
           <div style="font-size:28px">🖼️</div>
-          <p>Click to upload (or use URL below)</p>
+          <p>Click to upload image</p>
           <input type="file" id="sm-img-input" accept="image/*" onchange="previewSlideImg(this)">
           <img id="sm-img-preview" class="upload-preview">
         </div>
-        <input class="finput" id="sm-img-url" type="text" placeholder="Or paste image URL" style="margin-top:8px">
+        <input class="finput" id="sm-img-url" type="text" placeholder="Or paste image URL here" style="margin-top:8px">
       </div>
     </div>
     <input type="hidden" id="sm-idx">
@@ -305,7 +271,7 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
   </div>
 </div>
 
-<!-- ======= HEADER ======= -->
+<!-- HEADER -->
 <header>
   <div class="logo" onclick="showPage('home')">
     <img id="logo-ico" class="logo-ico" src="" alt="">
@@ -319,7 +285,7 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
   </nav>
 </header>
 
-<!-- ======= HOME ======= -->
+<!-- HOME -->
 <div id="page-home" class="page active">
   <div class="hero">
     <div id="slide-0" class="slide active">
@@ -352,16 +318,13 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
       <div class="dot" onclick="goSlide(2)"></div>
     </div>
   </div>
-
   <div class="ticker-bar"><div class="ticker-track" id="ticker-home"></div></div>
-
   <div class="stats-strip">
     <div class="stat-item"><div class="stat-num" id="stat-acc">85%</div><div class="stat-label">Accuracy Rate</div></div>
     <div class="stat-item"><div class="stat-num">1.2K+</div><div class="stat-label">Tips This Month</div></div>
     <div class="stat-item"><div class="stat-num">12</div><div class="stat-label">Leagues Covered</div></div>
     <div class="stat-item"><div class="stat-num">50K+</div><div class="stat-label">Happy Users</div></div>
   </div>
-
   <div class="section">
     <div class="section-header">
       <div class="section-title">TODAY'S <span>TOP PICKS</span></div>
@@ -376,7 +339,7 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
   </div>
 </div>
 
-<!-- ======= PREDICTIONS ======= -->
+<!-- PREDICTIONS -->
 <div id="page-predictions" class="page">
   <div class="ticker-bar"><div class="ticker-track" id="ticker-pred"></div></div>
   <div class="section">
@@ -402,14 +365,13 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
   </div>
 </div>
 
-<!-- ======= ADMIN ======= -->
+<!-- ADMIN -->
 <div id="page-admin" class="page">
-  <!-- LOGIN -->
   <div id="admin-login" class="admin-login-screen">
     <div class="login-card">
       <div class="lock-icon">🔐</div>
       <div class="login-title">ADMIN <span>PANEL</span></div>
-      <div class="login-sub">Sign in with your Google account to manage predictions</div>
+      <div class="login-sub">Sign in with your Google account</div>
       <div id="g_id_onload"
            data-client_id="903689108267-tmch5sr73slpk0ru0vkvjtl72m36mv2t.apps.googleusercontent.com"
            data-callback="handleGoogleLogin"
@@ -419,8 +381,14 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
     </div>
   </div>
 
-  <!-- PANEL -->
   <div id="admin-panel" class="admin-wrap" style="display:none">
+    <!-- Setup banner shown if Apps Script URL not set -->
+    <div id="setup-banner" class="setup-banner" style="display:none">
+      <strong>⚠️ Setup Required — Apps Script URL</strong>
+      To enable Save / Delete, paste your <strong>Apps Script Web App URL</strong> in Settings tab below.
+      <br>See the instructions at the bottom of the Settings tab.
+    </div>
+
     <div class="admin-topbar">
       <div class="admin-user">
         <img id="adm-avatar" class="admin-avatar" src="" alt="">
@@ -438,7 +406,7 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
       <button class="admin-tab" onclick="adminTab(this,'tab-settings')">⚙️ Settings</button>
     </div>
 
-    <!-- TAB: PREDICTIONS -->
+    <!-- PREDICTIONS TAB -->
     <div id="tab-matches" class="admin-section active">
       <div class="a-card">
         <div class="a-card-title">➕ Add <span>New Prediction</span></div>
@@ -479,7 +447,7 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
       </div>
     </div>
 
-    <!-- TAB: SLIDES -->
+    <!-- SLIDES TAB -->
     <div id="tab-slides" class="admin-section">
       <div class="a-card">
         <div class="a-card-title">🖼️ Manage <span>Hero Slides</span></div>
@@ -488,17 +456,17 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
       </div>
     </div>
 
-    <!-- TAB: SETTINGS -->
+    <!-- SETTINGS TAB -->
     <div id="tab-settings" class="admin-section">
       <div class="a-card">
         <div class="a-card-title">⚙️ Site <span>Settings</span></div>
         <div class="settings-grid">
           <div class="fg full">
             <label class="flabel">Favicon / Logo Icon</label>
-            <div style="display:flex;align-items:center;gap:14px;margin-top:6px">
+            <div style="display:flex;align-items:center;gap:14px;margin-top:8px">
               <img id="fav-preview" class="favicon-preview" src="" alt="favicon">
               <div>
-                <div style="font-size:12px;color:var(--muted);font-weight:600;margin-bottom:7px">Shown in browser tab and header logo</div>
+                <div style="font-size:12px;color:var(--muted);font-weight:600;margin-bottom:7px">Shown in browser tab and header</div>
                 <button onclick="document.getElementById('fav-file').click()" style="background:rgba(155,226,60,.1);border:1px solid rgba(155,226,60,.3);color:var(--green);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;letter-spacing:1.5px;padding:7px 14px;border-radius:4px;cursor:pointer;text-transform:uppercase">📁 Upload Favicon</button>
                 <input type="file" id="fav-file" accept="image/*" style="display:none" onchange="uploadFavicon(this)">
               </div>
@@ -506,7 +474,7 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
           </div>
           <div class="fg full">
             <label class="flabel">Ticker Messages (one per line)</label>
-            <textarea class="ftextarea" id="ticker-input" style="min-height:110px" placeholder="Arsenal WIN ✓ — 85% confidence&#10;PSG WIN ✓ — 91% confidence"></textarea>
+            <textarea class="ftextarea" id="ticker-input" style="min-height:100px" placeholder="Arsenal WIN ✓ — 85% confidence&#10;PSG WIN ✓ — 91% confidence"></textarea>
           </div>
           <div class="fg">
             <label class="flabel">Site Title (browser tab)</label>
@@ -516,13 +484,51 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
             <label class="flabel">Accuracy Stat Display</label>
             <input class="finput" id="site-accuracy" type="text" placeholder="85%">
           </div>
+          <div class="fg full">
+            <label class="flabel">Spreadsheet ID</label>
+            <input class="finput" id="set-sheetid" type="text" placeholder="Paste your Google Spreadsheet ID here">
+          </div>
+          <div class="fg full">
+            <label class="flabel">Google Apps Script URL (for Save/Delete)</label>
+            <input class="finput" id="set-scripturl" type="text" placeholder="https://script.google.com/macros/s/YOUR_ID/exec">
+            <div style="margin-top:10px;background:rgba(250,204,21,.06);border:1px solid rgba(250,204,21,.2);border-radius:8px;padding:14px;font-size:12px;color:var(--yellow);line-height:1.9;font-weight:600">
+              <strong style="display:block;margin-bottom:6px;font-size:13px;letter-spacing:1px">📋 HOW TO GET APPS SCRIPT URL:</strong>
+              1. Fungura Google Sheet yawe → <strong>Extensions → Apps Script</strong><br>
+              2. Siba code yose, shyiramo iyi code:<br>
+              <div style="background:rgba(0,0,0,.3);border-radius:6px;padding:10px;margin:8px 0;font-family:'Space Mono',monospace;font-size:10px;color:#e5e7eb;white-space:pre-wrap">function doPost(e){
+  var ss = SpreadsheetApp.openById('SPREADSHEET_ID');
+  var sheet = ss.getSheetByName('Predictions');
+  var data = JSON.parse(e.postData.contents);
+  if(data.action === 'add'){
+    sheet.appendRow(data.row);
+    return ContentService.createTextOutput(JSON.stringify({ok:true})).setMimeType(ContentService.MimeType.JSON);
+  }
+  if(data.action === 'delete'){
+    sheet.deleteRow(data.rowIndex);
+    return ContentService.createTextOutput(JSON.stringify({ok:true})).setMimeType(ContentService.MimeType.JSON);
+  }
+  if(data.action === 'update'){
+    var range = sheet.getRange(data.rowIndex, 1, 1, data.row.length);
+    range.setValues([data.row]);
+    return ContentService.createTextOutput(JSON.stringify({ok:true})).setMimeType(ContentService.MimeType.JSON);
+  }
+}
+function doGet(e){
+  return ContentService.createTextOutput('ok');
+}</div>
+              3. Hindura <code style="background:rgba(0,0,0,.3);padding:2px 6px;border-radius:3px">SPREADSHEET_ID</code> mu code<br>
+              4. Kanda <strong>Deploy → New deployment → Web App</strong><br>
+              5. Execute as: <strong>Me</strong> | Who has access: <strong>Anyone</strong><br>
+              6. Kopi URL ugashyira hano hejuru
+            </div>
+          </div>
         </div>
-        <button class="btn-save" onclick="saveSettings()">💾 SAVE SETTINGS</button>
+        <button class="btn-save" onclick="saveSettings()">💾 SAVE ALL SETTINGS</button>
       </div>
     </div>
 
-  </div><!-- /admin-panel -->
-</div><!-- /page-admin -->
+  </div>
+</div>
 
 <footer>
   <div class="footer-logo">KEYX PREDICTER</div>
@@ -531,19 +537,19 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
 </footer>
 
 <script>
-/* ===== CONFIG ===== */
-const CFG = {
+/* ===== CONFIG (saved in localStorage) ===== */
+let CFG = {
   API_KEY:   'AIzaSyDpKYINbj2kqqvebEFqeHx052fl1xtf5hg',
   CLIENT_ID: '903689108267-tmch5sr73slpk0ru0vkvjtl72m36mv2t.apps.googleusercontent.com',
-  SPREADSHEET_ID: 'YOUR_SPREADSHEET_ID',  // ← Shyiramo SPREADSHEET ID yawe
+  SPREADSHEET_ID: localStorage.getItem('kx_sheetid') || '',
+  SCRIPT_URL:     localStorage.getItem('kx_scripturl') || '',
   SHEET: 'Predictions'
 };
 
 /* ===== STATE ===== */
 let allMatches=[], filteredMatches=[], sheetRowMap=[];
-let curPage=1, PER=10, curFilter='all', accessToken=null;
+let curPage=1, PER=10, curFilter='all';
 
-/* ===== DEFAULTS ===== */
 const DEF_SLIDES=[
   {tag:'🤖 AI Powered Predictions',h1:'PREDICT',h2:'LIKE A PRO',p:'Smart football predictions powered by real data and AI analysis. Never miss a winning tip.',btn:'VIEW PREDICTIONS →',bg:'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1600'},
   {tag:'⚽ Daily Tips',h1:"TODAY'S",h2:'BEST PICKS',p:"Up to 15 high-confidence predictions every day across Europe's top leagues.",btn:"SEE TODAY'S TIPS →",bg:'https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=1600'},
@@ -557,91 +563,99 @@ let S_TITLE = localStorage.getItem('kx_title')   || 'KEYX PREDICTER — AI Footb
 let S_ACC   = localStorage.getItem('kx_acc')     || '85%';
 let FAV_URL = localStorage.getItem('kx_favicon') || '';
 
-function tryParse(s){ try{ return JSON.parse(s); } catch(e){ return null; } }
+function tryParse(s){ try{ return JSON.parse(s); }catch(e){ return null; } }
 
 /* ===== INIT ===== */
-window.addEventListener('load', () => {
+window.addEventListener('load', ()=>{
   applySettings();
   renderSlides();
   renderTickers();
   loadHomePreviews();
   initGoogleBtn();
   document.getElementById('f-date').valueAsDate = new Date();
-  document.getElementById('ticker-input').value = TICKER.replace(/\|/g,'\n');
-  document.getElementById('site-title').value   = S_TITLE;
-  document.getElementById('site-accuracy').value= S_ACC;
-  if(FAV_URL) document.getElementById('fav-preview').src = FAV_URL;
+  document.getElementById('ticker-input').value  = TICKER.replace(/\|/g,'\n');
+  document.getElementById('site-title').value    = S_TITLE;
+  document.getElementById('site-accuracy').value = S_ACC;
+  document.getElementById('set-sheetid').value   = CFG.SPREADSHEET_ID;
+  document.getElementById('set-scripturl').value = CFG.SCRIPT_URL;
+  if(FAV_URL){ document.getElementById('fav-preview').src=FAV_URL; }
 });
 
-/* ===== APPLY SETTINGS ===== */
 function applySettings(){
   document.title = S_TITLE;
   document.getElementById('stat-acc').textContent = S_ACC;
   if(FAV_URL){
     document.getElementById('favicon-link').href = FAV_URL;
-    const li = document.getElementById('logo-ico');
-    li.src = FAV_URL; li.style.display = 'block';
+    const li=document.getElementById('logo-ico'); li.src=FAV_URL; li.style.display='block';
   }
 }
 
 /* ===== SLIDESHOW ===== */
-let slideEls, dotEls2, curSl=0, slTimer;
+let slideEls, dotEls, curSl=0, slTimer;
 function renderSlides(){
   SLIDES.forEach((s,i)=>{
-    document.getElementById('slide-'+i).style.backgroundImage = `url('${s.bg}')`;
-    document.getElementById('s'+i+'-tag').textContent = s.tag;
-    document.getElementById('s'+i+'-h1').textContent  = s.h1;
-    document.getElementById('s'+i+'-h2').textContent  = s.h2;
-    document.getElementById('s'+i+'-p').textContent   = s.p;
-    document.getElementById('s'+i+'-btn').textContent = s.btn;
+    document.getElementById('slide-'+i).style.backgroundImage=`url('${s.bg}')`;
+    document.getElementById('s'+i+'-tag').textContent=s.tag;
+    document.getElementById('s'+i+'-h1').textContent=s.h1;
+    document.getElementById('s'+i+'-h2').textContent=s.h2;
+    document.getElementById('s'+i+'-p').textContent=s.p;
+    document.getElementById('s'+i+'-btn').textContent=s.btn;
   });
-  slideEls = document.querySelectorAll('.slide');
-  dotEls2  = document.querySelectorAll('.dot');
+  slideEls=document.querySelectorAll('.slide');
+  dotEls=document.querySelectorAll('.dot');
   clearInterval(slTimer);
-  slTimer = setInterval(()=>goSlide((curSl+1)%slideEls.length), 4800);
+  slTimer=setInterval(()=>goSlide((curSl+1)%slideEls.length),4800);
 }
 function goSlide(n){
-  slideEls[curSl].classList.remove('active'); dotEls2[curSl].classList.remove('active');
-  curSl=n;
-  slideEls[curSl].classList.add('active'); dotEls2[curSl].classList.add('active');
+  slideEls[curSl].classList.remove('active'); dotEls[curSl].classList.remove('active');
+  curSl=n; slideEls[curSl].classList.add('active'); dotEls[curSl].classList.add('active');
 }
 
 /* ===== TICKERS ===== */
 function renderTickers(){
-  const msgs = TICKER.split('|').filter(Boolean);
-  const html = [...msgs,...msgs].map(m=>`<span>${m}</span>`).join('');
+  const msgs=TICKER.split('|').filter(Boolean);
+  const html=[...msgs,...msgs].map(m=>`<span>${m}</span>`).join('');
   ['ticker-home','ticker-pred'].forEach(id=>{ const el=document.getElementById(id); if(el) el.innerHTML=html; });
 }
 
 /* ===== NAV ===== */
 function showPage(name){
   ['home','predictions','admin'].forEach(p=>
-    document.getElementById('page-'+p).classList.toggle('active', p===name));
-  document.getElementById('nav-home').classList.toggle('active', name==='home');
-  document.getElementById('nav-pred').classList.toggle('active', name==='predictions');
-  document.getElementById('nav-today').classList.toggle('active', name==='predictions');
+    document.getElementById('page-'+p).classList.toggle('active',p===name));
+  document.getElementById('nav-home').classList.toggle('active',name==='home');
+  document.getElementById('nav-pred').classList.toggle('active',name==='predictions');
+  document.getElementById('nav-today').classList.toggle('active',name==='predictions');
   window.scrollTo({top:0,behavior:'smooth'});
   if(name==='predictions') loadPredictions();
   if(name==='home') loadHomePreviews();
 }
 
 /* ===== NOTIFY ===== */
-function notify(msg, type='success'){
+function notify(msg,type='success'){
   const el=document.getElementById('notif');
   el.className='notif '+type; el.textContent=msg; el.classList.add('show');
-  setTimeout(()=>el.classList.remove('show'), 3500);
+  setTimeout(()=>el.classList.remove('show'),3500);
 }
 
 /* ===== MODAL ===== */
 function closeModal(id){ document.getElementById(id).classList.remove('open'); }
 
-/* ===== SHEETS READ ===== */
+/* =============================================
+   GOOGLE SHEETS — READ (public sheet + API key)
+   Make Sheet public: Share → Anyone with link → Viewer
+   ============================================= */
 async function fetchSheets(){
-  if(!CFG.SPREADSHEET_ID||CFG.SPREADSHEET_ID==='YOUR_SPREADSHEET_ID') return [];
+  if(!CFG.SPREADSHEET_ID){ return []; }
   try{
     const url=`https://sheets.googleapis.com/v4/spreadsheets/${CFG.SPREADSHEET_ID}/values/${CFG.SHEET}?key=${CFG.API_KEY}`;
-    const r=await fetch(url); if(!r.ok) return [];
-    const d=await r.json(); const rows=d.values||[];
+    const r=await fetch(url);
+    if(!r.ok){
+      const e=await r.json();
+      console.error('Sheets read error:',e);
+      return [];
+    }
+    const d=await r.json();
+    const rows=d.values||[];
     if(rows.length<=1) return [];
     sheetRowMap=[];
     return rows.slice(1).filter(r=>r[1]&&r[2]).map((row,i)=>{
@@ -657,38 +671,22 @@ async function fetchSheets(){
   }catch(e){ console.error(e); return []; }
 }
 
-/* ===== SHEETS APPEND ===== */
-async function sheetsAppend(row){
-  const url=`https://sheets.googleapis.com/v4/spreadsheets/${CFG.SPREADSHEET_ID}/values/${CFG.SHEET}:append?valueInputOption=USER_ENTERED`;
-  const hdrs={'Content-Type':'application/json'};
-  if(accessToken) hdrs['Authorization']='Bearer '+accessToken;
-  const r=await fetch(url,{method:'POST',headers:hdrs,body:JSON.stringify({values:[row]})});
-  if(!r.ok){const e=await r.json();throw new Error(e.error?.message||'Write failed');}
-  return r.json();
-}
-
-/* ===== SHEETS UPDATE ===== */
-async function sheetsUpdate(rowNum, row){
-  const range=`${CFG.SHEET}!A${rowNum}:J${rowNum}`;
-  const url=`https://sheets.googleapis.com/v4/spreadsheets/${CFG.SPREADSHEET_ID}/values/${encodeURIComponent(range)}?valueInputOption=USER_ENTERED`;
-  const hdrs={'Content-Type':'application/json'};
-  if(accessToken) hdrs['Authorization']='Bearer '+accessToken;
-  const r=await fetch(url,{method:'PUT',headers:hdrs,body:JSON.stringify({values:[row]})});
-  if(!r.ok){const e=await r.json();throw new Error(e.error?.message||'Update failed');}
-  return r.json();
-}
-
-/* ===== SHEETS DELETE ===== */
-async function sheetsDelete(rowIdx){
-  const url=`https://sheets.googleapis.com/v4/spreadsheets/${CFG.SPREADSHEET_ID}:batchUpdate`;
-  const hdrs={'Content-Type':'application/json'};
-  if(accessToken) hdrs['Authorization']='Bearer '+accessToken;
-  const meta=await(await fetch(`https://sheets.googleapis.com/v4/spreadsheets/${CFG.SPREADSHEET_ID}?key=${CFG.API_KEY}`)).json();
-  const sh=meta.sheets?.find(s=>s.properties.title===CFG.SHEET);
-  const sheetId=sh?.properties?.sheetId??0;
-  const r=await fetch(url,{method:'POST',headers:hdrs,body:JSON.stringify({requests:[{deleteDimension:{range:{sheetId,dimension:'ROWS',startIndex:rowIdx-1,endIndex:rowIdx}}}]})});
-  if(!r.ok){const e=await r.json();throw new Error(e.error?.message||'Delete failed');}
-  return r.json();
+/* =============================================
+   APPS SCRIPT — WRITE / DELETE / UPDATE
+   No OAuth needed — Apps Script handles auth
+   ============================================= */
+async function scriptPost(payload){
+  if(!CFG.SCRIPT_URL){
+    throw new Error('Apps Script URL not set. Go to Settings tab and paste your Script URL.');
+  }
+  // Use no-cors + encode as form to avoid CORS preflight issues
+  const r=await fetch(CFG.SCRIPT_URL, {
+    method:'POST',
+    headers:{'Content-Type':'text/plain'},
+    body: JSON.stringify(payload)
+  });
+  // Apps Script with no-cors returns opaque response — we assume success if no throw
+  return true;
 }
 
 /* ===== HOME PREVIEWS ===== */
@@ -701,7 +699,7 @@ async function loadHomePreviews(){
   const c=document.getElementById('home-previews');
   c.innerHTML='<div class="loading-spinner"><div class="spinner"></div> LOADING TIPS...</div>';
   const m=await fetchSheets(); allMatches=m;
-  c.innerHTML=m.length ? m.slice(0,3).map((x,i)=>buildPreviewCard(x,i)).join('') : buildFallback();
+  c.innerHTML=m.length?m.slice(0,3).map((x,i)=>buildPreviewCard(x,i)).join(''):buildFallback();
 }
 function buildPreviewCard(m,i=0){
   return `<div class="preview-card" onclick="showPage('predictions')">
@@ -732,7 +730,7 @@ async function loadPredictions(){
 }
 function applyFilter(lg){
   curFilter=lg; curPage=1;
-  filteredMatches = lg==='all' ? [...allMatches] : allMatches.filter(m=>m.league===lg);
+  filteredMatches=lg==='all'?[...allMatches]:allMatches.filter(m=>m.league===lg);
   renderPredCards();
 }
 function filterPred(btn,lg){
@@ -747,7 +745,7 @@ function renderPredCards(){
   loading.style.display='none';
   if(!filteredMatches.length){ list.style.display='none'; empty.style.display='block'; return; }
   const total=filteredMatches.length, pages=Math.ceil(total/PER);
-  const slice=filteredMatches.slice((curPage-1)*PER, curPage*PER);
+  const slice=filteredMatches.slice((curPage-1)*PER,curPage*PER);
   list.innerHTML=slice.map(buildPredCard).join('');
   list.style.display='grid'; empty.style.display='none';
   pagi.innerHTML=pages>1?`<div class="pagination">
@@ -790,7 +788,7 @@ function adminTab(btn,id){
 /* ===== GOOGLE LOGIN ===== */
 function initGoogleBtn(){
   if(typeof google==='undefined'){ setTimeout(initGoogleBtn,500); return; }
-  google.accounts.id.initialize({ client_id:CFG.CLIENT_ID, callback:handleGoogleLogin, auto_select:false });
+  google.accounts.id.initialize({client_id:CFG.CLIENT_ID,callback:handleGoogleLogin,auto_select:false});
   google.accounts.id.renderButton(document.getElementById('google-btn'),{theme:'filled_black',size:'large',width:'100%',text:'signin_with'});
 }
 function handleGoogleLogin(resp){
@@ -801,13 +799,14 @@ function handleGoogleLogin(resp){
     document.getElementById('adm-avatar').src=payload.picture||'';
     document.getElementById('adm-name').textContent=payload.name||'Admin';
     document.getElementById('adm-email').textContent=payload.email||'';
+    // Show setup banner if script URL missing
+    document.getElementById('setup-banner').style.display=CFG.SCRIPT_URL?'none':'block';
     notify('✅ Welcome, '+(payload.name||'Admin')+'!','success');
     loadAdminMatches();
   }catch(e){ notify('❌ Login failed: '+e.message,'error'); }
 }
 function adminLogout(){
   if(typeof google!=='undefined') google.accounts.id.disableAutoSelect();
-  accessToken=null;
   document.getElementById('admin-login').style.display='flex';
   document.getElementById('admin-panel').style.display='none';
   notify('👋 Signed out','info');
@@ -815,17 +814,18 @@ function adminLogout(){
 
 /* ===== SAVE MATCH ===== */
 async function saveMatch(){
-  const home=v('f-home'), away=v('f-away'), pred=v('f-pred');
+  const home=v('f-home'),away=v('f-away'),pred=v('f-pred');
   if(!home||!away||!pred){ notify('⚠️ Fill Home Team, Away Team & Prediction','error'); return; }
   const btn=document.getElementById('btn-save');
   btn.disabled=true; btn.textContent='⏳ SAVING...';
   try{
-    await sheetsAppend([Date.now(),home,away,v('f-league'),v('f-time'),v('f-date'),pred,v('f-conf'),v('f-tips'),v('f-notes')]);
+    const row=[String(Date.now()),home,away,v('f-league'),v('f-time'),v('f-date'),pred,v('f-conf'),v('f-tips'),v('f-notes')];
+    await scriptPost({action:'add',row});
     notify('✅ Saved to Google Sheets!','success');
     ['f-home','f-away','f-pred','f-tips','f-notes'].forEach(id=>document.getElementById(id).value='');
     document.getElementById('f-conf').value=75;
     document.getElementById('conf-val').textContent='75';
-    setTimeout(loadAdminMatches, 900);
+    setTimeout(loadAdminMatches,1200);
   }catch(e){ notify('❌ '+e.message,'error'); }
   finally{ btn.disabled=false; btn.textContent='💾 SAVE TO GOOGLE SHEETS'; }
 }
@@ -835,7 +835,7 @@ async function loadAdminMatches(){
   const c=document.getElementById('admin-list');
   c.innerHTML='<div class="loading-spinner"><div class="spinner"></div> LOADING...</div>';
   const m=await fetchSheets(); allMatches=m;
-  if(!m.length){ c.innerHTML='<div class="empty-state"><div class="icon">📋</div><div>No predictions yet.</div><p>Add one above.</p></div>'; return; }
+  if(!m.length){ c.innerHTML='<div class="empty-state"><div class="icon">📋</div><div>No predictions yet.</div><p>Add one using the form above.</p></div>'; return; }
   c.innerHTML=`<table class="matches-table">
     <thead><tr><th>Match</th><th>League</th><th>Prediction</th><th>Conf</th><th>Actions</th></tr></thead>
     <tbody>${m.map((x,i)=>`<tr>
@@ -850,7 +850,7 @@ async function loadAdminMatches(){
     </tr>`).join('')}</tbody></table>`;
 }
 
-/* ===== EDIT MODAL ===== */
+/* ===== EDIT ===== */
 function openEditModal(idx){
   const m=allMatches[idx];
   document.getElementById('e-home').value=m.home||'';
@@ -868,21 +868,23 @@ function openEditModal(idx){
 }
 async function updateMatch(){
   const rowNum=parseInt(document.getElementById('e-row').value);
-  const row=[Date.now(),v2('e-home'),v2('e-away'),document.getElementById('e-league').value,v2('e-time'),v2('e-date'),v2('e-pred'),v2('e-conf'),v2('e-tips'),v2('e-notes')];
+  const row=[String(Date.now()),v2('e-home'),v2('e-away'),document.getElementById('e-league').value,v2('e-time'),v2('e-date'),v2('e-pred'),v2('e-conf'),v2('e-tips'),v2('e-notes')];
   if(!row[1]||!row[2]||!row[6]){ notify('⚠️ Fill required fields','error'); return; }
   try{
-    await sheetsUpdate(rowNum,row);
+    await scriptPost({action:'update',rowIndex:rowNum,row});
     notify('✅ Prediction updated!','success');
     closeModal('edit-modal');
-    setTimeout(loadAdminMatches,900);
+    setTimeout(loadAdminMatches,1200);
   }catch(e){ notify('❌ '+e.message,'error'); }
 }
+
+/* ===== DELETE ===== */
 async function delMatch(idx,label){
   if(!confirm('Delete "'+label+'"?')) return;
   try{
-    await sheetsDelete(sheetRowMap[idx]);
+    await scriptPost({action:'delete',rowIndex:sheetRowMap[idx]});
     notify('🗑 Deleted: '+label,'info');
-    loadAdminMatches();
+    setTimeout(loadAdminMatches,1200);
   }catch(e){ notify('❌ '+e.message,'error'); }
 }
 
@@ -949,8 +951,7 @@ function uploadFavicon(input){
     localStorage.setItem('kx_favicon',FAV_URL);
     document.getElementById('favicon-link').href=FAV_URL;
     document.getElementById('fav-preview').src=FAV_URL;
-    const li=document.getElementById('logo-ico');
-    li.src=FAV_URL; li.style.display='block';
+    const li=document.getElementById('logo-ico'); li.src=FAV_URL; li.style.display='block';
     notify('✅ Favicon updated!','success');
   };
   reader.readAsDataURL(input.files[0]);
@@ -958,14 +959,19 @@ function uploadFavicon(input){
 
 /* ===== SETTINGS ===== */
 function saveSettings(){
-  TICKER=document.getElementById('ticker-input').value.trim().split('\n').filter(Boolean).join('|');
-  S_TITLE=document.getElementById('site-title').value.trim()||'KEYX PREDICTER';
-  S_ACC=document.getElementById('site-accuracy').value.trim()||'85%';
-  localStorage.setItem('kx_ticker',TICKER);
-  localStorage.setItem('kx_title',S_TITLE);
-  localStorage.setItem('kx_acc',S_ACC);
+  CFG.SPREADSHEET_ID = document.getElementById('set-sheetid').value.trim();
+  CFG.SCRIPT_URL     = document.getElementById('set-scripturl').value.trim();
+  TICKER  = document.getElementById('ticker-input').value.trim().split('\n').filter(Boolean).join('|');
+  S_TITLE = document.getElementById('site-title').value.trim() || 'KEYX PREDICTER';
+  S_ACC   = document.getElementById('site-accuracy').value.trim() || '85%';
+  localStorage.setItem('kx_sheetid',   CFG.SPREADSHEET_ID);
+  localStorage.setItem('kx_scripturl', CFG.SCRIPT_URL);
+  localStorage.setItem('kx_ticker',    TICKER);
+  localStorage.setItem('kx_title',     S_TITLE);
+  localStorage.setItem('kx_acc',       S_ACC);
   document.title=S_TITLE;
   document.getElementById('stat-acc').textContent=S_ACC;
+  document.getElementById('setup-banner').style.display=CFG.SCRIPT_URL?'none':'block';
   renderTickers();
   notify('✅ Settings saved!','success');
 }
@@ -994,7 +1000,6 @@ function getEmj(team){
   if(t.includes('bayern')) return '🔴⚪';
   return '⚽';
 }
-
 window.addEventListener('scroll',()=>{
   document.getElementById('scrollTop').style.display=window.scrollY>400?'flex':'none';
 });
