@@ -553,55 +553,106 @@ function doGet(e){
 </footer>
 
 <script>
-/* ===== CONFIGURATION ===== */
-let CFG = {
-  // Shyira ya URL yawe nshya hano (irangira na /exec)
-  SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbyyTz1EyxvIyygEl3iwGlYkLoRP-MUK1B3ni1G4NQObUra7PPbiM5xlAaHQ3J_BysQ/exec',
-  S_ACC: 85
+/* ===== 1. CONFIGURATION & STATE ===== */
+const CFG = {
+  // URL NSHYA YA APPS SCRIPT
+  SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbzbQK0iOJZCAJ_jse-abzsfTSpmXc0JsxIhiR0HiYn_t-GtryWBY-u9-i_xYgKgJ4Lz/exec',
+  DEFAULT_ACC: "85%"
 };
 
 let MATCHES = []; 
 
-/* ===== INITIALIZATION (Iyo Website Ifungutse) ===== */
+/* ===== 2. INITIALIZATION (WINDOW ONLOAD) ===== */
 window.onload = () => {
-  // 1. Reba niba hari URL yabitswe muri Browser
-  const saved = localStorage.getItem('KEYX_PRED_CFG');
-  if (saved) {
-    const p = JSON.parse(saved);
-    CFG.SCRIPT_URL = p.url || CFG.SCRIPT_URL;
-    CFG.S_ACC = p.acc || 85;
+  // Kura ibintu byose byari bibitse muri browser kugira ngo isome URL nshya
+  if (!localStorage.getItem('v2_force_refresh')) {
+      localStorage.clear();
+      localStorage.setItem('v2_force_refresh', 'true');
   }
-  
-  // 2. Garagaza Accuracy kuri Screen
-  if(document.getElementById('stat-acc')) {
-    document.getElementById('stat-acc').textContent = CFG.S_ACC + "%";
-  }
-  
-  // 3. Fata amakuru muri Google Sheets
+
+  // Garagaza Accuracy niba ihari
+  const accEl = document.getElementById('stat-acc');
+  if(accEl) accEl.textContent = CFG.DEFAULT_ACC;
+
+  // Fata amakuru muri Sheet
   fetchData();
+  
+  // Reba niba Admin yari asanzwe logged in
+  checkAuthStatus();
 };
 
-/* ===== FUNCTIONS YO GUFATA AMAKURU (GET) ===== */
+/* ===== 3. DATA FETCHING (GET) ===== */
 async function fetchData() {
+  const grid = document.getElementById('match-grid');
   if (!CFG.SCRIPT_URL) return;
 
   try {
     const response = await fetch(CFG.SCRIPT_URL);
     const data = await response.json();
     
-    if (Array.isArray(data)) {
+    console.log("Amakuru yaje:", data); // Reba muri Console niba aza
+
+    if (Array.isArray(data) && data.length > 0) {
       MATCHES = data;
-      renderTickers(); // Kwerekana amakipe agenda hejuru
-      renderGrid();    // Kwerekana amakipe mu mbonerahamwe
+      renderTickers();
+      renderGrid();
+    } else {
+      if(grid) grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:50px;color:#666">
+          <div style="font-size:40px">⚽</div>
+          <p>No predictions found in Sheet yet.</p>
+      </div>`;
     }
   } catch (err) {
-    console.error("Byanze gufata amakuru:", err);
+    console.error("Fetch Error:", err);
+    if(grid) grid.innerHTML = `<p style="grid-column:1/-1;text-align:center;color:red">Error loading data. Check console.</p>`;
   }
 }
 
-/* ===== FUNCTIONS YO KWEREKANA AMAKURU (UI) ===== */
+/* ===== 4. ADMIN AUTHENTICATION (KIM ARISTIDE) ===== */
+function handleManualLogin() {
+    const userField = document.getElementById('adm-user-input').value.trim().toLowerCase();
+    const passField = document.getElementById('adm-pass-input').value.trim();
+    
+    const correctUser = "kim aristide";
+    const correctPass = "25125ABC@kim";
 
-// 1. Kwerekana Tickers (Hejuru)
+    if (userField === correctUser && passField === correctPass) {
+        sessionStorage.setItem('is_kim_admin', 'true');
+        checkAuthStatus();
+        alert("Murakaza neza, Kim Aristide!");
+    } else {
+        alert("Amazina cyangwa Password ntabwo ari byo!");
+    }
+}
+
+function checkAuthStatus() {
+    const isAdmin = sessionStorage.getItem('is_kim_admin') === 'true';
+    const loginScreen = document.getElementById('admin-login');
+    const adminPanel = document.getElementById('admin-panel');
+
+    if (isAdmin) {
+        if(loginScreen) loginScreen.style.display = 'none';
+        if(adminPanel) adminPanel.style.display = 'block';
+        
+        // Update Admin UI
+        if(document.getElementById('adm-name')) document.getElementById('adm-name').textContent = "Kim Aristide";
+        if(document.getElementById('adm-email')) document.getElementById('adm-email').textContent = "Administrator";
+        
+        // Reba niba hari setup banner
+        const banner = document.getElementById('setup-banner');
+        if(banner) banner.style.display = CFG.SCRIPT_URL ? 'none' : 'block';
+        
+        // Load admin specific matches list if function exists
+        if(typeof loadAdminMatches === "function") loadAdminMatches();
+    }
+}
+
+function adminLogout() {
+    sessionStorage.removeItem('is_kim_admin');
+    location.reload();
+}
+
+/* ===== 5. UI RENDERING (TICKER & GRID) ===== */
 function renderTickers() {
   const container = document.getElementById('ticker-container');
   if (!container) return;
@@ -610,48 +661,47 @@ function renderTickers() {
   MATCHES.forEach(m => {
     const div = document.createElement('div');
     div.className = "ticker-item";
-    div.innerHTML = `<span>${m.home} vs ${m.away}</span> <b style="color:var(--green)">${m.prediction}</b>`;
+    div.innerHTML = `<span>${m.home} vs ${m.away}</span> <b style="color:#00ff88">${m.prediction}</b>`;
     container.appendChild(div);
   });
 }
 
-// 2. Kwerekana Grid (Match Cards)
 function renderGrid() {
   const grid = document.getElementById('match-grid');
   if (!grid) return;
   grid.innerHTML = "";
 
-  MATCHES.slice(0, 12).forEach((m, idx) => {
+  MATCHES.forEach((m, idx) => {
     const card = document.createElement('div');
     card.className = "match-card";
-    card.style.animationDelay = (idx * 0.1) + "s";
+    card.style.animationDelay = (idx * 0.05) + "s";
     
     card.innerHTML = `
       <div style="display:flex;justify-content:space-between;margin-bottom:10px">
-        <span style="font-size:12px;color:var(--muted)">${m.league || 'FOOTBALL'}</span>
-        <span class="badge" style="background:var(--dark3);padding:2px 8px;border-radius:4px;color:var(--green);font-size:12px">${m.confidence || '85%'}</span>
+        <span style="font-size:12px;color:#888">${m.league || 'FOOTBALL'}</span>
+        <span class="badge" style="background:#222;padding:2px 8px;border-radius:4px;color:#00ff88;font-size:12px">${m.confidence || '85%'}</span>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-around;margin:15px 0">
         <div style="text-align:center;flex:1">
-          <div style="font-size:24px">${getEmj(m.home)}</div>
           <div style="font-family:'Bebas Neue';font-size:18px">${m.home}</div>
         </div>
-        <div style="font-family:'Space Mono';font-weight:700;color:var(--green)">VS</div>
+        <div style="font-weight:700;color:#00ff88">VS</div>
         <div style="text-align:center;flex:1">
-          <div style="font-size:24px">${getEmj(m.away)}</div>
           <div style="font-family:'Bebas Neue';font-size:18px">${m.away}</div>
         </div>
       </div>
-      <div style="background:var(--dark2);padding:10px;border-radius:5px;text-align:center;border:1px solid var(--dark3)">
-        <div style="font-size:11px;color:var(--muted);margin-bottom:4px">PREDICTION</div>
-        <div style="font-family:'Bebas Neue';font-size:22px;color:var(--green)">${m.prediction}</div>
-        <div style="font-size:12px;color:var(--muted)">Odds: ${m.odds || '-'}</div>
+      <div style="background:#111;padding:10px;border-radius:5px;text-align:center;border:1px solid #222">
+        <div style="font-size:11px;color:#888;margin-bottom:4px">PREDICTION</div>
+        <div style="font-family:'Bebas Neue';font-size:22px;color:#00ff88">${m.prediction}</div>
+        <div style="font-size:12px;color:#888">Odds: ${m.odds || '-'}</div>
       </div>
     `;
     grid.appendChild(card);
   });
 }
 
+// Function ifasha mu kuzana emoji (niba ukiyikeneye)
+function getEmj(team) { return "⚽"; }
 /* ===== HELPERS ===== */
 function getEmj(team) {
   if (!team) return '⚽';
