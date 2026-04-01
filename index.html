@@ -367,34 +367,47 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
 
 <!-- ADMIN -->
 <div id="page-admin" class="page">
+  
   <div id="admin-login" class="admin-login-screen">
     <div class="login-card">
       <div class="lock-icon">🔐</div>
       <div class="login-title">ADMIN <span>PANEL</span></div>
-      <div class="login-sub">Sign in with your Google account</div>
-      <div id="g_id_onload"
-           data-client_id="903689108267-tmch5sr73slpk0ru0vkvjtl72m36mv2t.apps.googleusercontent.com"
-           data-callback="handleGoogleLogin"
-           data-auto_prompt="false"></div>
-      <div id="google-btn"></div>
-      <div class="security-note">🔒 Only authorized admins can access this panel</div>
+      <div class="login-sub">Injira ukoresheje amazina yawe</div>
+      
+      <div class="login-form" style="margin-top:20px; text-align:left;">
+        <label style="color:#888; font-size:12px; font-family:sans-serif;">USERNAME</label>
+        <input type="text" id="adm-user-input" placeholder="Kim Aristide" 
+               style="width:100%; padding:12px; margin:5px 0 15px 0; background:#111; border:1px solid #333; color:white; border-radius:5px;">
+        
+        <label style="color:#888; font-size:12px; font-family:sans-serif;">PASSWORD</label>
+        <input type="password" id="adm-pass-input" placeholder="••••••••" 
+               style="width:100%; padding:12px; margin:5px 0 20px 0; background:#111; border:1px solid #333; color:white; border-radius:5px;">
+        
+        <button onclick="handleManualLogin()" 
+                style="width:100%; padding:12px; background:#00ff88; color:black; border:none; border-radius:5px; font-weight:bold; cursor:pointer; font-family:'Bebas Neue'; font-size:18px; letter-spacing:1px;">
+                SIGN IN
+        </button>
+      </div>
+
+      <div class="security-note" style="margin-top:15px; font-size:11px; color:#555;">
+        🔒 Only authorized admin **Kim Aristide** can access this panel.
+      </div>
     </div>
   </div>
 
   <div id="admin-panel" class="admin-wrap" style="display:none">
-    <!-- Setup banner shown if Apps Script URL not set -->
+    
     <div id="setup-banner" class="setup-banner" style="display:none">
       <strong>⚠️ Setup Required — Apps Script URL</strong>
       To enable Save / Delete, paste your <strong>Apps Script Web App URL</strong> in Settings tab below.
-      <br>See the instructions at the bottom of the Settings tab.
     </div>
 
     <div class="admin-topbar">
       <div class="admin-user">
-        <img id="adm-avatar" class="admin-avatar" src="" alt="">
+        <div class="admin-avatar" style="background:#00ff88; width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:black; font-weight:bold; font-family:sans-serif;">KA</div>
         <div>
-          <div id="adm-name" class="admin-uname">Admin</div>
-          <div id="adm-email" class="admin-uemail">...</div>
+          <div id="adm-name" class="admin-uname">Kim Aristide</div>
+          <div id="adm-email" class="admin-uemail">Administrator</div>
         </div>
       </div>
       <button class="btn-logout" onclick="adminLogout()">Sign Out</button>
@@ -405,6 +418,9 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
       <button class="admin-tab" onclick="adminTab(this,'tab-slides')">🖼️ Hero Slides</button>
       <button class="admin-tab" onclick="adminTab(this,'tab-settings')">⚙️ Settings</button>
     </div>
+
+    </div>
+</div>
 
     <!-- PREDICTIONS TAB -->
     <div id="tab-matches" class="admin-section active">
@@ -888,32 +904,62 @@ function adminTab(btn,id){
   if(id==='tab-slides') buildSlidesManager();
 }
 
-/* ===== GOOGLE LOGIN ===== */
-function initGoogleBtn(){
-  if(typeof google==='undefined'){ setTimeout(initGoogleBtn,500); return; }
-  google.accounts.id.initialize({client_id:CFG.CLIENT_ID,callback:handleGoogleLogin,auto_select:false});
-  google.accounts.id.renderButton(document.getElementById('google-btn'),{theme:'filled_black',size:'large',width:'100%',text:'signin_with'});
+/* ===== ADMIN LOGIN (KIM ARISTIDE) ===== */
+
+// 1. Function yo kwinjira (Sign In)
+function handleManualLogin() {
+    const userField = document.getElementById('adm-user-input').value.trim();
+    const passField = document.getElementById('adm-pass-input').value.trim();
+    
+    const correctUser = "kim aristide";
+    const correctPass = "25125ABC@kim";
+
+    if (userField === correctUser && passField === correctPass) {
+        // Hisha login ugaragaze panel
+        document.getElementById('admin-login').style.display = 'none';
+        document.getElementById('admin-panel').style.display = 'block';
+        
+        // Bibika ko winjiye (session)
+        sessionStorage.setItem('keyx_admin_logged', 'true');
+        
+        // Update UI Info
+        document.getElementById('adm-name').textContent = "Kim Aristide";
+        document.getElementById('adm-email').textContent = "Administrator";
+        
+        // Show setup banner if script URL missing
+        if(document.getElementById('setup-banner')) {
+            document.getElementById('setup-banner').style.display = CFG.SCRIPT_URL ? 'none' : 'block';
+        }
+
+        notify('✅ Welcome, Kim Aristide!', 'success');
+        
+        // Hamagara amakipe niba function ihari
+        if(typeof loadAdminMatches === "function") loadAdminMatches();
+        
+    } else {
+        notify('❌ Amazina cyangwa Password ntabwo ari byo!', 'error');
+    }
 }
-function handleGoogleLogin(resp){
-  try{
-    const payload=JSON.parse(atob(resp.credential.split('.')[1].replace(/-/g,'+').replace(/_/g,'/')));
-    document.getElementById('admin-login').style.display='none';
-    document.getElementById('admin-panel').style.display='block';
-    document.getElementById('adm-avatar').src=payload.picture||'';
-    document.getElementById('adm-name').textContent=payload.name||'Admin';
-    document.getElementById('adm-email').textContent=payload.email||'';
-    // Show setup banner if script URL missing
-    document.getElementById('setup-banner').style.display=CFG.SCRIPT_URL?'none':'block';
-    notify('✅ Welcome, '+(payload.name||'Admin')+'!','success');
-    loadAdminMatches();
-  }catch(e){ notify('❌ Login failed: '+e.message,'error'); }
+
+// 2. Function yo gusohoka (Sign Out)
+function adminLogout() {
+    sessionStorage.removeItem('keyx_admin_logged');
+    document.getElementById('admin-login').style.display = 'flex';
+    document.getElementById('admin-panel').style.display = 'none';
+    notify('👋 Signed out successfully', 'info');
+    // location.reload(); // Ushobora kuyikoresha niba ushaka gu-refresh
 }
-function adminLogout(){
-  if(typeof google!=='undefined') google.accounts.id.disableAutoSelect();
-  document.getElementById('admin-login').style.display='flex';
-  document.getElementById('admin-panel').style.display='none';
-  notify('👋 Signed out','info');
-}
+
+// 3. Kugenzura niba wari usanzwe winjiye (Auto-login on refresh)
+window.addEventListener('DOMContentLoaded', () => {
+    if (sessionStorage.getItem('keyx_admin_logged') === 'true') {
+        if(document.getElementById('admin-login')) document.getElementById('admin-login').style.display = 'none';
+        if(document.getElementById('admin-panel')) document.getElementById('admin-panel').style.display = 'block';
+        
+        if(document.getElementById('adm-name')) document.getElementById('adm-name').textContent = "Kim Aristide";
+        if(typeof loadAdminMatches === "function") loadAdminMatches();
+    }
+});
 
 /* ===== SAVE MATCH ===== */
 async function saveMatch(){
