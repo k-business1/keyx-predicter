@@ -539,10 +539,13 @@ function doGet(e){
 <script>
 /* ===== CONFIG (saved in localStorage) ===== */
 let CFG = {
-  API_KEY:   'AIzaSyDpKYINbj2kqqvebEFqeHx052fl1xtf5hg',
-  CLIENT_ID: '903689108267-tmch5sr73slpk0ru0vkvjtl72m36mv2t.apps.googleusercontent.com',
+  API_KEY:    'AIzaSyDpKYINbj2kqqvebEFqeHx052fl1xtf5hg',
+  CLIENT_ID:  '903689108267-tmch5sr73slpk0ru0vkvjtl72m36mv2t.apps.googleusercontent.com',
   SPREADSHEET_ID: localStorage.getItem('kx_sheetid') || '',
-  SCRIPT_URL:     localStorage.getItem('kx_scripturl') || '',
+  
+  // Yashyire hano muri uyu murongo:
+  SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbwHIqw-vAW8RsOMKJ64u0AI8rDcFsc47KrupimjKe2T5YUGP9JbHV98nRrQFauXYMyL/exec',
+  
   SHEET: 'Predictions'
 };
 
