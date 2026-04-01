@@ -555,57 +555,107 @@ function doGet(e){
 <script>
 /* ===== 1. CONFIGURATION & STATE ===== */
 const CFG = {
-  // URL NSHYA YA APPS SCRIPT
-  SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbzbQK0iOJZCAJ_jse-abzsfTSpmXc0JsxIhiR0HiYn_t-GtryWBY-u9-i_xYgKgJ4Lz/exec',
+  // URL NSHYA WASABYE (Ikosoye)
+  SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbw6TCGc34NHvGXAq3qwKDoXSKjMFN-9LoTdqps_XU7yI8q1N-8fniaiXPwHViCjqpR6/exec',
   DEFAULT_ACC: "85%"
 };
 
 let MATCHES = []; 
 
-/* ===== 2. INITIALIZATION (WINDOW ONLOAD) ===== */
+/* ===== 2. INITIALIZATION ===== */
 window.onload = () => {
-  // Kura ibintu byose byari bibitse muri browser kugira ngo isome URL nshya
-  if (!localStorage.getItem('v2_force_refresh')) {
-      localStorage.clear();
-      localStorage.setItem('v2_force_refresh', 'true');
-  }
-
-  // Garagaza Accuracy niba ihari
+  // 1. Siba ibya kera byose muri Browser kugira ngo isome amakipe mashya
+  localStorage.clear();
+  
+  // 2. Garagaza Accuracy
   const accEl = document.getElementById('stat-acc');
   if(accEl) accEl.textContent = CFG.DEFAULT_ACC;
 
-  // Fata amakuru muri Sheet
+  // 3. Fata amakuru muri Google Sheets
   fetchData();
   
-  // Reba niba Admin yari asanzwe logged in
+  // 4. Reba niba Admin yari asanzwe winjiye (Kim)
   checkAuthStatus();
 };
 
 /* ===== 3. DATA FETCHING (GET) ===== */
 async function fetchData() {
   const grid = document.getElementById('match-grid');
+  const ticker = document.getElementById('ticker-container');
+  
   if (!CFG.SCRIPT_URL) return;
 
   try {
-    const response = await fetch(CFG.SCRIPT_URL);
+    // Akantu ka "?nocache=" gatuma amakuru aza ari mashya buri gihe (Fresh Data)
+    const response = await fetch(CFG.SCRIPT_URL + "?nocache=" + new Date().getTime());
     const data = await response.json();
     
-    console.log("Amakuru yaje:", data); // Reba muri Console niba aza
+    console.log("Amakuru yaje avuye muri Sheet:", data);
 
     if (Array.isArray(data) && data.length > 0) {
       MATCHES = data;
       renderTickers();
       renderGrid();
     } else {
-      if(grid) grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:50px;color:#666">
+      // Niba Sheet irimo ubusa
+      if(grid) grid.innerHTML = `
+        <div style="grid-column:1/-1;text-align:center;padding:50px;color:#666">
           <div style="font-size:40px">⚽</div>
-          <p>No predictions found in Sheet yet.</p>
-      </div>`;
+          <p>Nta makipe yashyizwe muri Sheet (No predictions found).</p>
+        </div>`;
     }
   } catch (err) {
     console.error("Fetch Error:", err);
-    if(grid) grid.innerHTML = `<p style="grid-column:1/-1;text-align:center;color:red">Error loading data. Check console.</p>`;
+    if(grid) grid.innerHTML = `<p style="grid-column:1/-1;text-align:center;color:red">Byanze gufata amakuru. Reba niba URL ya Script ari yo.</p>`;
   }
+}
+
+/* ===== 4. UI RENDERING (TICKER & GRID) ===== */
+function renderTickers() {
+  const container = document.getElementById('ticker-container');
+  if (!container) return;
+  container.innerHTML = "";
+  
+  MATCHES.forEach(m => {
+    const div = document.createElement('div');
+    div.className = "ticker-item";
+    div.innerHTML = `<span>${m.home} vs ${m.away}</span> <b style="color:#00ff88">${m.prediction}</b>`;
+    container.appendChild(div);
+  });
+}
+
+function renderGrid() {
+  const grid = document.getElementById('match-grid');
+  if (!grid) return;
+  grid.innerHTML = "";
+
+  MATCHES.forEach((m, idx) => {
+    const card = document.createElement('div');
+    card.className = "match-card";
+    card.style.animationDelay = (idx * 0.05) + "s";
+    
+    card.innerHTML = `
+      <div style="display:flex;justify-content:space-between;margin-bottom:10px">
+        <span style="font-size:12px;color:#888">${m.league || 'FOOTBALL'}</span>
+        <span class="badge" style="background:#222;padding:2px 8px;border-radius:4px;color:#00ff88;font-size:12px">${m.confidence || '85%'}</span>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-around;margin:15px 0">
+        <div style="text-align:center;flex:1">
+          <div style="font-family:'Bebas Neue';font-size:18px">${m.home}</div>
+        </div>
+        <div style="font-weight:700;color:#00ff88">VS</div>
+        <div style="text-align:center;flex:1">
+          <div style="font-family:'Bebas Neue';font-size:18px">${m.away}</div>
+        </div>
+      </div>
+      <div style="background:#111;padding:10px;border-radius:5px;text-align:center;border:1px solid #222">
+        <div style="font-size:11px;color:#888;margin-bottom:4px">PREDICTION</div>
+        <div style="font-family:'Bebas Neue';font-size:22px;color:#00ff88">${m.prediction}</div>
+        <div style="font-size:12px;color:#888">Odds: ${m.odds || '-'}</div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
 }
 
 /* ===== 4. ADMIN AUTHENTICATION (KIM ARISTIDE) ===== */
