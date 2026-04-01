@@ -537,15 +537,118 @@ function doGet(e){
 </footer>
 
 <script>
-/* ===== CONFIG (saved in localStorage) ===== */
+/* ===== CONFIGURATION ===== */
 let CFG = {
-  API_KEY: 'AIzaSyDpKYINbj2kqqvebEFqeHx052fl1xtf5hg',
-  CLIENT_ID: '903689108267-tmch5sr73slpk0ru0vkvjtl72m36mv2t.apps.googleusercontent.com',
-  SPREADSHEET_ID: '158eN87q_qG8jZ0K5Snd5jIuT6m6z1Q437WfMvF6Y6M8',
+  // Shyira ya URL yawe nshya hano (irangira na /exec)
   SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbyyTz1EyxvIyygEl3iwGlYkLoRP-MUK1B3ni1G4NQObUra7PPbiM5xlAaHQ3J_BysQ/exec',
-  SHEET: 'Predictions',
   S_ACC: 85
 };
+
+let MATCHES = []; 
+
+/* ===== INITIALIZATION (Iyo Website Ifungutse) ===== */
+window.onload = () => {
+  // 1. Reba niba hari URL yabitswe muri Browser
+  const saved = localStorage.getItem('KEYX_PRED_CFG');
+  if (saved) {
+    const p = JSON.parse(saved);
+    CFG.SCRIPT_URL = p.url || CFG.SCRIPT_URL;
+    CFG.S_ACC = p.acc || 85;
+  }
+  
+  // 2. Garagaza Accuracy kuri Screen
+  if(document.getElementById('stat-acc')) {
+    document.getElementById('stat-acc').textContent = CFG.S_ACC + "%";
+  }
+  
+  // 3. Fata amakuru muri Google Sheets
+  fetchData();
+};
+
+/* ===== FUNCTIONS YO GUFATA AMAKURU (GET) ===== */
+async function fetchData() {
+  if (!CFG.SCRIPT_URL) return;
+
+  try {
+    const response = await fetch(CFG.SCRIPT_URL);
+    const data = await response.json();
+    
+    if (Array.isArray(data)) {
+      MATCHES = data;
+      renderTickers(); // Kwerekana amakipe agenda hejuru
+      renderGrid();    // Kwerekana amakipe mu mbonerahamwe
+    }
+  } catch (err) {
+    console.error("Byanze gufata amakuru:", err);
+  }
+}
+
+/* ===== FUNCTIONS YO KWEREKANA AMAKURU (UI) ===== */
+
+// 1. Kwerekana Tickers (Hejuru)
+function renderTickers() {
+  const container = document.getElementById('ticker-container');
+  if (!container) return;
+  container.innerHTML = "";
+  
+  MATCHES.forEach(m => {
+    const div = document.createElement('div');
+    div.className = "ticker-item";
+    div.innerHTML = `<span>${m.home} vs ${m.away}</span> <b style="color:var(--green)">${m.prediction}</b>`;
+    container.appendChild(div);
+  });
+}
+
+// 2. Kwerekana Grid (Match Cards)
+function renderGrid() {
+  const grid = document.getElementById('match-grid');
+  if (!grid) return;
+  grid.innerHTML = "";
+
+  MATCHES.slice(0, 12).forEach((m, idx) => {
+    const card = document.createElement('div');
+    card.className = "match-card";
+    card.style.animationDelay = (idx * 0.1) + "s";
+    
+    card.innerHTML = `
+      <div style="display:flex;justify-content:space-between;margin-bottom:10px">
+        <span style="font-size:12px;color:var(--muted)">${m.league || 'FOOTBALL'}</span>
+        <span class="badge" style="background:var(--dark3);padding:2px 8px;border-radius:4px;color:var(--green);font-size:12px">${m.confidence || '85%'}</span>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-around;margin:15px 0">
+        <div style="text-align:center;flex:1">
+          <div style="font-size:24px">${getEmj(m.home)}</div>
+          <div style="font-family:'Bebas Neue';font-size:18px">${m.home}</div>
+        </div>
+        <div style="font-family:'Space Mono';font-weight:700;color:var(--green)">VS</div>
+        <div style="text-align:center;flex:1">
+          <div style="font-size:24px">${getEmj(m.away)}</div>
+          <div style="font-family:'Bebas Neue';font-size:18px">${m.away}</div>
+        </div>
+      </div>
+      <div style="background:var(--dark2);padding:10px;border-radius:5px;text-align:center;border:1px solid var(--dark3)">
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px">PREDICTION</div>
+        <div style="font-family:'Bebas Neue';font-size:22px;color:var(--green)">${m.prediction}</div>
+        <div style="font-size:12px;color:var(--muted)">Odds: ${m.odds || '-'}</div>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+/* ===== HELPERS ===== */
+function getEmj(team) {
+  if (!team) return '⚽';
+  const t = team.toLowerCase();
+  if (t.includes('arsenal') || t.includes('liverpool')) return '🔴';
+  if (t.includes('chelsea') || t.includes('city') || t.includes('madrid')) return '🔵';
+  if (t.includes('barca')) return '🔵🔴';
+  return '⚽';
+}
+
+function notify(msg, type) {
+  alert(msg); // Ushobora gukoresha notifier yawe niba uyifite mu CSS
+}
 /* ===== STATE ===== */
 let allMatches=[], filteredMatches=[], sheetRowMap=[];
 let curPage=1, PER=10, curFilter='all';
