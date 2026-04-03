@@ -6,14 +6,20 @@
 <title>KEYX PREDICTER — AI Football Tips</title>
 <link rel="icon" id="favicon-link" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
-<script src="https://accounts.google.com/gsi/client" async defer></script>
 <style>
-:root{--green:#9be23c;--green2:#6fcf2a;--yellow:#facc15;--dark:#080c14;--dark2:#0e1420;--dark3:#161e2e;--dark4:#1d2740;--text:#e5e7eb;--muted:#8fa3b8;--red:#ef4444;--blue:#60a5fa;--radius:10px}
+:root{
+  --green:#9be23c;--green2:#6fcf2a;--yellow:#facc15;
+  --dark:#080c14;--dark2:#0e1420;--dark3:#161e2e;--dark4:#1d2740;
+  --text:#e5e7eb;--muted:#8fa3b8;--red:#ef4444;--blue:#60a5fa;
+  --radius:10px;
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Rajdhani',sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden;min-height:100vh}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--dark2)}::-webkit-scrollbar-thumb{background:var(--green2);border-radius:3px}
-body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% 20%,rgba(155,226,60,.04) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(111,207,42,.03) 0%,transparent 60%);pointer-events:none;z-index:0}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% 20%,rgba(155,226,60,.04),transparent 60%),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(111,207,42,.03),transparent 60%);pointer-events:none;z-index:0}
+
+/* ── HEADER ── */
 header{position:fixed;top:0;width:100%;display:flex;justify-content:space-between;align-items:center;padding:0 36px;height:58px;background:rgba(8,12,20,.97);backdrop-filter:blur(16px);z-index:9000;border-bottom:1px solid rgba(155,226,60,.12)}
 .logo{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--green);letter-spacing:4px;text-shadow:0 0 20px rgba(155,226,60,.5);display:flex;align-items:center;gap:10px;cursor:pointer}
 .logo img.logo-ico{width:28px;height:28px;border-radius:4px;object-fit:cover;display:none}
@@ -24,14 +30,18 @@ nav a:hover{color:var(--green)}
 nav a.active{color:var(--dark);background:var(--green)}
 .btn-adm{margin-left:8px;padding:6px 13px;background:rgba(155,226,60,.08);border:1px solid rgba(155,226,60,.25);color:var(--green);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.5px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase}
 .btn-adm:hover{background:rgba(155,226,60,.18)}
+
+/* ── TICKER ── */
 .ticker-bar{background:var(--green);padding:7px 0;overflow:hidden;white-space:nowrap}
 .ticker-track{display:inline-block;animation:ticker 35s linear infinite}
 .ticker-track span{display:inline-block;color:var(--dark);font-weight:700;font-size:12px;letter-spacing:1.5px;padding:0 38px}
 @keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ── HERO ── */
 .hero{height:100vh;position:relative;overflow:hidden;padding-top:58px}
 .slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.4s ease;display:flex;align-items:flex-end;padding:76px 56px}
 .slide.active{opacity:1}
-.slide::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(8,12,20,.94) 0%,rgba(8,12,20,.42) 55%,rgba(8,12,20,.74) 100%)}
+.slide::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(8,12,20,.94),rgba(8,12,20,.42) 55%,rgba(8,12,20,.74))}
 .slide-content{position:relative;z-index:2;max-width:600px}
 .slide-tag{display:inline-flex;align-items:center;gap:7px;background:rgba(155,226,60,.12);border:1px solid rgba(155,226,60,.4);color:var(--green);font-size:11px;font-weight:700;letter-spacing:3px;padding:5px 13px;border-radius:3px;margin-bottom:14px;text-transform:uppercase}
 .slide-content h2{font-family:'Bebas Neue',sans-serif;font-size:74px;line-height:.92;color:#fff;letter-spacing:2px;margin-bottom:14px;text-shadow:0 4px 40px rgba(0,0,0,.5)}
@@ -42,22 +52,31 @@ nav a.active{color:var(--dark);background:var(--green)}
 .slide-dots{position:absolute;bottom:26px;right:56px;display:flex;gap:7px;z-index:10}
 .dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:all .3s}
 .dot.active{background:var(--green);width:24px;border-radius:4px}
+
+/* ── STATS STRIP ── */
 .stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.05)}
 .stat-item{background:var(--dark2);text-align:center;padding:22px 14px;transition:background .2s}
 .stat-item:hover{background:var(--dark3)}
 .stat-num{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--green);letter-spacing:2px;line-height:1}
 .stat-label{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:3px}
+
+/* ── PAGES ── */
 .page{display:none}.page.active{display:block}
-#page-home{padding-top:0}#page-predictions,#page-admin{padding-top:58px}
+#page-home{padding-top:0}
+#page-predictions,#page-admin{padding-top:58px}
 .section{padding:52px 36px;max-width:1200px;margin:0 auto;position:relative;z-index:1}
 .section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px}
 .section-title{font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:2px;color:#fff}
 .section-title span{color:var(--green)}
 .acc-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(155,226,60,.1);border:1px solid rgba(155,226,60,.3);color:var(--green);font-size:11px;font-weight:700;letter-spacing:1px;padding:5px 13px;border-radius:3px;text-transform:uppercase}
+
+/* ── FILTER TABS ── */
 .filter-tabs{display:flex;gap:5px;margin-bottom:22px;flex-wrap:wrap}
 .filter-tab{padding:6px 16px;background:transparent;border:1px solid rgba(255,255,255,.08);color:var(--muted);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.5px;cursor:pointer;border-radius:3px;transition:all .2s;text-transform:uppercase}
 .filter-tab:hover{color:#fff;border-color:rgba(255,255,255,.25)}
 .filter-tab.active{background:rgba(155,226,60,.12);border-color:var(--green);color:var(--green)}
+
+/* ── PREDICTION CARDS ── */
 .predictions-grid{display:grid;gap:10px}
 .pred-card{background:var(--dark2);border:1px solid rgba(255,255,255,.05);border-radius:var(--radius);overflow:hidden;transition:all .25s}
 .pred-card:hover{border-color:rgba(155,226,60,.28);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.35)}
@@ -67,7 +86,7 @@ nav a.active{color:var(--dark);background:var(--green)}
 .pred-card-body{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:16px 20px;gap:16px}
 .team-side{display:flex;flex-direction:column;gap:6px}
 .team-side.right{align-items:flex-end;text-align:right}
-.team-logo-wrap{width:44px;height:44px;background:var(--dark3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;border:2px solid rgba(255,255,255,.06);overflow:hidden}
+.team-logo-wrap{width:44px;height:44px;background:var(--dark3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;border:2px solid rgba(255,255,255,.06)}
 .team-side.right .team-logo-wrap{margin-left:auto}
 .team-name{font-size:15px;font-weight:700;color:#fff;letter-spacing:.5px}
 .vs-block{text-align:center}
@@ -89,11 +108,15 @@ nav a.active{color:var(--dark);background:var(--green)}
 .chip.yellow{background:rgba(250,204,21,.1);color:var(--yellow);border:1px solid rgba(250,204,21,.2)}
 .chip.red{background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.2)}
 .chip.blue{background:rgba(96,165,250,.1);color:var(--blue);border:1px solid rgba(96,165,250,.2)}
+
+/* ── PAGINATION ── */
 .pagination{display:flex;justify-content:center;align-items:center;gap:10px;margin-top:30px}
 .page-btn{padding:9px 24px;background:transparent;border:1px solid rgba(155,226,60,.3);color:var(--green);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.5px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase}
 .page-btn:hover{background:var(--green);color:var(--dark)}
 .page-btn:disabled{opacity:.3;cursor:not-allowed}
 .page-info{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:1px}
+
+/* ── PREVIEW GRID (HOME) ── */
 .preview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
 @media(max-width:900px){.preview-grid{grid-template-columns:1fr}}
 .preview-card{background:var(--dark2);border:1px solid rgba(255,255,255,.05);border-radius:var(--radius);overflow:hidden;transition:all .25s;cursor:pointer}
@@ -109,6 +132,8 @@ nav a.active{color:var(--dark);background:var(--green)}
 .mini-bar{height:3px;background:rgba(255,255,255,.07);border-radius:2px;margin-top:8px;overflow:hidden}
 .mini-fill{height:100%;border-radius:2px;background:var(--green)}
 .mini-conf{font-size:9px;color:var(--muted);margin-top:4px;font-weight:700;letter-spacing:1px}
+
+/* ── EMPTY / LOADING ── */
 .empty-state{text-align:center;padding:56px 20px;color:var(--muted);font-size:14px;font-weight:600;letter-spacing:1px}
 .empty-state .icon{font-size:46px;margin-bottom:13px}
 .empty-state p{font-size:12px;margin-top:5px;opacity:.6}
@@ -116,33 +141,41 @@ nav a.active{color:var(--dark);background:var(--green)}
 .spinner{width:20px;height:20px;border:2px solid rgba(155,226,60,.2);border-top-color:var(--green);border-radius:50%;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 
-/* ADMIN */
-.admin-login-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 58px);gap:18px;text-align:center;padding:20px}
-.login-card{background:var(--dark2);border:1px solid rgba(155,226,60,.15);border-radius:14px;padding:38px 46px;max-width:420px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.4)}
+/* ════════════════════════════════
+   ADMIN
+════════════════════════════════ */
+.admin-login-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 58px);padding:20px}
+.login-card{background:var(--dark2);border:1px solid rgba(155,226,60,.15);border-radius:14px;padding:38px 46px;max-width:420px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.4);text-align:center}
 .lock-icon{font-size:50px;margin-bottom:10px}
 .login-title{font-family:'Bebas Neue',sans-serif;font-size:38px;letter-spacing:3px;color:#fff;margin-bottom:6px}
 .login-title span{color:var(--green)}
 .login-sub{color:var(--muted);font-size:13px;font-weight:600;letter-spacing:1px;margin-bottom:20px}
-.security-note{font-size:10px;color:var(--muted);letter-spacing:1px;font-weight:600;margin-top:13px}
+.login-form-group{text-align:left;margin-bottom:15px}
+.login-form-group label{display:block;font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
+.login-input{width:100%;padding:12px 14px;background:var(--dark3);border:1px solid rgba(255,255,255,.08);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:600;border-radius:6px;outline:none;transition:all .2s}
+.login-input:focus{border-color:rgba(155,226,60,.5);box-shadow:0 0 0 3px rgba(155,226,60,.07)}
+.login-btn{width:100%;padding:13px;background:var(--green);color:var(--dark);font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;border:none;cursor:pointer;border-radius:6px;transition:all .2s;margin-top:5px}
+.login-btn:hover{background:#b4f04e;transform:translateY(-1px);box-shadow:0 8px 24px rgba(155,226,60,.3)}
+.security-note{font-size:10px;color:rgba(255,255,255,.2);letter-spacing:1px;font-weight:600;margin-top:16px}
 
-/* Setup banner */
-.setup-banner{background:rgba(250,204,21,.08);border:1px solid rgba(250,204,21,.3);border-radius:8px;padding:14px 18px;margin-bottom:20px;font-size:12px;color:var(--yellow);font-weight:600;letter-spacing:.5px;line-height:1.7}
-.setup-banner strong{display:block;font-size:14px;margin-bottom:6px;letter-spacing:1px}
-.setup-banner code{background:rgba(250,204,21,.15);padding:2px 7px;border-radius:4px;font-family:'Space Mono',monospace;font-size:11px}
-
+/* ADMIN PANEL */
 .admin-wrap{max-width:960px;margin:0 auto;padding:46px 36px;position:relative;z-index:1}
 .admin-topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.06)}
 .admin-user{display:flex;align-items:center;gap:11px}
-.admin-avatar{width:38px;height:38px;border-radius:50%;border:2px solid var(--green);object-fit:cover}
+.admin-avatar{width:38px;height:38px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;color:var(--dark);font-weight:700;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1px;flex-shrink:0;border:2px solid var(--green2)}
 .admin-uname{font-weight:700;font-size:14px;color:#fff;letter-spacing:.5px}
 .admin-uemail{font-size:11px;color:var(--muted);letter-spacing:.5px}
 .btn-logout{padding:7px 16px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:var(--red);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;letter-spacing:1.5px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase}
 .btn-logout:hover{background:rgba(239,68,68,.2)}
+
+/* ADMIN TABS */
 .admin-tabs{display:flex;gap:5px;margin-bottom:26px;flex-wrap:wrap}
 .admin-tab{padding:8px 18px;background:transparent;border:1px solid rgba(255,255,255,.08);color:var(--muted);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.5px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase}
 .admin-tab:hover{color:#fff;border-color:rgba(255,255,255,.25)}
 .admin-tab.active{background:rgba(155,226,60,.12);border-color:var(--green);color:var(--green)}
 .admin-section{display:none}.admin-section.active{display:block}
+
+/* ADMIN CARDS & FORMS */
 .a-card{background:var(--dark2);border:1px solid rgba(155,226,60,.1);border-radius:12px;padding:26px;margin-bottom:22px}
 .a-card-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:#fff;margin-bottom:20px;display:flex;align-items:center;gap:9px}
 .a-card-title span{color:var(--green)}
@@ -158,11 +191,8 @@ nav a.active{color:var(--dark);background:var(--green)}
 .btn-save{width:100%;margin-top:18px;padding:13px;background:var(--green);color:var(--dark);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;border-radius:6px;transition:all .2s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
 .btn-save:hover{background:#b4f04e;transform:translateY(-1px);box-shadow:0 8px 24px rgba(155,226,60,.3)}
 .btn-save:disabled{opacity:.5;cursor:not-allowed;transform:none}
-.upload-zone{border:2px dashed rgba(155,226,60,.3);border-radius:8px;padding:22px;text-align:center;cursor:pointer;transition:all .2s;background:rgba(155,226,60,.03)}
-.upload-zone:hover{border-color:rgba(155,226,60,.6);background:rgba(155,226,60,.07)}
-.upload-zone input{display:none}
-.upload-zone p{font-size:12px;color:var(--muted);font-weight:600;letter-spacing:1px;margin-top:6px}
-.upload-preview{width:100%;max-height:140px;object-fit:cover;border-radius:6px;margin-top:10px;display:none}
+
+/* MATCHES TABLE */
 .matches-table{width:100%;border-collapse:collapse}
 .matches-table th{padding:10px 16px;text-align:left;font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.06);background:rgba(0,0,0,.15)}
 .matches-table td{padding:11px 16px;font-size:13px;font-weight:600;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle}
@@ -177,6 +207,8 @@ nav a.active{color:var(--dark);background:var(--green)}
 .btn-edit:hover{background:rgba(96,165,250,.2)}
 .btn-del{padding:4px 10px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);color:var(--red);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:10px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase;letter-spacing:1px}
 .btn-del:hover{background:rgba(239,68,68,.25)}
+
+/* SLIDES MANAGER */
 .slides-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
 @media(max-width:700px){.slides-grid{grid-template-columns:1fr}}
 .slide-thumb{border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.08);transition:all .2s}
@@ -184,14 +216,25 @@ nav a.active{color:var(--dark);background:var(--green)}
 .slide-thumb-body{padding:10px}
 .slide-thumb-title{font-size:12px;font-weight:700;color:#fff;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .slide-thumb-actions{display:flex;gap:5px;margin-top:8px}
+
+/* SETUP BANNER */
+.setup-banner{background:rgba(250,204,21,.08);border:1px solid rgba(250,204,21,.3);border-radius:8px;padding:14px 18px;margin-bottom:20px;font-size:12px;color:var(--yellow);font-weight:600;letter-spacing:.5px;line-height:1.7;display:none}
+.setup-banner strong{display:block;font-size:14px;margin-bottom:6px;letter-spacing:1px}
+
+/* SETTINGS */
 .settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media(max-width:640px){.settings-grid{grid-template-columns:1fr}}
 .favicon-preview{width:50px;height:50px;border-radius:8px;object-fit:cover;border:2px solid rgba(155,226,60,.3)}
-.notif{position:fixed;top:70px;right:18px;padding:11px 18px;border-radius:7px;font-weight:700;font-size:12px;letter-spacing:1px;z-index:99999;transform:translateX(220%);transition:transform .4s cubic-bezier(.34,1.56,.64,1);max-width:320px}
+.code-block{background:rgba(0,0,0,.35);border-radius:6px;padding:12px;font-family:'Space Mono',monospace;font-size:10px;color:#e5e7eb;white-space:pre;overflow-x:auto;line-height:1.6;border:1px solid rgba(255,255,255,.05)}
+
+/* NOTIFICATION */
+.notif{position:fixed;top:70px;right:18px;padding:11px 18px;border-radius:7px;font-weight:700;font-size:12px;letter-spacing:1px;z-index:99999;transform:translateX(220%);transition:transform .4s cubic-bezier(.34,1.56,.64,1);max-width:320px;pointer-events:none}
 .notif.show{transform:translateX(0)}
 .notif.success{background:rgba(155,226,60,.15);border:1px solid rgba(155,226,60,.4);color:var(--green)}
 .notif.error{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.4);color:var(--red)}
 .notif.info{background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.4);color:var(--blue)}
+
+/* MODAL */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);z-index:99000;display:none;align-items:center;justify-content:center;padding:20px}
 .modal-overlay.open{display:flex}
 .modal{background:var(--dark2);border:1px solid rgba(155,226,60,.2);border-radius:14px;padding:28px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;position:relative}
@@ -199,19 +242,33 @@ nav a.active{color:var(--dark);background:var(--green)}
 .modal-title span{color:var(--green)}
 .modal-close{position:absolute;top:14px;right:16px;background:transparent;border:none;color:var(--muted);font-size:20px;cursor:pointer;transition:color .2s;line-height:1}
 .modal-close:hover{color:#fff}
+
+/* FOOTER */
 footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-align:center;padding:26px;font-size:11px;color:var(--muted);letter-spacing:1px;position:relative;z-index:1}
 .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--green);letter-spacing:4px;margin-bottom:7px}
 .footer-disc{font-size:10px;color:rgba(255,255,255,.18);margin-top:7px}
 #scrollTop{position:fixed;bottom:20px;right:20px;width:38px;height:38px;background:rgba(155,226,60,.1);border:1px solid rgba(155,226,60,.3);color:var(--green);font-size:15px;border-radius:50%;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;transition:all .2s}
 #scrollTop:hover{background:var(--green);color:var(--dark)}
-@media(max-width:768px){header{padding:0 16px}.slide-content h2{font-size:50px}.stats-strip{grid-template-columns:repeat(2,1fr)}.section{padding:36px 16px}.admin-wrap{padding:36px 16px}}
+
+@media(max-width:768px){
+  header{padding:0 16px}
+  .slide-content h2{font-size:50px}
+  .stats-strip{grid-template-columns:repeat(2,1fr)}
+  .section{padding:36px 16px}
+  .admin-wrap{padding:36px 16px}
+  .slide{padding:40px 24px}
+}
 </style>
 </head>
 <body>
+
+<!-- NOTIFICATION -->
 <div id="notif" class="notif"></div>
 <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲</button>
 
-<!-- EDIT MATCH MODAL -->
+<!-- ══════════════════════════════════
+     EDIT MATCH MODAL
+══════════════════════════════════ -->
 <div class="modal-overlay" id="edit-modal">
   <div class="modal">
     <button class="modal-close" onclick="closeModal('edit-modal')">✕</button>
@@ -219,7 +276,8 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
     <div class="fgrid">
       <div class="fg"><label class="flabel">Home Team</label><input class="finput" id="e-home" type="text"></div>
       <div class="fg"><label class="flabel">Away Team</label><input class="finput" id="e-away" type="text"></div>
-      <div class="fg"><label class="flabel">League</label>
+      <div class="fg">
+        <label class="flabel">League</label>
         <select class="fselect" id="e-league">
           <option value="Premier League">⚽ Premier League</option>
           <option value="La Liga">🇪🇸 La Liga</option>
@@ -228,11 +286,12 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
           <option value="Bundesliga">🇩🇪 Bundesliga</option>
           <option value="Ligue 1">🇫🇷 Ligue 1</option>
           <option value="Other">🌍 Other</option>
-        </select></div>
+        </select>
+      </div>
       <div class="fg"><label class="flabel">Time</label><input class="finput" id="e-time" type="time"></div>
       <div class="fg"><label class="flabel">Date</label><input class="finput" id="e-date" type="date"></div>
-      <div class="fg"><label class="flabel">Prediction</label><input class="finput" id="e-pred" type="text"></div>
-      <div class="fg full"><label class="flabel">Tips (comma-separated)</label><input class="finput" id="e-tips" type="text"></div>
+      <div class="fg"><label class="flabel">Prediction / Pick</label><input class="finput" id="e-pred" type="text"></div>
+      <div class="fg full"><label class="flabel">Tips (comma-separated)</label><input class="finput" id="e-tips" type="text" placeholder="Home Win, Over 2.5, BTTS"></div>
       <div class="fg full">
         <label class="flabel">Confidence: <span id="e-cv">75</span>%</label>
         <input class="frange" id="e-conf" type="range" min="50" max="99" value="75" oninput="document.getElementById('e-cv').textContent=this.value">
@@ -240,7 +299,7 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
       <div class="fg full"><label class="flabel">Notes</label><textarea class="ftextarea" id="e-notes"></textarea></div>
     </div>
     <input type="hidden" id="e-row">
-    <button class="btn-save" onclick="updateMatch()">💾 UPDATE PREDICTION</button>
+    <button class="btn-save" id="btn-update" onclick="updateMatch()">💾 UPDATE PREDICTION</button>
   </div>
 </div>
 
@@ -256,14 +315,9 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
       <div class="fg full"><label class="flabel">Description</label><textarea class="ftextarea" id="sm-desc"></textarea></div>
       <div class="fg full"><label class="flabel">Button Text</label><input class="finput" id="sm-btn" type="text"></div>
       <div class="fg full">
-        <label class="flabel">Background Image</label>
-        <div class="upload-zone" onclick="document.getElementById('sm-img-input').click()">
-          <div style="font-size:28px">🖼️</div>
-          <p>Click to upload image</p>
-          <input type="file" id="sm-img-input" accept="image/*" onchange="previewSlideImg(this)">
-          <img id="sm-img-preview" class="upload-preview">
-        </div>
-        <input class="finput" id="sm-img-url" type="text" placeholder="Or paste image URL here" style="margin-top:8px">
+        <label class="flabel">Background Image URL</label>
+        <input class="finput" id="sm-img-url" type="text" placeholder="https://images.unsplash.com/...">
+        <img id="sm-img-preview" style="width:100%;max-height:130px;object-fit:cover;border-radius:6px;margin-top:10px;display:none">
       </div>
     </div>
     <input type="hidden" id="sm-idx">
@@ -271,7 +325,9 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
   </div>
 </div>
 
-<!-- HEADER -->
+<!-- ══════════════════════════════════
+     HEADER
+══════════════════════════════════ -->
 <header>
   <div class="logo" onclick="showPage('home')">
     <img id="logo-ico" class="logo-ico" src="" alt="">
@@ -285,8 +341,11 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
   </nav>
 </header>
 
-<!-- HOME -->
+<!-- ══════════════════════════════════
+     PAGE: HOME
+══════════════════════════════════ -->
 <div id="page-home" class="page active">
+  <!-- HERO SLIDESHOW -->
   <div class="hero">
     <div id="slide-0" class="slide active">
       <div class="slide-content">
@@ -318,20 +377,23 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
       <div class="dot" onclick="goSlide(2)"></div>
     </div>
   </div>
+
   <div class="ticker-bar"><div class="ticker-track" id="ticker-home"></div></div>
+
   <div class="stats-strip">
     <div class="stat-item"><div class="stat-num" id="stat-acc">85%</div><div class="stat-label">Accuracy Rate</div></div>
     <div class="stat-item"><div class="stat-num">1.2K+</div><div class="stat-label">Tips This Month</div></div>
     <div class="stat-item"><div class="stat-num">12</div><div class="stat-label">Leagues Covered</div></div>
     <div class="stat-item"><div class="stat-num">50K+</div><div class="stat-label">Happy Users</div></div>
   </div>
+
   <div class="section">
     <div class="section-header">
       <div class="section-title">TODAY'S <span>TOP PICKS</span></div>
       <div class="acc-badge">🎯 Live from Sheets</div>
     </div>
     <div id="home-previews" class="preview-grid">
-      <div class="loading-spinner"><div class="spinner"></div> LOADING TIPS...</div>
+      <div class="loading-spinner" style="grid-column:1/-1"><div class="spinner"></div> LOADING TIPS...</div>
     </div>
     <div style="text-align:center;margin-top:28px">
       <button class="btn-main" onclick="showPage('predictions')">VIEW ALL PREDICTIONS →</button>
@@ -339,13 +401,15 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
   </div>
 </div>
 
-<!-- PREDICTIONS -->
+<!-- ══════════════════════════════════
+     PAGE: PREDICTIONS
+══════════════════════════════════ -->
 <div id="page-predictions" class="page">
   <div class="ticker-bar"><div class="ticker-track" id="ticker-pred"></div></div>
   <div class="section">
     <div class="section-header">
       <div class="section-title">ALL <span>PREDICTIONS</span></div>
-      <div class="acc-badge">🎯 Live Data</div>
+      <div class="acc-badge" id="pred-count-badge">🎯 Live Data</div>
     </div>
     <div class="filter-tabs">
       <button class="filter-tab active" onclick="filterPred(this,'all')">All</button>
@@ -358,59 +422,56 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
     <div id="pred-loading" class="loading-spinner"><div class="spinner"></div> LOADING...</div>
     <div id="pred-list" class="predictions-grid" style="display:none"></div>
     <div id="pred-empty" class="empty-state" style="display:none">
-      <div class="icon">⚽</div><div>No predictions yet.</div>
-      <p>Check back later or ask the admin to add tips.</p>
+      <div class="icon">⚽</div>
+      <div>No predictions found.</div>
+      <p>Check back soon or change the filter.</p>
     </div>
     <div id="pred-pagi"></div>
   </div>
 </div>
 
-<!-- ADMIN -->
+<!-- ══════════════════════════════════
+     PAGE: ADMIN
+══════════════════════════════════ -->
 <div id="page-admin" class="page">
-  
+
+  <!-- LOGIN SCREEN -->
   <div id="admin-login" class="admin-login-screen">
     <div class="login-card">
       <div class="lock-icon">🔐</div>
       <div class="login-title">ADMIN <span>PANEL</span></div>
-      <div class="login-sub">Injira ukoresheje amazina yawe</div>
-      
-      <div class="login-form" style="margin-top:20px; text-align:left;">
-        <label style="color:#888; font-size:12px; font-family:sans-serif;">USERNAME</label>
-        <input type="text" id="adm-user-input" placeholder="Kim Aristide" 
-               style="width:100%; padding:12px; margin:5px 0 15px 0; background:#111; border:1px solid #333; color:white; border-radius:5px;">
-        
-        <label style="color:#888; font-size:12px; font-family:sans-serif;">PASSWORD</label>
-        <input type="password" id="adm-pass-input" placeholder="••••••••" 
-               style="width:100%; padding:12px; margin:5px 0 20px 0; background:#111; border:1px solid #333; color:white; border-radius:5px;">
-        
-        <button onclick="handleManualLogin()" 
-                style="width:100%; padding:12px; background:#00ff88; color:black; border:none; border-radius:5px; font-weight:bold; cursor:pointer; font-family:'Bebas Neue'; font-size:18px; letter-spacing:1px;">
-                SIGN IN
-        </button>
+      <div class="login-sub">Injira kugira ngo ugenzure predictions</div>
+      <div class="login-form-group">
+        <label>USERNAME</label>
+        <input type="text" id="adm-user-input" class="login-input" placeholder="Kim Aristide" autocomplete="username">
       </div>
-
-      <div class="security-note" style="margin-top:15px; font-size:11px; color:#555;">
-        🔒 Only authorized admin **Kim Aristide** can access this panel.
+      <div class="login-form-group">
+        <label>PASSWORD</label>
+        <input type="password" id="adm-pass-input" class="login-input" placeholder="••••••••" autocomplete="current-password"
+               onkeydown="if(event.key==='Enter') handleManualLogin()">
       </div>
+      <button class="login-btn" onclick="handleManualLogin()">SIGN IN →</button>
+      <div class="security-note">🔒 Only authorized admins can access this panel.</div>
     </div>
   </div>
 
+  <!-- ADMIN DASHBOARD -->
   <div id="admin-panel" class="admin-wrap" style="display:none">
-    
-    <div id="setup-banner" class="setup-banner" style="display:none">
-      <strong>⚠️ Setup Required — Apps Script URL</strong>
-      To enable Save / Delete, paste your <strong>Apps Script Web App URL</strong> in Settings tab below.
+
+    <div id="setup-banner" class="setup-banner">
+      <strong>⚠️ Setup Required — Apps Script URL Missing</strong>
+      Shyiramo URL ya Apps Script mu <strong>Settings</strong> tab kugira ngo Save/Delete bikore.
     </div>
 
     <div class="admin-topbar">
       <div class="admin-user">
-        <div class="admin-avatar" style="background:#00ff88; width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; color:black; font-weight:bold; font-family:sans-serif;">KA</div>
+        <div class="admin-avatar">KA</div>
         <div>
-          <div id="adm-name" class="admin-uname">Kim Aristide</div>
-          <div id="adm-email" class="admin-uemail">Administrator</div>
+          <div class="admin-uname">Kim Aristide</div>
+          <div class="admin-uemail">Administrator</div>
         </div>
       </div>
-      <button class="btn-logout" onclick="adminLogout()">Sign Out</button>
+      <button class="btn-logout" onclick="adminLogout()">↩ Sign Out</button>
     </div>
 
     <div class="admin-tabs">
@@ -419,17 +480,17 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
       <button class="admin-tab" onclick="adminTab(this,'tab-settings')">⚙️ Settings</button>
     </div>
 
-    </div>
-</div>
-
-    <!-- PREDICTIONS TAB -->
+    <!-- ── TAB: PREDICTIONS ── -->
     <div id="tab-matches" class="admin-section active">
+
+      <!-- ADD FORM -->
       <div class="a-card">
         <div class="a-card-title">➕ Add <span>New Prediction</span></div>
         <div class="fgrid">
           <div class="fg"><label class="flabel">Home Team</label><input class="finput" id="f-home" type="text" placeholder="e.g. Arsenal"></div>
           <div class="fg"><label class="flabel">Away Team</label><input class="finput" id="f-away" type="text" placeholder="e.g. Chelsea"></div>
-          <div class="fg"><label class="flabel">League</label>
+          <div class="fg">
+            <label class="flabel">League</label>
             <select class="fselect" id="f-league">
               <option value="Premier League">⚽ Premier League</option>
               <option value="La Liga">🇪🇸 La Liga</option>
@@ -438,7 +499,8 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
               <option value="Bundesliga">🇩🇪 Bundesliga</option>
               <option value="Ligue 1">🇫🇷 Ligue 1</option>
               <option value="Other">🌍 Other</option>
-            </select></div>
+            </select>
+          </div>
           <div class="fg"><label class="flabel">Time</label><input class="finput" id="f-time" type="time" value="16:30"></div>
           <div class="fg"><label class="flabel">Date</label><input class="finput" id="f-date" type="date"></div>
           <div class="fg"><label class="flabel">Prediction / Pick</label><input class="finput" id="f-pred" type="text" placeholder="e.g. Home Win, Over 2.5"></div>
@@ -452,6 +514,7 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
         <button class="btn-save" id="btn-save" onclick="saveMatch()">💾 SAVE TO GOOGLE SHEETS</button>
       </div>
 
+      <!-- EXISTING PREDICTIONS LIST -->
       <div class="a-card" style="padding:0;overflow:hidden">
         <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 22px;border-bottom:1px solid rgba(255,255,255,.06)">
           <div class="a-card-title" style="margin-bottom:0">📋 Current <span>Predictions</span></div>
@@ -463,35 +526,20 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
       </div>
     </div>
 
-    <!-- SLIDES TAB -->
+    <!-- ── TAB: HERO SLIDES ── -->
     <div id="tab-slides" class="admin-section">
       <div class="a-card">
         <div class="a-card-title">🖼️ Manage <span>Hero Slides</span></div>
-        <p style="color:var(--muted);font-size:13px;font-weight:600;margin-bottom:18px">Edit the 3 hero slideshow panels. Changes are saved locally and apply instantly.</p>
+        <p style="color:var(--muted);font-size:13px;font-weight:600;margin-bottom:18px">Hindura ibisobanuro by'ibiboneka mu slideshow. Ibyo uhindura biba immediately.</p>
         <div class="slides-grid" id="slides-manager"></div>
       </div>
     </div>
 
-    <!-- SETTINGS TAB -->
+    <!-- ── TAB: SETTINGS ── -->
     <div id="tab-settings" class="admin-section">
       <div class="a-card">
         <div class="a-card-title">⚙️ Site <span>Settings</span></div>
         <div class="settings-grid">
-          <div class="fg full">
-            <label class="flabel">Favicon / Logo Icon</label>
-            <div style="display:flex;align-items:center;gap:14px;margin-top:8px">
-              <img id="fav-preview" class="favicon-preview" src="" alt="favicon">
-              <div>
-                <div style="font-size:12px;color:var(--muted);font-weight:600;margin-bottom:7px">Shown in browser tab and header</div>
-                <button onclick="document.getElementById('fav-file').click()" style="background:rgba(155,226,60,.1);border:1px solid rgba(155,226,60,.3);color:var(--green);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;letter-spacing:1.5px;padding:7px 14px;border-radius:4px;cursor:pointer;text-transform:uppercase">📁 Upload Favicon</button>
-                <input type="file" id="fav-file" accept="image/*" style="display:none" onchange="uploadFavicon(this)">
-              </div>
-            </div>
-          </div>
-          <div class="fg full">
-            <label class="flabel">Ticker Messages (one per line)</label>
-            <textarea class="ftextarea" id="ticker-input" style="min-height:100px" placeholder="Arsenal WIN ✓ — 85% confidence&#10;PSG WIN ✓ — 91% confidence"></textarea>
-          </div>
           <div class="fg">
             <label class="flabel">Site Title (browser tab)</label>
             <input class="finput" id="site-title" type="text">
@@ -501,41 +549,73 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
             <input class="finput" id="site-accuracy" type="text" placeholder="85%">
           </div>
           <div class="fg full">
-            <label class="flabel">Spreadsheet ID</label>
-            <input class="finput" id="set-sheetid" type="text" placeholder="Paste your Google Spreadsheet ID here">
+            <label class="flabel">Favicon / Logo Icon URL</label>
+            <div style="display:flex;align-items:center;gap:14px;margin-top:8px">
+              <img id="fav-preview" class="favicon-preview" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>" alt="favicon">
+              <div>
+                <div style="font-size:12px;color:var(--muted);font-weight:600;margin-bottom:7px">Shown in browser tab and header logo</div>
+                <button onclick="document.getElementById('fav-file').click()" style="background:rgba(155,226,60,.1);border:1px solid rgba(155,226,60,.3);color:var(--green);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;letter-spacing:1.5px;padding:7px 14px;border-radius:4px;cursor:pointer;text-transform:uppercase">📁 Upload Favicon</button>
+                <input type="file" id="fav-file" accept="image/*" style="display:none" onchange="uploadFavicon(this)">
+              </div>
+            </div>
           </div>
           <div class="fg full">
-            <label class="flabel">Google Apps Script URL (for Save/Delete)</label>
+            <label class="flabel">Ticker Messages (imwe ku murongo)</label>
+            <textarea class="ftextarea" id="ticker-input" style="min-height:100px" placeholder="Arsenal WIN ✓ — 85% confidence&#10;PSG WIN ✓ — 91% confidence"></textarea>
+          </div>
+          <div class="fg full">
+            <label class="flabel" style="margin-bottom:10px">Google Apps Script URL</label>
             <input class="finput" id="set-scripturl" type="text" placeholder="https://script.google.com/macros/s/YOUR_ID/exec">
-            <div style="margin-top:10px;background:rgba(250,204,21,.06);border:1px solid rgba(250,204,21,.2);border-radius:8px;padding:14px;font-size:12px;color:var(--yellow);line-height:1.9;font-weight:600">
-              <strong style="display:block;margin-bottom:6px;font-size:13px;letter-spacing:1px">📋 HOW TO GET APPS SCRIPT URL:</strong>
+            <div style="margin-top:14px;background:rgba(250,204,21,.05);border:1px solid rgba(250,204,21,.2);border-radius:8px;padding:16px;font-size:12px;color:var(--yellow);line-height:2;font-weight:600">
+              <strong style="display:block;font-size:13px;letter-spacing:1px;margin-bottom:8px">📋 AMABWIRIZA — Gukora Apps Script:</strong>
               1. Fungura Google Sheet yawe → <strong>Extensions → Apps Script</strong><br>
               2. Siba code yose, shyiramo iyi code:<br>
-              <div style="background:rgba(0,0,0,.3);border-radius:6px;padding:10px;margin:8px 0;font-family:'Space Mono',monospace;font-size:10px;color:#e5e7eb;white-space:pre-wrap">function doPost(e){
-  var ss = SpreadsheetApp.openById('SPREADSHEET_ID');
-  var sheet = ss.getSheetByName('Predictions');
-  var data = JSON.parse(e.postData.contents);
-  if(data.action === 'add'){
-    sheet.appendRow(data.row);
-    return ContentService.createTextOutput(JSON.stringify({ok:true})).setMimeType(ContentService.MimeType.JSON);
+              <div class="code-block" style="margin:10px 0">// ⬇ Hindura SPREADSHEET_ID yawe hano ⬇
+var SHEET_ID = 'SPREADSHEET_ID';
+
+function doGet(e) {
+  var sheet = SpreadsheetApp.openById(SHEET_ID)
+                .getSheetByName('Predictions');
+  if (!sheet) return json([]);
+  var rows = sheet.getDataRange().getValues();
+  var result = [];
+  for (var i = 1; i &lt; rows.length; i++) {
+    if (!rows[i][1]) continue;
+    result.push({
+      id: rows[i][0], home: rows[i][1], away: rows[i][2],
+      league: rows[i][3], time: rows[i][4], date: rows[i][5],
+      prediction: rows[i][6], confidence: rows[i][7] || 75,
+      tips: rows[i][8] || '', notes: rows[i][9] || '',
+      rowIndex: i + 1
+    });
   }
-  if(data.action === 'delete'){
-    sheet.deleteRow(data.rowIndex);
-    return ContentService.createTextOutput(JSON.stringify({ok:true})).setMimeType(ContentService.MimeType.JSON);
-  }
-  if(data.action === 'update'){
-    var range = sheet.getRange(data.rowIndex, 1, 1, data.row.length);
-    range.setValues([data.row]);
-    return ContentService.createTextOutput(JSON.stringify({ok:true})).setMimeType(ContentService.MimeType.JSON);
-  }
+  return json(result);
 }
-function doGet(e){
-  return ContentService.createTextOutput('ok');
+
+function doPost(e) {
+  var data = JSON.parse(e.postData.contents);
+  var sheet = SpreadsheetApp.openById(SHEET_ID)
+                .getSheetByName('Predictions');
+  if (data.action === 'add') {
+    sheet.appendRow(data.row);
+  } else if (data.action === 'update') {
+    sheet.getRange(data.rowIndex, 1, 1, data.row.length)
+         .setValues([data.row]);
+  } else if (data.action === 'delete') {
+    sheet.deleteRow(data.rowIndex);
+  }
+  return json({ok: true});
+}
+
+function json(d) {
+  return ContentService
+    .createTextOutput(JSON.stringify(d))
+    .setMimeType(ContentService.MimeType.JSON);
 }</div>
-              3. Hindura <code style="background:rgba(0,0,0,.3);padding:2px 6px;border-radius:3px">SPREADSHEET_ID</code> mu code<br>
+              3. Hindura <code style="background:rgba(0,0,0,.3);padding:2px 6px;border-radius:3px">SPREADSHEET_ID</code> muri code<br>
               4. Kanda <strong>Deploy → New deployment → Web App</strong><br>
               5. Execute as: <strong>Me</strong> | Who has access: <strong>Anyone</strong><br>
-              6. Kopi URL ugashyira hano hejuru
+              6. Kanda <strong>Deploy</strong>, kopi URL, uyishyire muri field hejuru
             </div>
           </div>
         </div>
@@ -543,715 +623,666 @@ function doGet(e){
       </div>
     </div>
 
-  </div>
-</div>
+  </div><!-- /admin-panel -->
 
+</div><!-- /page-admin -->
+
+<!-- FOOTER -->
 <footer>
   <div class="footer-logo">KEYX PREDICTER</div>
   <div>© 2025 Keyx Predicter. All rights reserved.</div>
-  <div class="footer-disc">For entertainment purposes only. Gamble responsibly.</div>
+  <div class="footer-disc">For entertainment purposes only. Please gamble responsibly.</div>
 </footer>
 
+<!-- ══════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════ -->
 <script>
-/* ===== 1. CONFIGURATION & STATE ===== */
-const CFG = {
-  // URL NSHYA WASABYE (Ikosoye)
-  SCRIPT_URL: 'https://script.google.com/macros/s/AKfycbw6TCGc34NHvGXAq3qwKDoXSKjMFN-9LoTdqps_XU7yI8q1N-8fniaiXPwHViCjqpR6/exec',
-  DEFAULT_ACC: "85%"
+/* ═══════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════ */
+let allMatches = [], filteredMatches = [], sheetRowMap = [];
+let curPage = 1, PER_PAGE = 10, curFilter = 'all';
+let slideEls, dotEls, curSl = 0, slTimer;
+
+// ── Load persistent settings (localStorage is NOT cleared)
+let CFG = {
+  SCRIPT_URL: localStorage.getItem('kx_scripturl') || ''
 };
+let SLIDES   = tryParse(localStorage.getItem('kx_slides')) || defaultSlides();
+let TICKER   = localStorage.getItem('kx_ticker')  || defaultTicker();
+let S_TITLE  = localStorage.getItem('kx_title')   || 'KEYX PREDICTER — AI Football Tips';
+let S_ACC    = localStorage.getItem('kx_acc')     || '85%';
+let FAV_URL  = localStorage.getItem('kx_favicon') || '';
 
-let MATCHES = []; 
-
-/* ===== 2. INITIALIZATION ===== */
-window.onload = () => {
-  // 1. Siba ibya kera byose muri Browser kugira ngo isome amakipe mashya
-  localStorage.clear();
-  
-  // 2. Garagaza Accuracy
-  const accEl = document.getElementById('stat-acc');
-  if(accEl) accEl.textContent = CFG.DEFAULT_ACC;
-
-  // 3. Fata amakuru muri Google Sheets
-  fetchData();
-  
-  // 4. Reba niba Admin yari asanzwe winjiye (Kim)
-  checkAuthStatus();
-};
-
-/* ===== 3. DATA FETCHING (GET) ===== */
-async function fetchData() {
-  const grid = document.getElementById('match-grid');
-  const ticker = document.getElementById('ticker-container');
-  
-  if (!CFG.SCRIPT_URL) return;
-
-  try {
-    // Akantu ka "?nocache=" gatuma amakuru aza ari mashya buri gihe (Fresh Data)
-    const response = await fetch(CFG.SCRIPT_URL + "?nocache=" + new Date().getTime());
-    const data = await response.json();
-    
-    console.log("Amakuru yaje avuye muri Sheet:", data);
-
-    if (Array.isArray(data) && data.length > 0) {
-      MATCHES = data;
-      renderTickers();
-      renderGrid();
-    } else {
-      // Niba Sheet irimo ubusa
-      if(grid) grid.innerHTML = `
-        <div style="grid-column:1/-1;text-align:center;padding:50px;color:#666">
-          <div style="font-size:40px">⚽</div>
-          <p>Nta makipe yashyizwe muri Sheet (No predictions found).</p>
-        </div>`;
-    }
-  } catch (err) {
-    console.error("Fetch Error:", err);
-    if(grid) grid.innerHTML = `<p style="grid-column:1/-1;text-align:center;color:red">Byanze gufata amakuru. Reba niba URL ya Script ari yo.</p>`;
-  }
+function defaultSlides() {
+  return [
+    {tag:'🤖 AI Powered Predictions', h1:'PREDICT', h2:'LIKE A PRO',
+     p:'Smart football predictions powered by real data and AI analysis. Never miss a winning tip.',
+     btn:'VIEW PREDICTIONS →', bg:'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1600'},
+    {tag:'⚽ Daily Tips', h1:"TODAY'S", h2:'BEST PICKS',
+     p:"Up to 15 high-confidence predictions every day across Europe's top leagues.",
+     btn:"SEE TODAY'S TIPS →", bg:'https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=1600'},
+    {tag:'📊 85% Accuracy Rate', h1:'DATA-DRIVEN', h2:'WINNERS',
+     p:'Our model analyses form, head-to-head records, injuries and more to find the best tips.',
+     btn:'EXPLORE NOW →', bg:'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=1600'},
+  ];
 }
-
-/* ===== 4. UI RENDERING (TICKER & GRID) ===== */
-function renderTickers() {
-  const container = document.getElementById('ticker-container');
-  if (!container) return;
-  container.innerHTML = "";
-  
-  MATCHES.forEach(m => {
-    const div = document.createElement('div');
-    div.className = "ticker-item";
-    div.innerHTML = `<span>${m.home} vs ${m.away}</span> <b style="color:#00ff88">${m.prediction}</b>`;
-    container.appendChild(div);
-  });
+function defaultTicker() {
+  return 'Arsenal WIN ✓ — 85% confidence|Barcelona WIN ✓ — 79% confidence|PSG WIN ✓ — 91% confidence|Inter WIN ✓ — 78% confidence|Man City BTTS ✓ — 88% confidence|Dortmund WIN ✓ — 73% confidence';
 }
+function tryParse(s){ try{ return JSON.parse(s); } catch(e){ return null; } }
 
-function renderGrid() {
-  const grid = document.getElementById('match-grid');
-  if (!grid) return;
-  grid.innerHTML = "";
-
-  MATCHES.forEach((m, idx) => {
-    const card = document.createElement('div');
-    card.className = "match-card";
-    card.style.animationDelay = (idx * 0.05) + "s";
-    
-    card.innerHTML = `
-      <div style="display:flex;justify-content:space-between;margin-bottom:10px">
-        <span style="font-size:12px;color:#888">${m.league || 'FOOTBALL'}</span>
-        <span class="badge" style="background:#222;padding:2px 8px;border-radius:4px;color:#00ff88;font-size:12px">${m.confidence || '85%'}</span>
-      </div>
-      <div style="display:flex;align-items:center;justify-content:space-around;margin:15px 0">
-        <div style="text-align:center;flex:1">
-          <div style="font-family:'Bebas Neue';font-size:18px">${m.home}</div>
-        </div>
-        <div style="font-weight:700;color:#00ff88">VS</div>
-        <div style="text-align:center;flex:1">
-          <div style="font-family:'Bebas Neue';font-size:18px">${m.away}</div>
-        </div>
-      </div>
-      <div style="background:#111;padding:10px;border-radius:5px;text-align:center;border:1px solid #222">
-        <div style="font-size:11px;color:#888;margin-bottom:4px">PREDICTION</div>
-        <div style="font-family:'Bebas Neue';font-size:22px;color:#00ff88">${m.prediction}</div>
-        <div style="font-size:12px;color:#888">Odds: ${m.odds || '-'}</div>
-      </div>
-    `;
-    grid.appendChild(card);
-  });
-}
-
-/* ===== 4. ADMIN AUTHENTICATION (KIM ARISTIDE) ===== */
-function handleManualLogin() {
-    const userField = document.getElementById('adm-user-input').value.trim().toLowerCase();
-    const passField = document.getElementById('adm-pass-input').value.trim();
-    
-    const correctUser = "kim aristide";
-    const correctPass = "25125ABC@kim";
-
-    if (userField === correctUser && passField === correctPass) {
-        sessionStorage.setItem('is_kim_admin', 'true');
-        checkAuthStatus();
-        alert("Murakaza neza, Kim Aristide!");
-    } else {
-        alert("Amazina cyangwa Password ntabwo ari byo!");
-    }
-}
-
-function checkAuthStatus() {
-    const isAdmin = sessionStorage.getItem('is_kim_admin') === 'true';
-    const loginScreen = document.getElementById('admin-login');
-    const adminPanel = document.getElementById('admin-panel');
-
-    if (isAdmin) {
-        if(loginScreen) loginScreen.style.display = 'none';
-        if(adminPanel) adminPanel.style.display = 'block';
-        
-        // Update Admin UI
-        if(document.getElementById('adm-name')) document.getElementById('adm-name').textContent = "Kim Aristide";
-        if(document.getElementById('adm-email')) document.getElementById('adm-email').textContent = "Administrator";
-        
-        // Reba niba hari setup banner
-        const banner = document.getElementById('setup-banner');
-        if(banner) banner.style.display = CFG.SCRIPT_URL ? 'none' : 'block';
-        
-        // Load admin specific matches list if function exists
-        if(typeof loadAdminMatches === "function") loadAdminMatches();
-    }
-}
-
-function adminLogout() {
-    sessionStorage.removeItem('is_kim_admin');
-    location.reload();
-}
-
-/* ===== 5. UI RENDERING (TICKER & GRID) ===== */
-function renderTickers() {
-  const container = document.getElementById('ticker-container');
-  if (!container) return;
-  container.innerHTML = "";
-  
-  MATCHES.forEach(m => {
-    const div = document.createElement('div');
-    div.className = "ticker-item";
-    div.innerHTML = `<span>${m.home} vs ${m.away}</span> <b style="color:#00ff88">${m.prediction}</b>`;
-    container.appendChild(div);
-  });
-}
-
-function renderGrid() {
-  const grid = document.getElementById('match-grid');
-  if (!grid) return;
-  grid.innerHTML = "";
-
-  MATCHES.forEach((m, idx) => {
-    const card = document.createElement('div');
-    card.className = "match-card";
-    card.style.animationDelay = (idx * 0.05) + "s";
-    
-    card.innerHTML = `
-      <div style="display:flex;justify-content:space-between;margin-bottom:10px">
-        <span style="font-size:12px;color:#888">${m.league || 'FOOTBALL'}</span>
-        <span class="badge" style="background:#222;padding:2px 8px;border-radius:4px;color:#00ff88;font-size:12px">${m.confidence || '85%'}</span>
-      </div>
-      <div style="display:flex;align-items:center;justify-content:space-around;margin:15px 0">
-        <div style="text-align:center;flex:1">
-          <div style="font-family:'Bebas Neue';font-size:18px">${m.home}</div>
-        </div>
-        <div style="font-weight:700;color:#00ff88">VS</div>
-        <div style="text-align:center;flex:1">
-          <div style="font-family:'Bebas Neue';font-size:18px">${m.away}</div>
-        </div>
-      </div>
-      <div style="background:#111;padding:10px;border-radius:5px;text-align:center;border:1px solid #222">
-        <div style="font-size:11px;color:#888;margin-bottom:4px">PREDICTION</div>
-        <div style="font-family:'Bebas Neue';font-size:22px;color:#00ff88">${m.prediction}</div>
-        <div style="font-size:12px;color:#888">Odds: ${m.odds || '-'}</div>
-      </div>
-    `;
-    grid.appendChild(card);
-  });
-}
-
-// Function ifasha mu kuzana emoji (niba ukiyikeneye)
-function getEmj(team) { return "⚽"; }
-/* ===== HELPERS ===== */
-function getEmj(team) {
-  if (!team) return '⚽';
-  const t = team.toLowerCase();
-  if (t.includes('arsenal') || t.includes('liverpool')) return '🔴';
-  if (t.includes('chelsea') || t.includes('city') || t.includes('madrid')) return '🔵';
-  if (t.includes('barca')) return '🔵🔴';
-  return '⚽';
-}
-
-function notify(msg, type) {
-  alert(msg); // Ushobora gukoresha notifier yawe niba uyifite mu CSS
-}
-/* ===== STATE ===== */
-let allMatches=[], filteredMatches=[], sheetRowMap=[];
-let curPage=1, PER=10, curFilter='all';
-
-const DEF_SLIDES=[
-  {tag:'🤖 AI Powered Predictions',h1:'PREDICT',h2:'LIKE A PRO',p:'Smart football predictions powered by real data and AI analysis. Never miss a winning tip.',btn:'VIEW PREDICTIONS →',bg:'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1600'},
-  {tag:'⚽ Daily Tips',h1:"TODAY'S",h2:'BEST PICKS',p:"Up to 15 high-confidence predictions every day across Europe's top leagues.",btn:"SEE TODAY'S TIPS →",bg:'https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=1600'},
-  {tag:'📊 85% Accuracy Rate',h1:'DATA-DRIVEN',h2:'WINNERS',p:'Our model analyses form, head-to-head records, injuries and more to find the best tips.',btn:'EXPLORE NOW →',bg:'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=1600'},
-];
-const DEF_TICKER='Arsenal WIN ✓ — 85% confidence|Barcelona vs Real Madrid — DRAW predicted|PSG WIN ✓ — 91% confidence|Inter WIN ✓ — 78% confidence|Man City BTTS ✓ — 88% confidence|Dortmund WIN ✓ — 73% confidence';
-
-let SLIDES = tryParse(localStorage.getItem('kx_slides')) || DEF_SLIDES;
-let TICKER  = localStorage.getItem('kx_ticker')  || DEF_TICKER;
-let S_TITLE = localStorage.getItem('kx_title')   || 'KEYX PREDICTER — AI Football Tips';
-let S_ACC   = localStorage.getItem('kx_acc')     || '85%';
-let FAV_URL = localStorage.getItem('kx_favicon') || '';
-
-function tryParse(s){ try{ return JSON.parse(s); }catch(e){ return null; } }
-
-/* ===== INIT ===== */
-window.addEventListener('load', ()=>{
+/* ═══════════════════════════════════════════
+   INITIALIZATION
+═══════════════════════════════════════════ */
+window.addEventListener('load', () => {
   applySettings();
   renderSlides();
   renderTickers();
   loadHomePreviews();
-  initGoogleBtn();
-  document.getElementById('f-date').valueAsDate = new Date();
-  document.getElementById('ticker-input').value  = TICKER.replace(/\|/g,'\n');
+
+  // Set default date in add form
+  const dEl = document.getElementById('f-date');
+  if(dEl) dEl.valueAsDate = new Date();
+
+  // Pre-fill settings fields
+  document.getElementById('ticker-input').value  = TICKER.replace(/\|/g, '\n');
   document.getElementById('site-title').value    = S_TITLE;
   document.getElementById('site-accuracy').value = S_ACC;
-  document.getElementById('set-sheetid').value   = CFG.SPREADSHEET_ID;
   document.getElementById('set-scripturl').value = CFG.SCRIPT_URL;
-  if(FAV_URL){ document.getElementById('fav-preview').src=FAV_URL; }
+
+  // Auto-login if session active
+  if (sessionStorage.getItem('keyx_admin_logged') === 'true') {
+    showAdminPanel();
+  }
 });
 
-function applySettings(){
+function applySettings() {
   document.title = S_TITLE;
   document.getElementById('stat-acc').textContent = S_ACC;
-  if(FAV_URL){
+  if (FAV_URL) {
     document.getElementById('favicon-link').href = FAV_URL;
-    const li=document.getElementById('logo-ico'); li.src=FAV_URL; li.style.display='block';
+    const li = document.getElementById('logo-ico');
+    li.src = FAV_URL; li.style.display = 'block';
+    document.getElementById('fav-preview').src = FAV_URL;
   }
 }
 
-/* ===== SLIDESHOW ===== */
-let slideEls, dotEls, curSl=0, slTimer;
-function renderSlides(){
-  SLIDES.forEach((s,i)=>{
-    document.getElementById('slide-'+i).style.backgroundImage=`url('${s.bg}')`;
-    document.getElementById('s'+i+'-tag').textContent=s.tag;
-    document.getElementById('s'+i+'-h1').textContent=s.h1;
-    document.getElementById('s'+i+'-h2').textContent=s.h2;
-    document.getElementById('s'+i+'-p').textContent=s.p;
-    document.getElementById('s'+i+'-btn').textContent=s.btn;
+/* ═══════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════ */
+function showPage(name) {
+  ['home','predictions','admin'].forEach(p =>
+    document.getElementById('page-'+p).classList.toggle('active', p === name));
+  document.getElementById('nav-home').classList.toggle('active', name === 'home');
+  document.getElementById('nav-pred').classList.toggle('active', name === 'predictions');
+  document.getElementById('nav-today').classList.toggle('active', name === 'predictions');
+  window.scrollTo({top:0, behavior:'smooth'});
+  if (name === 'predictions') loadPredictions();
+  if (name === 'home') loadHomePreviews();
+}
+
+window.addEventListener('scroll', () => {
+  document.getElementById('scrollTop').style.display = window.scrollY > 400 ? 'flex' : 'none';
+});
+
+/* ═══════════════════════════════════════════
+   NOTIFICATIONS
+═══════════════════════════════════════════ */
+let _notifTimer;
+function notify(msg, type='success') {
+  const el = document.getElementById('notif');
+  el.className = 'notif ' + type;
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(_notifTimer);
+  _notifTimer = setTimeout(() => el.classList.remove('show'), 3500);
+}
+
+/* ═══════════════════════════════════════════
+   MODAL
+═══════════════════════════════════════════ */
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+
+/* ═══════════════════════════════════════════
+   SLIDESHOW
+═══════════════════════════════════════════ */
+function renderSlides() {
+  SLIDES.forEach((s, i) => {
+    const el = document.getElementById('slide-'+i);
+    if(!el) return;
+    el.style.backgroundImage = `url('${s.bg}')`;
+    document.getElementById('s'+i+'-tag').textContent = s.tag;
+    document.getElementById('s'+i+'-h1').textContent  = s.h1;
+    document.getElementById('s'+i+'-h2').textContent  = s.h2;
+    document.getElementById('s'+i+'-p').textContent   = s.p;
+    document.getElementById('s'+i+'-btn').textContent = s.btn;
   });
-  slideEls=document.querySelectorAll('.slide');
-  dotEls=document.querySelectorAll('.dot');
+  slideEls = document.querySelectorAll('.slide');
+  dotEls   = document.querySelectorAll('.dot');
   clearInterval(slTimer);
-  slTimer=setInterval(()=>goSlide((curSl+1)%slideEls.length),4800);
+  slTimer = setInterval(() => goSlide((curSl+1) % slideEls.length), 4800);
 }
-function goSlide(n){
+function goSlide(n) {
   slideEls[curSl].classList.remove('active'); dotEls[curSl].classList.remove('active');
-  curSl=n; slideEls[curSl].classList.add('active'); dotEls[curSl].classList.add('active');
+  curSl = n;
+  slideEls[curSl].classList.add('active'); dotEls[curSl].classList.add('active');
 }
 
-/* ===== TICKERS ===== */
-function renderTickers(){
-  const msgs=TICKER.split('|').filter(Boolean);
-  const html=[...msgs,...msgs].map(m=>`<span>${m}</span>`).join('');
-  ['ticker-home','ticker-pred'].forEach(id=>{ const el=document.getElementById(id); if(el) el.innerHTML=html; });
+/* ═══════════════════════════════════════════
+   TICKER
+═══════════════════════════════════════════ */
+function renderTickers() {
+  const msgs = TICKER.split('|').filter(Boolean);
+  const html = [...msgs, ...msgs].map(m => `<span>${esc(m)}</span>`).join('');
+  ['ticker-home','ticker-pred'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.innerHTML = html;
+  });
 }
 
-/* ===== NAV ===== */
-function showPage(name){
-  ['home','predictions','admin'].forEach(p=>
-    document.getElementById('page-'+p).classList.toggle('active',p===name));
-  document.getElementById('nav-home').classList.toggle('active',name==='home');
-  document.getElementById('nav-pred').classList.toggle('active',name==='predictions');
-  document.getElementById('nav-today').classList.toggle('active',name==='predictions');
-  window.scrollTo({top:0,behavior:'smooth'});
-  if(name==='predictions') loadPredictions();
-  if(name==='home') loadHomePreviews();
-}
+/* ═══════════════════════════════════════════
+   DATA FETCH — via Apps Script doGet
+═══════════════════════════════════════════ */
+async function fetchData() {
+  if (!CFG.SCRIPT_URL) return [];
+  try {
+    const url = CFG.SCRIPT_URL + '?nocache=' + Date.now();
+    const r   = await fetch(url);
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    const data = await r.json();
+    if (!Array.isArray(data)) return [];
 
-/* ===== NOTIFY ===== */
-function notify(msg,type='success'){
-  const el=document.getElementById('notif');
-  el.className='notif '+type; el.textContent=msg; el.classList.add('show');
-  setTimeout(()=>el.classList.remove('show'),3500);
-}
-
-/* ===== MODAL ===== */
-function closeModal(id){ document.getElementById(id).classList.remove('open'); }
-
-/* =============================================
-   GOOGLE SHEETS — READ (public sheet + API key)
-   Make Sheet public: Share → Anyone with link → Viewer
-   ============================================= */
-async function fetchSheets(){
-  if(!CFG.SPREADSHEET_ID){ return []; }
-  try{
-    const url=`https://sheets.googleapis.com/v4/spreadsheets/${CFG.SPREADSHEET_ID}/values/${CFG.SHEET}?key=${CFG.API_KEY}`;
-    const r=await fetch(url);
-    if(!r.ok){
-      const e=await r.json();
-      console.error('Sheets read error:',e);
-      return [];
-    }
-    const d=await r.json();
-    const rows=d.values||[];
-    if(rows.length<=1) return [];
-    sheetRowMap=[];
-    return rows.slice(1).filter(r=>r[1]&&r[2]).map((row,i)=>{
-      sheetRowMap.push(i+2);
+    sheetRowMap = [];
+    return data.map(row => {
+      sheetRowMap.push(row.rowIndex || 0);
       return {
-        id:row[0]||i, home:row[1]||'', away:row[2]||'',
-        league:row[3]||'', time:row[4]||'', date:row[5]||'',
-        prediction:row[6]||'', confidence:parseInt(row[7])||75,
-        tips:(row[8]||'').split(',').map(t=>t.trim()).filter(Boolean),
-        notes:row[9]||''
+        id:         row.id || '',
+        home:       row.home || '',
+        away:       row.away || '',
+        league:     row.league || '',
+        time:       row.time || '',
+        date:       row.date || '',
+        prediction: row.prediction || '',
+        confidence: parseInt(row.confidence) || 75,
+        tips:       typeof row.tips === 'string'
+                      ? row.tips.split(',').map(t=>t.trim()).filter(Boolean)
+                      : (Array.isArray(row.tips) ? row.tips : []),
+        notes:      row.notes || '',
+        rowIndex:   row.rowIndex || 0
       };
     });
-  }catch(e){ console.error(e); return []; }
+  } catch(e) {
+    console.error('fetchData error:', e);
+    return [];
+  }
 }
 
-/* =============================================
-   APPS SCRIPT — WRITE / DELETE / UPDATE
-   No OAuth needed — Apps Script handles auth
-   ============================================= */
-async function scriptPost(payload){
-  if(!CFG.SCRIPT_URL){
-    throw new Error('Apps Script URL not set. Go to Settings tab and paste your Script URL.');
+/* ═══════════════════════════════════════════
+   APPS SCRIPT POST (add / update / delete)
+═══════════════════════════════════════════ */
+async function scriptPost(payload) {
+  if (!CFG.SCRIPT_URL) {
+    throw new Error('Apps Script URL ntiyashyizwemo. Jya mu Settings tab.');
   }
-  // Use no-cors + encode as form to avoid CORS preflight issues
-  const r=await fetch(CFG.SCRIPT_URL, {
-    method:'POST',
-    headers:{'Content-Type':'text/plain'},
+  await fetch(CFG.SCRIPT_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'text/plain' },
     body: JSON.stringify(payload)
   });
-  // Apps Script with no-cors returns opaque response — we assume success if no throw
   return true;
 }
 
-/* ===== HOME PREVIEWS ===== */
-const PIMGS=[
+/* ═══════════════════════════════════════════
+   HOME PREVIEWS
+═══════════════════════════════════════════ */
+const PIMGS = [
   'https://images.unsplash.com/photo-1459865264687-595d652de67e?w=600',
   'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600',
   'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=600',
 ];
-async function loadHomePreviews(){
-  const c=document.getElementById('home-previews');
-  c.innerHTML='<div class="loading-spinner"><div class="spinner"></div> LOADING TIPS...</div>';
-  const m=await fetchSheets(); allMatches=m;
-  c.innerHTML=m.length?m.slice(0,3).map((x,i)=>buildPreviewCard(x,i)).join(''):buildFallback();
+async function loadHomePreviews() {
+  const c = document.getElementById('home-previews');
+  c.innerHTML = '<div class="loading-spinner" style="grid-column:1/-1"><div class="spinner"></div> LOADING TIPS...</div>';
+  const matches = await fetchData();
+  allMatches = matches;
+  if (matches.length > 0) {
+    c.innerHTML = matches.slice(0,3).map((m,i) => buildPreviewCard(m,i)).join('');
+  } else {
+    c.innerHTML = buildFallbackPreviews();
+  }
 }
-function buildPreviewCard(m,i=0){
+function buildPreviewCard(m, i=0) {
   return `<div class="preview-card" onclick="showPage('predictions')">
-    <img class="preview-img" src="${PIMGS[i%3]}" alt="">
+    <img class="preview-img" src="${PIMGS[i%3]}" alt="${esc(m.home)} vs ${esc(m.away)}" loading="lazy">
     <div class="preview-body">
-      <div class="preview-league">${getLFlag(m.league)} ${esc(m.league)}</div>
+      <div class="preview-league">${getLFlag(m.league)} ${esc(m.league||'Football')}</div>
       <div class="preview-match">${esc(m.home)} vs ${esc(m.away)}</div>
       <div class="preview-pick"><span>Prediction</span><strong>${esc(m.prediction).toUpperCase()}</strong></div>
       <div class="mini-bar"><div class="mini-fill" style="width:${m.confidence}%"></div></div>
       <div class="mini-conf">${m.confidence}% CONFIDENCE</div>
-    </div></div>`;
+    </div>
+  </div>`;
 }
-function buildFallback(){
-  return [{league:'Premier League',home:'Arsenal',away:'Chelsea',prediction:'Home Win',confidence:85},
-          {league:'La Liga',home:'Barcelona',away:'Real Madrid',prediction:'Both Score',confidence:79},
-          {league:'Champions League',home:'PSG',away:'Bayern Munich',prediction:'Home Win',confidence:91}]
-    .map((m,i)=>buildPreviewCard(m,i)).join('');
+function buildFallbackPreviews() {
+  return [
+    {league:'Premier League', home:'Arsenal',    away:'Chelsea',       prediction:'Home Win',   confidence:85},
+    {league:'La Liga',        home:'Barcelona',  away:'Real Madrid',   prediction:'Both Score', confidence:79},
+    {league:'UCL',            home:'PSG',        away:'Bayern Munich', prediction:'Home Win',   confidence:91},
+  ].map((m,i) => buildPreviewCard(m,i)).join('');
 }
 
-/* ===== PREDICTIONS PAGE ===== */
-async function loadPredictions(){
-  document.getElementById('pred-loading').style.display='flex';
-  document.getElementById('pred-list').style.display='none';
-  document.getElementById('pred-empty').style.display='none';
-  document.getElementById('pred-pagi').innerHTML='';
-  const m=await fetchSheets(); allMatches=m;
+/* ═══════════════════════════════════════════
+   PREDICTIONS PAGE
+═══════════════════════════════════════════ */
+async function loadPredictions() {
+  document.getElementById('pred-loading').style.display = 'flex';
+  document.getElementById('pred-list').style.display    = 'none';
+  document.getElementById('pred-empty').style.display   = 'none';
+  document.getElementById('pred-pagi').innerHTML = '';
+  const matches = await fetchData();
+  allMatches = matches;
   applyFilter(curFilter);
 }
-function applyFilter(lg){
-  curFilter=lg; curPage=1;
-  filteredMatches=lg==='all'?[...allMatches]:allMatches.filter(m=>m.league===lg);
+function applyFilter(lg) {
+  curFilter = lg;
+  curPage   = 1;
+  filteredMatches = lg === 'all' ? [...allMatches] : allMatches.filter(m => m.league === lg);
   renderPredCards();
 }
-function filterPred(btn,lg){
-  document.querySelectorAll('.filter-tab').forEach(t=>t.classList.remove('active'));
-  btn.classList.add('active'); applyFilter(lg);
+function filterPred(btn, lg) {
+  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  applyFilter(lg);
 }
-function renderPredCards(){
-  const loading=document.getElementById('pred-loading');
-  const list=document.getElementById('pred-list');
-  const empty=document.getElementById('pred-empty');
-  const pagi=document.getElementById('pred-pagi');
-  loading.style.display='none';
-  if(!filteredMatches.length){ list.style.display='none'; empty.style.display='block'; return; }
-  const total=filteredMatches.length, pages=Math.ceil(total/PER);
-  const slice=filteredMatches.slice((curPage-1)*PER,curPage*PER);
-  list.innerHTML=slice.map(buildPredCard).join('');
-  list.style.display='grid'; empty.style.display='none';
-  pagi.innerHTML=pages>1?`<div class="pagination">
-    <button class="page-btn" onclick="changePage(${curPage-1})" ${curPage===1?'disabled':''}>◀ Prev</button>
-    <span class="page-info">Page ${curPage} of ${pages}</span>
-    <button class="page-btn" onclick="changePage(${curPage+1})" ${curPage===pages?'disabled':''}>Next ▶</button>
-  </div>`:'';
+function renderPredCards() {
+  const loading = document.getElementById('pred-loading');
+  const list    = document.getElementById('pred-list');
+  const empty   = document.getElementById('pred-empty');
+  const pagi    = document.getElementById('pred-pagi');
+  const badge   = document.getElementById('pred-count-badge');
+  loading.style.display = 'none';
+  if (badge) badge.textContent = '🎯 ' + filteredMatches.length + ' predictions';
+  if (!filteredMatches.length) {
+    list.style.display = 'none';
+    empty.style.display = 'block';
+    return;
+  }
+  const total = filteredMatches.length;
+  const pages = Math.ceil(total / PER_PAGE);
+  const slice = filteredMatches.slice((curPage-1)*PER_PAGE, curPage*PER_PAGE);
+  list.innerHTML = slice.map(buildPredCard).join('');
+  list.style.display = 'grid';
+  empty.style.display = 'none';
+  pagi.innerHTML = pages > 1
+    ? `<div class="pagination">
+        <button class="page-btn" onclick="changePage(${curPage-1})" ${curPage===1?'disabled':''}>◀ Prev</button>
+        <span class="page-info">Page ${curPage} of ${pages}</span>
+        <button class="page-btn" onclick="changePage(${curPage+1})" ${curPage===pages?'disabled':''}>Next ▶</button>
+       </div>` : '';
 }
-function changePage(n){ curPage=n; renderPredCards(); window.scrollTo({top:0,behavior:'smooth'}); }
-function buildPredCard(m){
-  const cc=m.confidence>=80?'high':m.confidence>=65?'mid':'low';
-  const chips=(m.tips||[]).map(t=>{
-    const cl=t.toLowerCase().includes('home')?'green':t.toLowerCase().includes('away')?'red':(t.toLowerCase().includes('btts')||t.toLowerCase().includes('both'))?'blue':'yellow';
+function changePage(n) {
+  curPage = n;
+  renderPredCards();
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+function buildPredCard(m) {
+  const cc = m.confidence >= 80 ? 'high' : m.confidence >= 65 ? 'mid' : 'low';
+  const chips = (m.tips||[]).map(t => {
+    const cl = t.toLowerCase().includes('home') ? 'green'
+             : t.toLowerCase().includes('away') ? 'red'
+             : (t.toLowerCase().includes('btts')||t.toLowerCase().includes('both')) ? 'blue'
+             : 'yellow';
     return `<span class="chip ${cl}">${esc(t)}</span>`;
   }).join('');
+  const dateStr = m.date ? new Date(m.date).toLocaleDateString('en-GB',{day:'2-digit',month:'short'}) : 'Today';
   return `<div class="pred-card">
-    <div class="pred-card-header"><div class="pred-league">${getLFlag(m.league)} ${esc(m.league)}</div><div class="pred-time">⏰ ${esc(m.date||'Today')} ${esc(m.time||'')}</div></div>
+    <div class="pred-card-header">
+      <div class="pred-league">${getLFlag(m.league)} ${esc(m.league||'Football')}</div>
+      <div class="pred-time">⏰ ${esc(dateStr)} ${esc(m.time||'')}</div>
+    </div>
     <div class="pred-card-body">
-      <div class="team-side"><div class="team-logo-wrap">${getEmj(m.home)}</div><div class="team-name">${esc(m.home)}</div></div>
-      <div class="vs-block"><span class="vs-label">VS</span><span class="vs-time-badge">${esc(m.time||'--:--')}</span></div>
-      <div class="team-side right"><div class="team-logo-wrap" style="margin-left:auto">${getEmj(m.away)}</div><div class="team-name">${esc(m.away)}</div></div>
+      <div class="team-side">
+        <div class="team-logo-wrap">${getEmj(m.home)}</div>
+        <div class="team-name">${esc(m.home)}</div>
+      </div>
+      <div class="vs-block">
+        <span class="vs-label">VS</span>
+        <span class="vs-time-badge">${esc(m.time||'--:--')}</span>
+      </div>
+      <div class="team-side right">
+        <div class="team-logo-wrap">${getEmj(m.away)}</div>
+        <div class="team-name">${esc(m.away)}</div>
+      </div>
     </div>
     <div class="pred-card-footer">
-      <div><div class="pred-pick-label">Prediction</div><div class="pred-pick-value">${esc(m.prediction)}</div></div>
-      <div><div class="conf-label"><span>Confidence</span><span>${m.confidence}%</span></div>
-        <div class="conf-bar"><div class="conf-fill ${cc}" style="width:${m.confidence}%"></div></div></div>
-      ${chips?`<div class="tip-chips">${chips}</div>`:''}
-      ${m.notes?`<div style="font-size:11px;color:var(--muted);font-style:italic;font-weight:600;border-top:1px solid rgba(255,255,255,.05);padding-top:7px">📝 ${esc(m.notes)}</div>`:''}
-    </div></div>`;
+      <div>
+        <div class="pred-pick-label">Prediction</div>
+        <div class="pred-pick-value">${esc(m.prediction)}</div>
+      </div>
+      <div>
+        <div class="conf-label"><span>Confidence</span><span>${m.confidence}%</span></div>
+        <div class="conf-bar"><div class="conf-fill ${cc}" style="width:${m.confidence}%"></div></div>
+      </div>
+      ${chips ? `<div class="tip-chips">${chips}</div>` : ''}
+      ${m.notes ? `<div style="font-size:11px;color:var(--muted);font-style:italic;font-weight:600;border-top:1px solid rgba(255,255,255,.05);padding-top:7px">📝 ${esc(m.notes)}</div>` : ''}
+    </div>
+  </div>`;
 }
 
-/* ===== ADMIN TABS ===== */
-function adminTab(btn,id){
-  document.querySelectorAll('.admin-tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.admin-section').forEach(s=>s.classList.remove('active'));
-  btn.classList.add('active'); document.getElementById(id).classList.add('active');
-  if(id==='tab-slides') buildSlidesManager();
-}
-
-/* ===== ADMIN LOGIN (KIM ARISTIDE) ===== */
-
-// 1. Function yo kwinjira (Sign In)
+/* ═══════════════════════════════════════════
+   ADMIN — LOGIN / LOGOUT
+═══════════════════════════════════════════ */
 function handleManualLogin() {
-    const userField = document.getElementById('adm-user-input').value.trim();
-    const passField = document.getElementById('adm-pass-input').value.trim();
-    
-    const correctUser = "kim aristide";
-    const correctPass = "25125ABC@kim";
-
-    if (userField === correctUser && passField === correctPass) {
-        // Hisha login ugaragaze panel
-        document.getElementById('admin-login').style.display = 'none';
-        document.getElementById('admin-panel').style.display = 'block';
-        
-        // Bibika ko winjiye (session)
-        sessionStorage.setItem('keyx_admin_logged', 'true');
-        
-        // Update UI Info
-        document.getElementById('adm-name').textContent = "Kim Aristide";
-        document.getElementById('adm-email').textContent = "Administrator";
-        
-        // Show setup banner if script URL missing
-        if(document.getElementById('setup-banner')) {
-            document.getElementById('setup-banner').style.display = CFG.SCRIPT_URL ? 'none' : 'block';
-        }
-
-        notify('✅ Welcome, Kim Aristide!', 'success');
-        
-        // Hamagara amakipe niba function ihari
-        if(typeof loadAdminMatches === "function") loadAdminMatches();
-        
-    } else {
-        notify('❌ Amazina cyangwa Password ntabwo ari byo!', 'error');
-    }
+  const user = document.getElementById('adm-user-input').value.trim();
+  const pass = document.getElementById('adm-pass-input').value.trim();
+  if (user.toLowerCase() === 'kim aristide' && pass === '25125ABC@kim') {
+    sessionStorage.setItem('keyx_admin_logged', 'true');
+    showAdminPanel();
+    notify('✅ Welcome, Kim Aristide!', 'success');
+  } else {
+    notify('❌ Amazina cyangwa Password ntabwo ari byo!', 'error');
+    document.getElementById('adm-pass-input').value = '';
+  }
 }
-
-// 2. Function yo gusohoka (Sign Out)
+function showAdminPanel() {
+  document.getElementById('admin-login').style.display = 'none';
+  document.getElementById('admin-panel').style.display  = 'block';
+  document.getElementById('setup-banner').style.display = CFG.SCRIPT_URL ? 'none' : 'block';
+  loadAdminMatches();
+}
 function adminLogout() {
-    sessionStorage.removeItem('keyx_admin_logged');
-    document.getElementById('admin-login').style.display = 'flex';
-    document.getElementById('admin-panel').style.display = 'none';
-    notify('👋 Signed out successfully', 'info');
-    // location.reload(); // Ushobora kuyikoresha niba ushaka gu-refresh
+  sessionStorage.removeItem('keyx_admin_logged');
+  document.getElementById('admin-login').style.display = 'flex';
+  document.getElementById('admin-panel').style.display  = 'none';
+  notify('👋 Signed out', 'info');
 }
 
-// 3. Kugenzura niba wari usanzwe winjiye (Auto-login on refresh)
-window.addEventListener('DOMContentLoaded', () => {
-    if (sessionStorage.getItem('keyx_admin_logged') === 'true') {
-        if(document.getElementById('admin-login')) document.getElementById('admin-login').style.display = 'none';
-        if(document.getElementById('admin-panel')) document.getElementById('admin-panel').style.display = 'block';
-        
-        if(document.getElementById('adm-name')) document.getElementById('adm-name').textContent = "Kim Aristide";
-        if(typeof loadAdminMatches === "function") loadAdminMatches();
-    }
-});
-
-/* ===== SAVE MATCH ===== */
-async function saveMatch(){
-  const home=v('f-home'),away=v('f-away'),pred=v('f-pred');
-  if(!home||!away||!pred){ notify('⚠️ Fill Home Team, Away Team & Prediction','error'); return; }
-  const btn=document.getElementById('btn-save');
-  btn.disabled=true; btn.textContent='⏳ SAVING...';
-  try{
-    const row=[String(Date.now()),home,away,v('f-league'),v('f-time'),v('f-date'),pred,v('f-conf'),v('f-tips'),v('f-notes')];
-    await scriptPost({action:'add',row});
-    notify('✅ Saved to Google Sheets!','success');
-    ['f-home','f-away','f-pred','f-tips','f-notes'].forEach(id=>document.getElementById(id).value='');
-    document.getElementById('f-conf').value=75;
-    document.getElementById('conf-val').textContent='75';
-    setTimeout(loadAdminMatches,1200);
-  }catch(e){ notify('❌ '+e.message,'error'); }
-  finally{ btn.disabled=false; btn.textContent='💾 SAVE TO GOOGLE SHEETS'; }
+/* ═══════════════════════════════════════════
+   ADMIN — TABS
+═══════════════════════════════════════════ */
+function adminTab(btn, id) {
+  document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById(id).classList.add('active');
+  if (id === 'tab-slides') buildSlidesManager();
+  if (id === 'tab-matches') loadAdminMatches();
 }
 
-/* ===== ADMIN MATCHES LIST ===== */
-async function loadAdminMatches(){
-  const c=document.getElementById('admin-list');
-  c.innerHTML='<div class="loading-spinner"><div class="spinner"></div> LOADING...</div>';
-  const m=await fetchSheets(); allMatches=m;
-  if(!m.length){ c.innerHTML='<div class="empty-state"><div class="icon">📋</div><div>No predictions yet.</div><p>Add one using the form above.</p></div>'; return; }
-  c.innerHTML=`<table class="matches-table">
-    <thead><tr><th>Match</th><th>League</th><th>Prediction</th><th>Conf</th><th>Actions</th></tr></thead>
-    <tbody>${m.map((x,i)=>`<tr>
-      <td><div class="td-teams">${esc(x.home)} vs ${esc(x.away)}</div><div style="font-size:10px;color:var(--muted);margin-top:2px">${esc(x.date||'')} ${esc(x.time||'')}</div></td>
-      <td><div class="td-league">${getLFlag(x.league)} ${esc(x.league)}</div></td>
-      <td class="td-pred">${esc(x.prediction)}</td>
-      <td class="td-conf">${x.confidence}%</td>
-      <td><div class="td-actions">
-        <button class="btn-edit" onclick="openEditModal(${i})">✏️ Edit</button>
-        <button class="btn-del" onclick="delMatch(${i},'${esc(x.home+' vs '+x.away)}')">🗑 Del</button>
-      </div></td>
-    </tr>`).join('')}</tbody></table>`;
+/* ═══════════════════════════════════════════
+   ADMIN — SAVE MATCH
+═══════════════════════════════════════════ */
+async function saveMatch() {
+  const home = fv('f-home'), away = fv('f-away'), pred = fv('f-pred');
+  if (!home || !away || !pred) {
+    notify('⚠️ Home Team, Away Team na Prediction birakenewe!', 'error');
+    return;
+  }
+  const btn = document.getElementById('btn-save');
+  btn.disabled = true; btn.textContent = '⏳ SAVING...';
+  try {
+    const row = [
+      String(Date.now()), home, away,
+      fv('f-league'), fv('f-time'), fv('f-date'), pred,
+      fv('f-conf'), fv('f-tips'), fv('f-notes')
+    ];
+    await scriptPost({action:'add', row});
+    notify('✅ Saved to Google Sheets!', 'success');
+    clearAddForm();
+    setTimeout(loadAdminMatches, 1500);
+  } catch(e) {
+    notify('❌ ' + e.message, 'error');
+  } finally {
+    btn.disabled = false; btn.textContent = '💾 SAVE TO GOOGLE SHEETS';
+  }
+}
+function clearAddForm() {
+  ['f-home','f-away','f-pred','f-tips','f-notes'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('f-conf').value = 75;
+  document.getElementById('conf-val').textContent = '75';
+  document.getElementById('f-date').valueAsDate = new Date();
 }
 
-/* ===== EDIT ===== */
-function openEditModal(idx){
-  const m=allMatches[idx];
-  document.getElementById('e-home').value=m.home||'';
-  document.getElementById('e-away').value=m.away||'';
-  document.getElementById('e-pred').value=m.prediction||'';
-  document.getElementById('e-time').value=m.time||'';
-  document.getElementById('e-date').value=m.date||'';
-  document.getElementById('e-tips').value=(m.tips||[]).join(', ');
-  document.getElementById('e-notes').value=m.notes||'';
-  document.getElementById('e-conf').value=m.confidence||75;
-  document.getElementById('e-cv').textContent=m.confidence||75;
-  document.getElementById('e-league').value=m.league||'Premier League';
-  document.getElementById('e-row').value=sheetRowMap[idx];
+/* ═══════════════════════════════════════════
+   ADMIN — LOAD MATCHES LIST
+═══════════════════════════════════════════ */
+async function loadAdminMatches() {
+  const c = document.getElementById('admin-list');
+  if (!c) return;
+  c.innerHTML = '<div class="loading-spinner"><div class="spinner"></div> LOADING...</div>';
+  const matches = await fetchData();
+  allMatches = matches;
+  if (!matches.length) {
+    c.innerHTML = `<div class="empty-state">
+      <div class="icon">📋</div><div>Nta predictions zirahari.</div>
+      <p>Shyiramo imwe ukoresheje form hejuru.</p>
+    </div>`;
+    return;
+  }
+  c.innerHTML = `<table class="matches-table">
+    <thead><tr>
+      <th>Match</th><th>League</th><th>Prediction</th><th>Conf</th><th>Actions</th>
+    </tr></thead>
+    <tbody>
+      ${matches.map((m,i) => `<tr>
+        <td>
+          <div class="td-teams">${esc(m.home)} vs ${esc(m.away)}</div>
+          <div style="font-size:10px;color:var(--muted);margin-top:2px">${esc(m.date||'')} ${esc(m.time||'')}</div>
+        </td>
+        <td><div class="td-league">${getLFlag(m.league)} ${esc(m.league)}</div></td>
+        <td class="td-pred">${esc(m.prediction)}</td>
+        <td class="td-conf">${m.confidence}%</td>
+        <td><div class="td-actions">
+          <button class="btn-edit" onclick="openEditModal(${i})">✏️ Edit</button>
+          <button class="btn-del"  onclick="delMatch(${i},'${esc(m.home+' vs '+m.away)}')">🗑 Del</button>
+        </div></td>
+      </tr>`).join('')}
+    </tbody>
+  </table>`;
+}
+
+/* ═══════════════════════════════════════════
+   ADMIN — EDIT MATCH
+═══════════════════════════════════════════ */
+function openEditModal(idx) {
+  const m = allMatches[idx];
+  document.getElementById('e-home').value   = m.home || '';
+  document.getElementById('e-away').value   = m.away || '';
+  document.getElementById('e-pred').value   = m.prediction || '';
+  document.getElementById('e-time').value   = m.time || '';
+  document.getElementById('e-date').value   = m.date || '';
+  document.getElementById('e-tips').value   = (m.tips||[]).join(', ');
+  document.getElementById('e-notes').value  = m.notes || '';
+  document.getElementById('e-conf').value   = m.confidence || 75;
+  document.getElementById('e-cv').textContent = m.confidence || 75;
+  document.getElementById('e-league').value = m.league || 'Premier League';
+  document.getElementById('e-row').value    = m.rowIndex || sheetRowMap[idx] || 0;
   document.getElementById('edit-modal').classList.add('open');
 }
-async function updateMatch(){
-  const rowNum=parseInt(document.getElementById('e-row').value);
-  const row=[String(Date.now()),v2('e-home'),v2('e-away'),document.getElementById('e-league').value,v2('e-time'),v2('e-date'),v2('e-pred'),v2('e-conf'),v2('e-tips'),v2('e-notes')];
-  if(!row[1]||!row[2]||!row[6]){ notify('⚠️ Fill required fields','error'); return; }
-  try{
-    await scriptPost({action:'update',rowIndex:rowNum,row});
-    notify('✅ Prediction updated!','success');
+async function updateMatch() {
+  const rowNum = parseInt(document.getElementById('e-row').value);
+  const home   = document.getElementById('e-home').value.trim();
+  const away   = document.getElementById('e-away').value.trim();
+  const pred   = document.getElementById('e-pred').value.trim();
+  if (!home || !away || !pred) { notify('⚠️ Fill required fields', 'error'); return; }
+  const row = [
+    String(Date.now()), home, away,
+    document.getElementById('e-league').value,
+    document.getElementById('e-time').value,
+    document.getElementById('e-date').value,
+    pred, document.getElementById('e-conf').value,
+    document.getElementById('e-tips').value,
+    document.getElementById('e-notes').value
+  ];
+  const btn = document.getElementById('btn-update');
+  btn.disabled = true; btn.textContent = '⏳ UPDATING...';
+  try {
+    await scriptPost({action:'update', rowIndex:rowNum, row});
+    notify('✅ Prediction yavuguruwe!', 'success');
     closeModal('edit-modal');
-    setTimeout(loadAdminMatches,1200);
-  }catch(e){ notify('❌ '+e.message,'error'); }
+    setTimeout(loadAdminMatches, 1500);
+  } catch(e) {
+    notify('❌ ' + e.message, 'error');
+  } finally {
+    btn.disabled = false; btn.textContent = '💾 UPDATE PREDICTION';
+  }
 }
 
-/* ===== DELETE ===== */
-async function delMatch(idx,label){
-  if(!confirm('Delete "'+label+'"?')) return;
-  try{
-    await scriptPost({action:'delete',rowIndex:sheetRowMap[idx]});
-    notify('🗑 Deleted: '+label,'info');
-    setTimeout(loadAdminMatches,1200);
-  }catch(e){ notify('❌ '+e.message,'error'); }
+/* ═══════════════════════════════════════════
+   ADMIN — DELETE MATCH
+═══════════════════════════════════════════ */
+async function delMatch(idx, label) {
+  if (!confirm('Delete "' + label + '"?\n\nIyi ntabwo ishobora gusubizwa.')) return;
+  const rowIndex = allMatches[idx].rowIndex || sheetRowMap[idx];
+  try {
+    await scriptPost({action:'delete', rowIndex});
+    notify('🗑 Deleted: ' + label, 'info');
+    setTimeout(loadAdminMatches, 1500);
+  } catch(e) {
+    notify('❌ ' + e.message, 'error');
+  }
 }
 
-/* ===== SLIDES MANAGER ===== */
-function buildSlidesManager(){
-  document.getElementById('slides-manager').innerHTML=SLIDES.map((s,i)=>`
+/* ═══════════════════════════════════════════
+   SLIDES MANAGER
+═══════════════════════════════════════════ */
+function buildSlidesManager() {
+  document.getElementById('slides-manager').innerHTML = SLIDES.map((s,i) => `
     <div class="slide-thumb">
-      <img src="${s.bg}" alt="Slide ${i+1}" style="width:100%;height:110px;object-fit:cover;display:block;filter:brightness(.7)">
+      <img src="${s.bg}" alt="Slide ${i+1}"
+           style="width:100%;height:110px;object-fit:cover;display:block;filter:brightness(.7)"
+           onerror="this.src='https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400'">
       <div class="slide-thumb-body">
-        <div class="slide-thumb-title">Slide ${i+1}: ${s.h1} ${s.h2}</div>
-        <div style="font-size:10px;color:var(--muted);font-weight:600">${s.tag}</div>
+        <div class="slide-thumb-title">Slide ${i+1}: ${esc(s.h1)} ${esc(s.h2)}</div>
+        <div style="font-size:10px;color:var(--muted);font-weight:600">${esc(s.tag)}</div>
         <div class="slide-thumb-actions">
           <button class="btn-edit" onclick="openSlideModal(${i})">✏️ Edit</button>
-          <button class="btn-del" onclick="resetSlide(${i})">↺ Reset</button>
+          <button class="btn-del"  onclick="resetSlide(${i})">↺ Reset</button>
         </div>
       </div>
     </div>`).join('');
 }
-function openSlideModal(i){
-  const s=SLIDES[i];
-  document.getElementById('sm-tag').value=s.tag;
-  document.getElementById('sm-h1').value=s.h1;
-  document.getElementById('sm-h2').value=s.h2;
-  document.getElementById('sm-desc').value=s.p;
-  document.getElementById('sm-btn').value=s.btn;
-  document.getElementById('sm-img-url').value=s.bg;
-  const prev=document.getElementById('sm-img-preview');
-  prev.src=s.bg; prev.style.display='block';
-  document.getElementById('sm-idx').value=i;
+function openSlideModal(i) {
+  const s = SLIDES[i];
+  document.getElementById('sm-tag').value  = s.tag;
+  document.getElementById('sm-h1').value   = s.h1;
+  document.getElementById('sm-h2').value   = s.h2;
+  document.getElementById('sm-desc').value = s.p;
+  document.getElementById('sm-btn').value  = s.btn;
+  const url = s.bg;
+  document.getElementById('sm-img-url').value = url;
+  const prev = document.getElementById('sm-img-preview');
+  prev.src = url; prev.style.display = 'block';
+  document.getElementById('sm-idx').value = i;
   document.getElementById('slide-modal').classList.add('open');
 }
-function previewSlideImg(input){
-  if(!input.files[0]) return;
-  const reader=new FileReader();
-  reader.onload=e=>{
-    document.getElementById('sm-img-preview').src=e.target.result;
-    document.getElementById('sm-img-preview').style.display='block';
-    document.getElementById('sm-img-url').value=e.target.result;
+function saveSlide() {
+  const i = parseInt(document.getElementById('sm-idx').value);
+  const imgUrl = document.getElementById('sm-img-url').value.trim() || SLIDES[i].bg;
+  SLIDES[i] = {
+    tag: document.getElementById('sm-tag').value,
+    h1:  document.getElementById('sm-h1').value,
+    h2:  document.getElementById('sm-h2').value,
+    p:   document.getElementById('sm-desc').value,
+    btn: document.getElementById('sm-btn').value,
+    bg:  imgUrl
   };
-  reader.readAsDataURL(input.files[0]);
-}
-function saveSlide(){
-  const i=parseInt(document.getElementById('sm-idx').value);
-  SLIDES[i]={tag:v2('sm-tag'),h1:v2('sm-h1'),h2:v2('sm-h2'),p:v2('sm-desc'),btn:v2('sm-btn'),bg:v2('sm-img-url')||SLIDES[i].bg};
-  localStorage.setItem('kx_slides',JSON.stringify(SLIDES));
-  renderSlides(); buildSlidesManager();
+  localStorage.setItem('kx_slides', JSON.stringify(SLIDES));
+  renderSlides();
+  buildSlidesManager();
   closeModal('slide-modal');
-  notify('✅ Slide '+(i+1)+' updated!','success');
+  notify('✅ Slide '+(i+1)+' yavuguruwe!', 'success');
 }
-function resetSlide(i){
-  if(!confirm('Reset slide '+(i+1)+' to default?')) return;
-  SLIDES[i]=DEF_SLIDES[i];
-  localStorage.setItem('kx_slides',JSON.stringify(SLIDES));
+function resetSlide(i) {
+  if (!confirm('Reset slide '+(i+1)+' to default?')) return;
+  SLIDES[i] = defaultSlides()[i];
+  localStorage.setItem('kx_slides', JSON.stringify(SLIDES));
   renderSlides(); buildSlidesManager();
-  notify('↺ Slide '+(i+1)+' reset','info');
+  notify('↺ Slide '+(i+1)+' reset to default', 'info');
 }
 
-/* ===== FAVICON ===== */
-function uploadFavicon(input){
-  if(!input.files[0]) return;
-  const reader=new FileReader();
-  reader.onload=e=>{
-    FAV_URL=e.target.result;
-    localStorage.setItem('kx_favicon',FAV_URL);
-    document.getElementById('favicon-link').href=FAV_URL;
-    document.getElementById('fav-preview').src=FAV_URL;
-    const li=document.getElementById('logo-ico'); li.src=FAV_URL; li.style.display='block';
-    notify('✅ Favicon updated!','success');
+/* ═══════════════════════════════════════════
+   FAVICON
+═══════════════════════════════════════════ */
+function uploadFavicon(input) {
+  if (!input.files[0]) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    FAV_URL = e.target.result;
+    localStorage.setItem('kx_favicon', FAV_URL);
+    document.getElementById('favicon-link').href = FAV_URL;
+    document.getElementById('fav-preview').src   = FAV_URL;
+    const li = document.getElementById('logo-ico');
+    li.src = FAV_URL; li.style.display = 'block';
+    notify('✅ Favicon yavuguruwe!', 'success');
   };
   reader.readAsDataURL(input.files[0]);
 }
 
-/* ===== SETTINGS ===== */
-function saveSettings(){
-  CFG.SPREADSHEET_ID = document.getElementById('set-sheetid').value.trim();
-  CFG.SCRIPT_URL     = document.getElementById('set-scripturl').value.trim();
+/* ═══════════════════════════════════════════
+   SETTINGS — SAVE
+═══════════════════════════════════════════ */
+function saveSettings() {
+  CFG.SCRIPT_URL = document.getElementById('set-scripturl').value.trim();
   TICKER  = document.getElementById('ticker-input').value.trim().split('\n').filter(Boolean).join('|');
   S_TITLE = document.getElementById('site-title').value.trim() || 'KEYX PREDICTER';
   S_ACC   = document.getElementById('site-accuracy').value.trim() || '85%';
-  localStorage.setItem('kx_sheetid',   CFG.SPREADSHEET_ID);
+
   localStorage.setItem('kx_scripturl', CFG.SCRIPT_URL);
   localStorage.setItem('kx_ticker',    TICKER);
   localStorage.setItem('kx_title',     S_TITLE);
   localStorage.setItem('kx_acc',       S_ACC);
-  document.title=S_TITLE;
-  document.getElementById('stat-acc').textContent=S_ACC;
-  document.getElementById('setup-banner').style.display=CFG.SCRIPT_URL?'none':'block';
+
+  document.title = S_TITLE;
+  document.getElementById('stat-acc').textContent = S_ACC;
+  document.getElementById('setup-banner').style.display = CFG.SCRIPT_URL ? 'none' : 'block';
   renderTickers();
-  notify('✅ Settings saved!','success');
+  notify('✅ Settings zachunzwe!', 'success');
 }
 
-/* ===== HELPERS ===== */
-function v(id){ return document.getElementById(id)?.value?.trim()||''; }
-function v2(id){ return document.getElementById(id)?.value||''; }
-function esc(s){ if(!s) return ''; return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-function getLFlag(l){
-  if(!l) return '⚽'; l=l.toLowerCase();
-  if(l.includes('premier')||l.includes('epl')) return '⚽';
-  if(l.includes('la liga')) return '🇪🇸';
-  if(l.includes('champions')) return '🌟';
-  if(l.includes('serie')) return '🇮🇹';
-  if(l.includes('bundesliga')) return '🇩🇪';
-  if(l.includes('ligue')) return '🇫🇷';
+/* ═══════════════════════════════════════════
+   HELPERS
+═══════════════════════════════════════════ */
+function fv(id)  { return document.getElementById(id)?.value?.trim() || ''; }
+function esc(s)  {
+  if (!s) return '';
+  return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function getLFlag(l) {
+  if (!l) return '⚽';
+  const ll = l.toLowerCase();
+  if (ll.includes('premier') || ll.includes('epl'))  return '⚽';
+  if (ll.includes('la liga'))                         return '🇪🇸';
+  if (ll.includes('champions') || ll.includes('ucl')) return '🌟';
+  if (ll.includes('serie'))                           return '🇮🇹';
+  if (ll.includes('bundesliga'))                      return '🇩🇪';
+  if (ll.includes('ligue'))                           return '🇫🇷';
   return '🌍';
 }
-function getEmj(team){
-  if(!team) return '⚽'; const t=team.toLowerCase();
-  if(t.includes('arsenal')||t.includes('liverpool')||t.includes('dortmund')) return '🔴';
-  if(t.includes('chelsea')||t.includes('man city')||t.includes('inter')) return '🔵';
-  if(t.includes('barcelona')) return '🔵🔴';
-  if(t.includes('real madrid')||t.includes('juventus')||t.includes('spurs')) return '⚪';
-  if(t.includes('psg')) return '🔵🔴';
-  if(t.includes('bayern')) return '🔴⚪';
+function getEmj(team) {
+  if (!team) return '⚽';
+  const t = team.toLowerCase();
+  if (t.includes('arsenal') || t.includes('liverpool') || t.includes('dortmund')) return '🔴';
+  if (t.includes('chelsea') || t.includes('man city')  || t.includes('inter'))    return '🔵';
+  if (t.includes('barcelona'))                                                     return '🔵🔴';
+  if (t.includes('real madrid') || t.includes('juventus') || t.includes('spurs')) return '⚪';
+  if (t.includes('psg'))                                                           return '🔵🔴';
+  if (t.includes('bayern'))                                                        return '🔴⚪';
   return '⚽';
 }
-window.addEventListener('scroll',()=>{
-  document.getElementById('scrollTop').style.display=window.scrollY>400?'flex':'none';
+
+// Preview slide image from URL input
+document.addEventListener('input', e => {
+  if (e.target.id === 'sm-img-url') {
+    const prev = document.getElementById('sm-img-preview');
+    prev.src = e.target.value;
+    prev.style.display = e.target.value ? 'block' : 'none';
+  }
 });
 </script>
 </body>
-</html>
+  </html>
