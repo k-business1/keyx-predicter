@@ -4,280 +4,271 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KEYX PREDICTER — AI Football Tips</title>
-<link rel="icon" id="favicon-link" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="icon" id="fav-link" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;600;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --green:#9be23c;--green2:#6fcf2a;--yellow:#facc15;
-  --dark:#080c14;--dark2:#0e1420;--dark3:#161e2e;--dark4:#1d2740;
-  --text:#e5e7eb;--muted:#8fa3b8;--red:#ef4444;--blue:#60a5fa;
-  --radius:10px;
+  --g:#9be23c;--g2:#6fcf2a;--y:#facc15;
+  --d:#080c14;--d2:#0e1420;--d3:#161e2e;
+  --tx:#e5e7eb;--mu:#8fa3b8;--re:#ef4444;--bl:#60a5fa;
+  --r:10px;
 }
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+*{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Rajdhani',sans-serif;background:var(--dark);color:var(--text);overflow-x:hidden;min-height:100vh}
-::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--dark2)}::-webkit-scrollbar-thumb{background:var(--green2);border-radius:3px}
-body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 20% 20%,rgba(155,226,60,.04),transparent 60%),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(111,207,42,.03),transparent 60%);pointer-events:none;z-index:0}
+body{font-family:'Rajdhani',sans-serif;background:var(--d);color:var(--tx);overflow-x:hidden;min-height:100vh}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--g2);border-radius:2px}
 
-/* ── HEADER ── */
-header{position:fixed;top:0;width:100%;display:flex;justify-content:space-between;align-items:center;padding:0 36px;height:58px;background:rgba(8,12,20,.97);backdrop-filter:blur(16px);z-index:9000;border-bottom:1px solid rgba(155,226,60,.12)}
-.logo{font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--green);letter-spacing:4px;text-shadow:0 0 20px rgba(155,226,60,.5);display:flex;align-items:center;gap:10px;cursor:pointer}
-.logo img.logo-ico{width:28px;height:28px;border-radius:4px;object-fit:cover;display:none}
-.logo-tag{font-size:9px;font-family:'Space Mono',monospace;font-weight:700;letter-spacing:2px;color:var(--yellow);background:rgba(250,204,21,.1);border:1px solid rgba(250,204,21,.3);padding:2px 7px;border-radius:3px}
-nav{display:flex;align-items:center;gap:3px}
-nav a{padding:6px 14px;color:var(--muted);text-decoration:none;font-weight:700;font-size:12px;letter-spacing:1.5px;border-radius:4px;transition:all .2s;text-transform:uppercase;cursor:pointer}
-nav a:hover{color:var(--green)}
-nav a.active{color:var(--dark);background:var(--green)}
-.btn-adm{margin-left:8px;padding:6px 13px;background:rgba(155,226,60,.08);border:1px solid rgba(155,226,60,.25);color:var(--green);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.5px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase}
-.btn-adm:hover{background:rgba(155,226,60,.18)}
+/* HEADER */
+header{position:fixed;top:0;width:100%;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;background:rgba(8,12,20,.98);border-bottom:1px solid rgba(155,226,60,.1);z-index:9000;backdrop-filter:blur(12px)}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--g);letter-spacing:4px;display:flex;align-items:center;gap:8px;cursor:pointer}
+.logo img{width:26px;height:26px;border-radius:4px;object-fit:cover;display:none}
+.logo-tag{font-size:8px;font-family:'Space Mono',monospace;color:var(--y);background:rgba(250,204,21,.1);border:1px solid rgba(250,204,21,.25);padding:2px 6px;border-radius:3px;letter-spacing:2px}
+nav{display:flex;align-items:center;gap:2px}
+nav a{padding:5px 12px;color:var(--mu);font-weight:700;font-size:11px;letter-spacing:1.5px;border-radius:4px;cursor:pointer;transition:all .2s;text-transform:uppercase}
+nav a:hover{color:var(--g)}
+nav a.on{background:var(--g);color:var(--d)}
+.btn-adm{margin-left:6px;padding:5px 12px;background:rgba(155,226,60,.07);border:1px solid rgba(155,226,60,.22);color:var(--g);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;letter-spacing:1.5px;cursor:pointer;border-radius:4px;text-transform:uppercase;transition:all .2s}
+.btn-adm:hover{background:rgba(155,226,60,.16)}
 
-/* ── TICKER ── */
-.ticker-bar{background:var(--green);padding:7px 0;overflow:hidden;white-space:nowrap}
-.ticker-track{display:inline-block;animation:ticker 35s linear infinite}
-.ticker-track span{display:inline-block;color:var(--dark);font-weight:700;font-size:12px;letter-spacing:1.5px;padding:0 38px}
-@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* TICKER */
+.ticker{background:var(--g);padding:6px 0;overflow:hidden;white-space:nowrap}
+.ticker-inner{display:inline-block;animation:tick 40s linear infinite}
+.ticker-inner span{display:inline-block;color:var(--d);font-weight:700;font-size:11px;letter-spacing:1.5px;padding:0 32px}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* ── HERO ── */
-.hero{height:100vh;position:relative;overflow:hidden;padding-top:58px}
-.slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.4s ease;display:flex;align-items:flex-end;padding:76px 56px}
-.slide.active{opacity:1}
-.slide::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(8,12,20,.94),rgba(8,12,20,.42) 55%,rgba(8,12,20,.74))}
-.slide-content{position:relative;z-index:2;max-width:600px}
-.slide-tag{display:inline-flex;align-items:center;gap:7px;background:rgba(155,226,60,.12);border:1px solid rgba(155,226,60,.4);color:var(--green);font-size:11px;font-weight:700;letter-spacing:3px;padding:5px 13px;border-radius:3px;margin-bottom:14px;text-transform:uppercase}
-.slide-content h2{font-family:'Bebas Neue',sans-serif;font-size:74px;line-height:.92;color:#fff;letter-spacing:2px;margin-bottom:14px;text-shadow:0 4px 40px rgba(0,0,0,.5)}
-.slide-content h2 span{color:var(--green)}
-.slide-content p{font-size:16px;color:rgba(255,255,255,.65);margin-bottom:26px;font-weight:500;line-height:1.5}
-.btn-main{display:inline-flex;align-items:center;gap:8px;background:var(--green);color:var(--dark);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;letter-spacing:2px;padding:12px 30px;border:none;cursor:pointer;text-transform:uppercase;border-radius:3px;transition:all .2s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
-.btn-main:hover{background:#b4f04e;transform:translateY(-2px);box-shadow:0 12px 32px rgba(155,226,60,.35)}
-.slide-dots{position:absolute;bottom:26px;right:56px;display:flex;gap:7px;z-index:10}
-.dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:all .3s}
-.dot.active{background:var(--green);width:24px;border-radius:4px}
+/* HERO */
+.hero{height:100vh;position:relative;overflow:hidden;padding-top:56px}
+.slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.5s;display:flex;align-items:flex-end;padding:70px 50px}
+.slide.on{opacity:1}
+.slide::before{content:'';position:absolute;inset:0;background:linear-gradient(130deg,rgba(8,12,20,.95),rgba(8,12,20,.35) 55%,rgba(8,12,20,.7))}
+.sc{position:relative;z-index:2;max-width:580px}
+.sc-tag{display:inline-flex;align-items:center;background:rgba(155,226,60,.1);border:1px solid rgba(155,226,60,.35);color:var(--g);font-size:10px;font-weight:700;letter-spacing:3px;padding:4px 12px;border-radius:3px;margin-bottom:12px;text-transform:uppercase}
+.sc h2{font-family:'Bebas Neue',sans-serif;font-size:68px;line-height:.9;color:#fff;letter-spacing:2px;margin-bottom:12px}
+.sc h2 span{color:var(--g)}
+.sc p{font-size:15px;color:rgba(255,255,255,.6);margin-bottom:22px;font-weight:500;line-height:1.5}
+.btn-cta{display:inline-flex;align-items:center;gap:6px;background:var(--g);color:var(--d);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;letter-spacing:2px;padding:11px 26px;border:none;cursor:pointer;text-transform:uppercase;border-radius:3px;transition:all .2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 8px,100% 100%,8px 100%,0 calc(100% - 8px))}
+.btn-cta:hover{background:#b4f04e;transform:translateY(-2px);box-shadow:0 10px 28px rgba(155,226,60,.3)}
+.dots{position:absolute;bottom:22px;right:50px;display:flex;gap:6px;z-index:10}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:all .3s}
+.dot.on{background:var(--g);width:22px;border-radius:3px}
 
-/* ── STATS STRIP ── */
-.stats-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.03);border-bottom:1px solid rgba(255,255,255,.05)}
-.stat-item{background:var(--dark2);text-align:center;padding:22px 14px;transition:background .2s}
-.stat-item:hover{background:var(--dark3)}
-.stat-num{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--green);letter-spacing:2px;line-height:1}
-.stat-label{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-top:3px}
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,255,255,.03)}
+.stat{background:var(--d2);text-align:center;padding:20px 12px}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:38px;color:var(--g);letter-spacing:2px;line-height:1}
+.stat-l{font-size:9px;font-weight:700;letter-spacing:2px;color:var(--mu);text-transform:uppercase;margin-top:2px}
 
-/* ── PAGES ── */
-.page{display:none}.page.active{display:block}
-#page-home{padding-top:0}
-#page-predictions,#page-admin{padding-top:58px}
-.section{padding:52px 36px;max-width:1200px;margin:0 auto;position:relative;z-index:1}
-.section-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:26px}
-.section-title{font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:2px;color:#fff}
-.section-title span{color:var(--green)}
-.acc-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(155,226,60,.1);border:1px solid rgba(155,226,60,.3);color:var(--green);font-size:11px;font-weight:700;letter-spacing:1px;padding:5px 13px;border-radius:3px;text-transform:uppercase}
+/* PAGES */
+.page{display:none}.page.on{display:block}
+#ph{padding-top:0}
+#pp,#pa{padding-top:56px}
+.sec{padding:48px 28px;max-width:1180px;margin:0 auto}
+.sec-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:2px;color:#fff}
+.sec-title span{color:var(--g)}
+.badge{display:inline-flex;align-items:center;gap:5px;background:rgba(155,226,60,.09);border:1px solid rgba(155,226,60,.28);color:var(--g);font-size:10px;font-weight:700;letter-spacing:1px;padding:4px 11px;border-radius:3px;text-transform:uppercase}
 
-/* ── FILTER TABS ── */
-.filter-tabs{display:flex;gap:5px;margin-bottom:22px;flex-wrap:wrap}
-.filter-tab{padding:6px 16px;background:transparent;border:1px solid rgba(255,255,255,.08);color:var(--muted);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.5px;cursor:pointer;border-radius:3px;transition:all .2s;text-transform:uppercase}
-.filter-tab:hover{color:#fff;border-color:rgba(255,255,255,.25)}
-.filter-tab.active{background:rgba(155,226,60,.12);border-color:var(--green);color:var(--green)}
+/* FILTER */
+.ftabs{display:flex;gap:4px;margin-bottom:18px;flex-wrap:wrap}
+.ftab{padding:5px 14px;background:transparent;border:1px solid rgba(255,255,255,.07);color:var(--mu);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;letter-spacing:1.5px;cursor:pointer;border-radius:3px;transition:all .2s;text-transform:uppercase}
+.ftab:hover{color:#fff;border-color:rgba(255,255,255,.2)}
+.ftab.on{background:rgba(155,226,60,.1);border-color:var(--g);color:var(--g)}
 
-/* ── PREDICTION CARDS ── */
-.predictions-grid{display:grid;gap:10px}
-.pred-card{background:var(--dark2);border:1px solid rgba(255,255,255,.05);border-radius:var(--radius);overflow:hidden;transition:all .25s}
-.pred-card:hover{border-color:rgba(155,226,60,.28);transform:translateY(-2px);box-shadow:0 8px 28px rgba(0,0,0,.35)}
-.pred-card-header{display:flex;justify-content:space-between;align-items:center;padding:9px 17px;background:rgba(0,0,0,.18);border-bottom:1px solid rgba(255,255,255,.04)}
-.pred-league{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--green);text-transform:uppercase}
-.pred-time{font-size:10px;font-weight:700;color:var(--muted);letter-spacing:1px}
-.pred-card-body{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:16px 20px;gap:16px}
-.team-side{display:flex;flex-direction:column;gap:6px}
-.team-side.right{align-items:flex-end;text-align:right}
-.team-logo-wrap{width:44px;height:44px;background:var(--dark3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;border:2px solid rgba(255,255,255,.06)}
-.team-side.right .team-logo-wrap{margin-left:auto}
-.team-name{font-size:15px;font-weight:700;color:#fff;letter-spacing:.5px}
-.vs-block{text-align:center}
-.vs-label{font-family:'Bebas Neue',sans-serif;font-size:22px;color:rgba(255,255,255,.1);letter-spacing:2px;display:block;margin-bottom:4px}
-.vs-time-badge{font-size:10px;font-weight:700;color:var(--yellow);letter-spacing:1px;background:rgba(250,204,21,.1);border:1px solid rgba(250,204,21,.2);padding:3px 8px;border-radius:3px;display:block;white-space:nowrap}
-.pred-card-footer{padding:13px 20px;border-top:1px solid rgba(255,255,255,.04);display:flex;flex-direction:column;gap:9px}
-.pred-pick-label{font-size:9px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase}
-.pred-pick-value{font-size:15px;font-weight:700;color:#fff;margin-top:1px}
-.conf-label{display:flex;justify-content:space-between;font-size:9px;font-weight:700;letter-spacing:1.5px;color:var(--muted);text-transform:uppercase;margin-bottom:4px}
-.conf-label span:last-child{color:var(--green)}
-.conf-bar{height:4px;background:rgba(255,255,255,.07);border-radius:3px;overflow:hidden}
-.conf-fill{height:100%;border-radius:3px;transition:width 1s ease}
-.conf-fill.high{background:linear-gradient(90deg,#5cb811,var(--green))}
-.conf-fill.mid{background:linear-gradient(90deg,#b88a00,var(--yellow))}
-.conf-fill.low{background:linear-gradient(90deg,#991b1b,var(--red))}
-.tip-chips{display:flex;gap:5px;flex-wrap:wrap}
-.chip{font-size:9px;font-weight:700;letter-spacing:1px;padding:3px 9px;border-radius:20px;text-transform:uppercase}
-.chip.green{background:rgba(155,226,60,.1);color:var(--green);border:1px solid rgba(155,226,60,.25)}
-.chip.yellow{background:rgba(250,204,21,.1);color:var(--yellow);border:1px solid rgba(250,204,21,.2)}
-.chip.red{background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.2)}
-.chip.blue{background:rgba(96,165,250,.1);color:var(--blue);border:1px solid rgba(96,165,250,.2)}
+/* PRED CARDS */
+.pgrid{display:grid;gap:9px}
+.pc{background:var(--d2);border:1px solid rgba(255,255,255,.05);border-radius:var(--r);overflow:hidden;transition:all .22s}
+.pc:hover{border-color:rgba(155,226,60,.25);transform:translateY(-2px);box-shadow:0 7px 24px rgba(0,0,0,.3)}
+.pc-hd{display:flex;justify-content:space-between;align-items:center;padding:8px 15px;background:rgba(0,0,0,.15);border-bottom:1px solid rgba(255,255,255,.04)}
+.pc-lg{font-size:9px;font-weight:700;letter-spacing:2px;color:var(--g);text-transform:uppercase}
+.pc-tm{font-size:9px;font-weight:700;color:var(--mu)}
+.pc-body{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:14px 18px;gap:14px}
+.team{display:flex;flex-direction:column;gap:5px}
+.team.r{align-items:flex-end;text-align:right}
+.team-ico{width:40px;height:40px;background:var(--d3);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px;border:2px solid rgba(255,255,255,.05)}
+.team.r .team-ico{margin-left:auto}
+.team-nm{font-size:14px;font-weight:700;color:#fff}
+.vs{text-align:center}
+.vs-lbl{font-family:'Bebas Neue',sans-serif;font-size:20px;color:rgba(255,255,255,.09);letter-spacing:2px;display:block}
+.vs-t{font-size:9px;font-weight:700;color:var(--y);background:rgba(250,204,21,.09);border:1px solid rgba(250,204,21,.18);padding:2px 7px;border-radius:3px;display:block;white-space:nowrap;margin-top:3px}
+.pc-ft{padding:12px 18px;border-top:1px solid rgba(255,255,255,.04);display:flex;flex-direction:column;gap:8px}
+.pick-lbl{font-size:8px;font-weight:700;letter-spacing:2px;color:var(--mu);text-transform:uppercase}
+.pick-val{font-size:14px;font-weight:700;color:#fff;margin-top:1px}
+.conf-row{display:flex;justify-content:space-between;font-size:8px;font-weight:700;letter-spacing:1.5px;color:var(--mu);text-transform:uppercase;margin-bottom:3px}
+.conf-row span:last-child{color:var(--g)}
+.cbar{height:3px;background:rgba(255,255,255,.07);border-radius:2px;overflow:hidden}
+.cfill{height:100%;border-radius:2px;transition:width .8s}
+.cfill.hi{background:linear-gradient(90deg,#5cb811,var(--g))}
+.cfill.md{background:linear-gradient(90deg,#b88a00,var(--y))}
+.cfill.lo{background:linear-gradient(90deg,#991b1b,var(--re))}
+.chips{display:flex;gap:4px;flex-wrap:wrap}
+.chip{font-size:8px;font-weight:700;letter-spacing:1px;padding:2px 8px;border-radius:20px;text-transform:uppercase}
+.chip.cg{background:rgba(155,226,60,.09);color:var(--g);border:1px solid rgba(155,226,60,.22)}
+.chip.cy{background:rgba(250,204,21,.09);color:var(--y);border:1px solid rgba(250,204,21,.18)}
+.chip.cr{background:rgba(239,68,68,.09);color:var(--re);border:1px solid rgba(239,68,68,.18)}
+.chip.cb{background:rgba(96,165,250,.09);color:var(--bl);border:1px solid rgba(96,165,250,.18)}
+.pc-notes{font-size:10px;color:var(--mu);font-style:italic;font-weight:600;border-top:1px solid rgba(255,255,255,.04);padding-top:6px}
 
-/* ── PAGINATION ── */
-.pagination{display:flex;justify-content:center;align-items:center;gap:10px;margin-top:30px}
-.page-btn{padding:9px 24px;background:transparent;border:1px solid rgba(155,226,60,.3);color:var(--green);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.5px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase}
-.page-btn:hover{background:var(--green);color:var(--dark)}
-.page-btn:disabled{opacity:.3;cursor:not-allowed}
-.page-info{font-size:11px;color:var(--muted);font-weight:700;letter-spacing:1px}
+/* PAGINATION */
+.pagi{display:flex;justify-content:center;align-items:center;gap:9px;margin-top:26px}
+.pbtn{padding:8px 22px;background:transparent;border:1px solid rgba(155,226,60,.28);color:var(--g);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;letter-spacing:1.5px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase}
+.pbtn:hover{background:var(--g);color:var(--d)}
+.pbtn:disabled{opacity:.3;cursor:not-allowed}
+.pinfo{font-size:10px;color:var(--mu);font-weight:700}
 
-/* ── PREVIEW GRID (HOME) ── */
-.preview-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:13px}
-@media(max-width:900px){.preview-grid{grid-template-columns:1fr}}
-.preview-card{background:var(--dark2);border:1px solid rgba(255,255,255,.05);border-radius:var(--radius);overflow:hidden;transition:all .25s;cursor:pointer}
-.preview-card:hover{border-color:rgba(155,226,60,.3);transform:translateY(-3px);box-shadow:0 12px 35px rgba(0,0,0,.4)}
-.preview-img{width:100%;height:150px;object-fit:cover;display:block;filter:brightness(.82);transition:filter .25s}
-.preview-card:hover .preview-img{filter:brightness(1)}
-.preview-body{padding:14px}
-.preview-league{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--green);text-transform:uppercase;margin-bottom:4px}
-.preview-match{font-size:14px;font-weight:700;color:#fff;margin-bottom:7px}
-.preview-pick{display:flex;justify-content:space-between;align-items:center}
-.preview-pick span{font-size:11px;font-weight:600;color:var(--muted)}
-.preview-pick strong{color:var(--green);font-size:12px}
-.mini-bar{height:3px;background:rgba(255,255,255,.07);border-radius:2px;margin-top:8px;overflow:hidden}
-.mini-fill{height:100%;border-radius:2px;background:var(--green)}
-.mini-conf{font-size:9px;color:var(--muted);margin-top:4px;font-weight:700;letter-spacing:1px}
+/* HOME PREVIEW */
+.prev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:860px){.prev-grid{grid-template-columns:1fr}}
+.prev-card{background:var(--d2);border:1px solid rgba(255,255,255,.05);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:all .22s}
+.prev-card:hover{border-color:rgba(155,226,60,.28);transform:translateY(-2px);box-shadow:0 10px 30px rgba(0,0,0,.38)}
+.prev-img{width:100%;height:140px;object-fit:cover;filter:brightness(.8);transition:filter .22s;display:block}
+.prev-card:hover .prev-img{filter:brightness(1)}
+.prev-body{padding:12px}
+.prev-lg{font-size:9px;font-weight:700;letter-spacing:2px;color:var(--g);text-transform:uppercase;margin-bottom:3px}
+.prev-match{font-size:13px;font-weight:700;color:#fff;margin-bottom:6px}
+.prev-pick{display:flex;justify-content:space-between;align-items:center}
+.prev-pick span{font-size:10px;font-weight:600;color:var(--mu)}
+.prev-pick strong{color:var(--g);font-size:11px}
+.mbar{height:2px;background:rgba(255,255,255,.07);border-radius:2px;margin-top:7px;overflow:hidden}
+.mfill{height:100%;background:var(--g);border-radius:2px}
+.mconf{font-size:8px;color:var(--mu);margin-top:3px;font-weight:700;letter-spacing:1px}
 
-/* ── EMPTY / LOADING ── */
-.empty-state{text-align:center;padding:56px 20px;color:var(--muted);font-size:14px;font-weight:600;letter-spacing:1px}
-.empty-state .icon{font-size:46px;margin-bottom:13px}
-.empty-state p{font-size:12px;margin-top:5px;opacity:.6}
-.loading-spinner{display:flex;align-items:center;justify-content:center;padding:46px;gap:10px;color:var(--muted);font-weight:700;letter-spacing:2px;font-size:12px}
-.spinner{width:20px;height:20px;border:2px solid rgba(155,226,60,.2);border-top-color:var(--green);border-radius:50%;animation:spin .8s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
+/* LOADING / EMPTY */
+.spin-wrap{display:flex;align-items:center;justify-content:center;padding:44px;gap:9px;color:var(--mu);font-weight:700;letter-spacing:2px;font-size:11px}
+.spin{width:18px;height:18px;border:2px solid rgba(155,226,60,.18);border-top-color:var(--g);border-radius:50%;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.empty{text-align:center;padding:52px 16px;color:var(--mu)}
+.empty .ei{font-size:42px;margin-bottom:11px}
+.empty p{font-size:11px;margin-top:4px;opacity:.55}
 
-/* ════════════════════════════════
-   ADMIN
-════════════════════════════════ */
-.admin-login-screen{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:calc(100vh - 58px);padding:20px}
-.login-card{background:var(--dark2);border:1px solid rgba(155,226,60,.15);border-radius:14px;padding:38px 46px;max-width:420px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.4);text-align:center}
-.lock-icon{font-size:50px;margin-bottom:10px}
-.login-title{font-family:'Bebas Neue',sans-serif;font-size:38px;letter-spacing:3px;color:#fff;margin-bottom:6px}
-.login-title span{color:var(--green)}
-.login-sub{color:var(--muted);font-size:13px;font-weight:600;letter-spacing:1px;margin-bottom:20px}
-.login-form-group{text-align:left;margin-bottom:15px}
-.login-form-group label{display:block;font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:6px}
-.login-input{width:100%;padding:12px 14px;background:var(--dark3);border:1px solid rgba(255,255,255,.08);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:600;border-radius:6px;outline:none;transition:all .2s}
-.login-input:focus{border-color:rgba(155,226,60,.5);box-shadow:0 0 0 3px rgba(155,226,60,.07)}
-.login-btn{width:100%;padding:13px;background:var(--green);color:var(--dark);font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;border:none;cursor:pointer;border-radius:6px;transition:all .2s;margin-top:5px}
-.login-btn:hover{background:#b4f04e;transform:translateY(-1px);box-shadow:0 8px 24px rgba(155,226,60,.3)}
-.security-note{font-size:10px;color:rgba(255,255,255,.2);letter-spacing:1px;font-weight:600;margin-top:16px}
+/* ── ADMIN ── */
+.alog{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 56px);padding:20px}
+.alog-card{background:var(--d2);border:1px solid rgba(155,226,60,.13);border-radius:14px;padding:36px 42px;max-width:400px;width:100%;text-align:center;box-shadow:0 18px 55px rgba(0,0,0,.4)}
+.alog-ico{font-size:46px;margin-bottom:8px}
+.alog-title{font-family:'Bebas Neue',sans-serif;font-size:36px;letter-spacing:3px;color:#fff;margin-bottom:5px}
+.alog-title span{color:var(--g)}
+.alog-sub{color:var(--mu);font-size:12px;font-weight:600;letter-spacing:1px;margin-bottom:18px}
+.afg{text-align:left;margin-bottom:13px}
+.afg label{display:block;font-size:9px;font-weight:700;letter-spacing:2px;color:var(--mu);text-transform:uppercase;margin-bottom:5px}
+.ainput{width:100%;padding:11px 13px;background:var(--d3);border:1px solid rgba(255,255,255,.07);color:var(--tx);font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;border-radius:6px;outline:none;transition:border-color .2s}
+.ainput:focus{border-color:rgba(155,226,60,.45)}
+.alog-btn{width:100%;margin-top:4px;padding:12px;background:var(--g);color:var(--d);font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:2px;border:none;cursor:pointer;border-radius:6px;transition:all .2s}
+.alog-btn:hover{background:#b4f04e;transform:translateY(-1px)}
+.alog-note{font-size:9px;color:rgba(255,255,255,.18);letter-spacing:1px;margin-top:14px;font-weight:600}
 
-/* ADMIN PANEL */
-.admin-wrap{max-width:960px;margin:0 auto;padding:46px 36px;position:relative;z-index:1}
-.admin-topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.06)}
-.admin-user{display:flex;align-items:center;gap:11px}
-.admin-avatar{width:38px;height:38px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;color:var(--dark);font-weight:700;font-family:'Bebas Neue',sans-serif;font-size:14px;letter-spacing:1px;flex-shrink:0;border:2px solid var(--green2)}
-.admin-uname{font-weight:700;font-size:14px;color:#fff;letter-spacing:.5px}
-.admin-uemail{font-size:11px;color:var(--muted);letter-spacing:.5px}
-.btn-logout{padding:7px 16px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);color:var(--red);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;letter-spacing:1.5px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase}
-.btn-logout:hover{background:rgba(239,68,68,.2)}
-
-/* ADMIN TABS */
-.admin-tabs{display:flex;gap:5px;margin-bottom:26px;flex-wrap:wrap}
-.admin-tab{padding:8px 18px;background:transparent;border:1px solid rgba(255,255,255,.08);color:var(--muted);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.5px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase}
-.admin-tab:hover{color:#fff;border-color:rgba(255,255,255,.25)}
-.admin-tab.active{background:rgba(155,226,60,.12);border-color:var(--green);color:var(--green)}
-.admin-section{display:none}.admin-section.active{display:block}
-
-/* ADMIN CARDS & FORMS */
-.a-card{background:var(--dark2);border:1px solid rgba(155,226,60,.1);border-radius:12px;padding:26px;margin-bottom:22px}
-.a-card-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:#fff;margin-bottom:20px;display:flex;align-items:center;gap:9px}
-.a-card-title span{color:var(--green)}
-.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
-@media(max-width:640px){.fgrid{grid-template-columns:1fr}}
-.fg{display:flex;flex-direction:column;gap:6px}.fg.full{grid-column:1/-1}
-.flabel{font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase}
-.finput,.fselect,.ftextarea{background:var(--dark3);border:1px solid rgba(255,255,255,.08);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:600;padding:10px 13px;border-radius:6px;transition:all .2s;outline:none;width:100%}
-.finput:focus,.fselect:focus,.ftextarea:focus{border-color:rgba(155,226,60,.5);box-shadow:0 0 0 3px rgba(155,226,60,.07)}
-.fselect option{background:var(--dark3)}.ftextarea{resize:vertical;min-height:66px}
-.frange{width:100%;-webkit-appearance:none;height:5px;background:rgba(255,255,255,.08);border-radius:3px;outline:none;cursor:pointer}
-.frange::-webkit-slider-thumb{-webkit-appearance:none;width:17px;height:17px;border-radius:50%;background:var(--green);cursor:pointer;box-shadow:0 0 8px rgba(155,226,60,.4)}
-.btn-save{width:100%;margin-top:18px;padding:13px;background:var(--green);color:var(--dark);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:14px;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;border-radius:6px;transition:all .2s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))}
-.btn-save:hover{background:#b4f04e;transform:translateY(-1px);box-shadow:0 8px 24px rgba(155,226,60,.3)}
-.btn-save:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.awrap{max-width:940px;margin:0 auto;padding:40px 28px}
+.atop{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px;padding-bottom:13px;border-bottom:1px solid rgba(255,255,255,.05)}
+.auser{display:flex;align-items:center;gap:10px}
+.aavt{width:36px;height:36px;border-radius:50%;background:var(--g);display:flex;align-items:center;justify-content:center;color:var(--d);font-weight:700;font-family:'Bebas Neue',sans-serif;font-size:13px;border:2px solid var(--g2)}
+.auname{font-weight:700;font-size:13px;color:#fff}
+.aurole{font-size:10px;color:var(--mu)}
+.btn-out{padding:6px 14px;background:rgba(239,68,68,.09);border:1px solid rgba(239,68,68,.22);color:var(--re);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:10px;letter-spacing:1.5px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase}
+.btn-out:hover{background:rgba(239,68,68,.18)}
+.atabs{display:flex;gap:4px;margin-bottom:22px;flex-wrap:wrap}
+.atab{padding:7px 16px;background:transparent;border:1px solid rgba(255,255,255,.07);color:var(--mu);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;letter-spacing:1.5px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase}
+.atab:hover{color:#fff;border-color:rgba(255,255,255,.2)}
+.atab.on{background:rgba(155,226,60,.1);border-color:var(--g);color:var(--g)}
+.asec{display:none}.asec.on{display:block}
+.acard{background:var(--d2);border:1px solid rgba(155,226,60,.09);border-radius:11px;padding:24px;margin-bottom:20px}
+.acard-title{font-family:'Bebas Neue',sans-serif;font-size:21px;letter-spacing:2px;color:#fff;margin-bottom:18px}
+.acard-title span{color:var(--g)}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:600px){.fgrid{grid-template-columns:1fr}}
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg.full{grid-column:1/-1}
+.flbl{font-size:9px;font-weight:700;letter-spacing:2px;color:var(--mu);text-transform:uppercase}
+.fi,.fs,.fta{background:var(--d3);border:1px solid rgba(255,255,255,.07);color:var(--tx);font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;padding:9px 12px;border-radius:6px;transition:border-color .2s;outline:none;width:100%}
+.fi:focus,.fs:focus,.fta:focus{border-color:rgba(155,226,60,.42)}
+.fs option{background:var(--d3)}
+.fta{resize:vertical;min-height:60px}
+.frange{width:100%;-webkit-appearance:none;height:4px;background:rgba(255,255,255,.07);border-radius:2px;outline:none;cursor:pointer}
+.frange::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--g);cursor:pointer}
+.btn-sv{width:100%;margin-top:16px;padding:12px;background:var(--g);color:var(--d);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;border-radius:6px;transition:all .2s;clip-path:polygon(0 0,calc(100% - 9px) 0,100% 9px,100% 100%,9px 100%,0 calc(100% - 9px))}
+.btn-sv:hover{background:#b4f04e;transform:translateY(-1px)}
+.btn-sv:disabled{opacity:.45;cursor:not-allowed;transform:none}
 
 /* MATCHES TABLE */
-.matches-table{width:100%;border-collapse:collapse}
-.matches-table th{padding:10px 16px;text-align:left;font-size:10px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.06);background:rgba(0,0,0,.15)}
-.matches-table td{padding:11px 16px;font-size:13px;font-weight:600;border-bottom:1px solid rgba(255,255,255,.04);vertical-align:middle}
-.matches-table tr:last-child td{border-bottom:none}
-.matches-table tr:hover td{background:rgba(255,255,255,.02)}
-.td-teams{color:#fff;font-weight:700}
-.td-league{color:var(--green);font-size:10px;letter-spacing:1.5px;text-transform:uppercase}
-.td-pred{color:var(--yellow)}
-.td-conf{color:var(--muted);font-size:11px}
-.td-actions{display:flex;gap:6px;white-space:nowrap}
-.btn-edit{padding:4px 10px;background:rgba(96,165,250,.1);border:1px solid rgba(96,165,250,.25);color:var(--blue);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:10px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase;letter-spacing:1px}
-.btn-edit:hover{background:rgba(96,165,250,.2)}
-.btn-del{padding:4px 10px;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);color:var(--red);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:10px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase;letter-spacing:1px}
-.btn-del:hover{background:rgba(239,68,68,.25)}
+.mtbl{width:100%;border-collapse:collapse}
+.mtbl th{padding:9px 14px;text-align:left;font-size:9px;font-weight:700;letter-spacing:2px;color:var(--mu);text-transform:uppercase;border-bottom:1px solid rgba(255,255,255,.05);background:rgba(0,0,0,.13)}
+.mtbl td{padding:10px 14px;font-size:12px;font-weight:600;border-bottom:1px solid rgba(255,255,255,.035);vertical-align:middle}
+.mtbl tr:last-child td{border-bottom:none}
+.mtbl tr:hover td{background:rgba(255,255,255,.018)}
+.tteam{color:#fff;font-weight:700;font-size:13px}
+.tlg{color:var(--g);font-size:9px;letter-spacing:1.5px;text-transform:uppercase}
+.tpred{color:var(--y)}
+.tconf{color:var(--mu);font-size:10px}
+.tact{display:flex;gap:5px}
+.btn-ed{padding:3px 9px;background:rgba(96,165,250,.09);border:1px solid rgba(96,165,250,.22);color:var(--bl);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:9px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase;letter-spacing:1px}
+.btn-ed:hover{background:rgba(96,165,250,.18)}
+.btn-dl{padding:3px 9px;background:rgba(239,68,68,.09);border:1px solid rgba(239,68,68,.18);color:var(--re);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:9px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase;letter-spacing:1px}
+.btn-dl:hover{background:rgba(239,68,68,.22)}
 
 /* SLIDES MANAGER */
-.slides-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-@media(max-width:700px){.slides-grid{grid-template-columns:1fr}}
-.slide-thumb{border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.08);transition:all .2s}
-.slide-thumb:hover{border-color:rgba(155,226,60,.35)}
-.slide-thumb-body{padding:10px}
-.slide-thumb-title{font-size:12px;font-weight:700;color:#fff;margin-bottom:4px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.slide-thumb-actions{display:flex;gap:5px;margin-top:8px}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:660px){.sgrid{grid-template-columns:1fr}}
+.sthumb{border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,.07);transition:border-color .2s}
+.sthumb:hover{border-color:rgba(155,226,60,.3)}
+.sthumb-img{width:100%;height:100px;object-fit:cover;filter:brightness(.65);display:block}
+.sthumb-body{padding:9px}
+.sthumb-title{font-size:11px;font-weight:700;color:#fff;margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sthumb-acts{display:flex;gap:4px;margin-top:7px}
 
 /* SETTINGS */
-.settings-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-@media(max-width:640px){.settings-grid{grid-template-columns:1fr}}
-.favicon-preview{width:50px;height:50px;border-radius:8px;object-fit:cover;border:2px solid rgba(155,226,60,.3)}
-.code-block{background:rgba(0,0,0,.35);border-radius:6px;padding:12px;font-family:'Space Mono',monospace;font-size:10px;color:#e5e7eb;white-space:pre;overflow-x:auto;line-height:1.6;border:1px solid rgba(255,255,255,.05)}
+.sgrid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:600px){.sgrid2{grid-template-columns:1fr}}
+.fav-prev{width:48px;height:48px;border-radius:8px;object-fit:cover;border:2px solid rgba(155,226,60,.28)}
+.hint{font-size:10px;color:var(--mu);font-weight:600;margin-top:5px;letter-spacing:.3px;line-height:1.5}
+.hint a{color:var(--g);text-decoration:none}
 
-/* CONNECTED STATUS BADGE */
-.connected-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(155,226,60,.1);border:1px solid rgba(155,226,60,.35);color:var(--green);font-size:10px;font-weight:700;letter-spacing:1.5px;padding:4px 12px;border-radius:20px;text-transform:uppercase;margin-bottom:10px}
-.connected-dot{width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 8px var(--green);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
-
-/* NOTIFICATION */
-.notif{position:fixed;top:70px;right:18px;padding:11px 18px;border-radius:7px;font-weight:700;font-size:12px;letter-spacing:1px;z-index:99999;transform:translateX(220%);transition:transform .4s cubic-bezier(.34,1.56,.64,1);max-width:320px;pointer-events:none}
+/* NOTIF */
+.notif{position:fixed;top:66px;right:16px;padding:10px 16px;border-radius:7px;font-weight:700;font-size:11px;letter-spacing:1px;z-index:99999;transform:translateX(220%);transition:transform .4s cubic-bezier(.34,1.56,.64,1);max-width:300px;pointer-events:none}
 .notif.show{transform:translateX(0)}
-.notif.success{background:rgba(155,226,60,.15);border:1px solid rgba(155,226,60,.4);color:var(--green)}
-.notif.error{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.4);color:var(--red)}
-.notif.info{background:rgba(96,165,250,.15);border:1px solid rgba(96,165,250,.4);color:var(--blue)}
+.notif.ok{background:rgba(155,226,60,.14);border:1px solid rgba(155,226,60,.38);color:var(--g)}
+.notif.err{background:rgba(239,68,68,.14);border:1px solid rgba(239,68,68,.38);color:var(--re)}
+.notif.inf{background:rgba(96,165,250,.14);border:1px solid rgba(96,165,250,.38);color:var(--bl)}
 
 /* MODAL */
-.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);backdrop-filter:blur(6px);z-index:99000;display:none;align-items:center;justify-content:center;padding:20px}
-.modal-overlay.open{display:flex}
-.modal{background:var(--dark2);border:1px solid rgba(155,226,60,.2);border-radius:14px;padding:28px;width:100%;max-width:560px;max-height:90vh;overflow-y:auto;position:relative}
-.modal-title{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:2px;color:#fff;margin-bottom:20px}
-.modal-title span{color:var(--green)}
-.modal-close{position:absolute;top:14px;right:16px;background:transparent;border:none;color:var(--muted);font-size:20px;cursor:pointer;transition:color .2s;line-height:1}
-.modal-close:hover{color:#fff}
+.moverlay{position:fixed;inset:0;background:rgba(0,0,0,.78);backdrop-filter:blur(5px);z-index:99000;display:none;align-items:center;justify-content:center;padding:16px}
+.moverlay.open{display:flex}
+.modal{background:var(--d2);border:1px solid rgba(155,226,60,.18);border-radius:13px;padding:26px;width:100%;max-width:540px;max-height:90vh;overflow-y:auto;position:relative}
+.modal-title{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:2px;color:#fff;margin-bottom:18px}
+.modal-title span{color:var(--g)}
+.mclose{position:absolute;top:13px;right:14px;background:transparent;border:none;color:var(--mu);font-size:19px;cursor:pointer;line-height:1}
+.mclose:hover{color:#fff}
 
 /* FOOTER */
-footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-align:center;padding:26px;font-size:11px;color:var(--muted);letter-spacing:1px;position:relative;z-index:1}
-.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--green);letter-spacing:4px;margin-bottom:7px}
-.footer-disc{font-size:10px;color:rgba(255,255,255,.18);margin-top:7px}
-#scrollTop{position:fixed;bottom:20px;right:20px;width:38px;height:38px;background:rgba(155,226,60,.1);border:1px solid rgba(155,226,60,.3);color:var(--green);font-size:15px;border-radius:50%;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;transition:all .2s}
-#scrollTop:hover{background:var(--green);color:var(--dark)}
+footer{background:var(--d2);border-top:1px solid rgba(255,255,255,.04);text-align:center;padding:22px;font-size:10px;color:var(--mu);letter-spacing:1px}
+.flogo{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--g);letter-spacing:4px;margin-bottom:6px}
+.fdisc{font-size:9px;color:rgba(255,255,255,.15);margin-top:5px}
 
-@media(max-width:768px){
-  header{padding:0 16px}
-  .slide-content h2{font-size:50px}
-  .stats-strip{grid-template-columns:repeat(2,1fr)}
-  .section{padding:36px 16px}
-  .admin-wrap{padding:36px 16px}
-  .slide{padding:40px 24px}
+#scrollTop{position:fixed;bottom:18px;right:18px;width:36px;height:36px;background:rgba(155,226,60,.09);border:1px solid rgba(155,226,60,.28);color:var(--g);font-size:14px;border-radius:50%;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;transition:all .2s}
+#scrollTop:hover{background:var(--g);color:var(--d)}
+
+@media(max-width:720px){
+  header{padding:0 14px}
+  .sc h2{font-size:46px}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .sec{padding:32px 14px}
+  .awrap{padding:32px 14px}
+  .slide{padding:36px 20px}
 }
 </style>
 </head>
 <body>
 
-<!-- NOTIFICATION -->
 <div id="notif" class="notif"></div>
 <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲</button>
 
-<!-- EDIT MATCH MODAL -->
-<div class="modal-overlay" id="edit-modal">
+<!-- EDIT MODAL -->
+<div class="moverlay" id="edit-modal">
   <div class="modal">
-    <button class="modal-close" onclick="closeModal('edit-modal')">✕</button>
+    <button class="mclose" onclick="closeModal('edit-modal')">✕</button>
     <div class="modal-title">✏️ Edit <span>Prediction</span></div>
     <div class="fgrid">
-      <div class="fg"><label class="flabel">Home Team</label><input class="finput" id="e-home" type="text"></div>
-      <div class="fg"><label class="flabel">Away Team</label><input class="finput" id="e-away" type="text"></div>
+      <div class="fg"><label class="flbl">Home Team</label><input class="fi" id="e-home" type="text"></div>
+      <div class="fg"><label class="flbl">Away Team</label><input class="fi" id="e-away" type="text"></div>
       <div class="fg">
-        <label class="flabel">League</label>
-        <select class="fselect" id="e-league">
+        <label class="flbl">League</label>
+        <select class="fs" id="e-league">
           <option value="Premier League">⚽ Premier League</option>
           <option value="La Liga">🇪🇸 La Liga</option>
           <option value="Champions League">🌟 Champions League</option>
@@ -287,199 +278,184 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
           <option value="Other">🌍 Other</option>
         </select>
       </div>
-      <div class="fg"><label class="flabel">Time</label><input class="finput" id="e-time" type="time"></div>
-      <div class="fg"><label class="flabel">Date</label><input class="finput" id="e-date" type="date"></div>
-      <div class="fg"><label class="flabel">Prediction / Pick</label><input class="finput" id="e-pred" type="text"></div>
-      <div class="fg full"><label class="flabel">Tips (comma-separated)</label><input class="finput" id="e-tips" type="text" placeholder="Home Win, Over 2.5, BTTS"></div>
+      <div class="fg"><label class="flbl">Time</label><input class="fi" id="e-time" type="time"></div>
+      <div class="fg"><label class="flbl">Date</label><input class="fi" id="e-date" type="date"></div>
+      <div class="fg"><label class="flbl">Prediction</label><input class="fi" id="e-pred" type="text"></div>
+      <div class="fg full"><label class="flbl">Tips (comma separated)</label><input class="fi" id="e-tips" type="text"></div>
       <div class="fg full">
-        <label class="flabel">Confidence: <span id="e-cv">75</span>%</label>
-        <input class="frange" id="e-conf" type="range" min="50" max="99" value="75" oninput="document.getElementById('e-cv').textContent=this.value">
+        <label class="flbl">Confidence: <span id="ecv">75</span>%</label>
+        <input class="frange" id="e-conf" type="range" min="50" max="99" value="75" oninput="document.getElementById('ecv').textContent=this.value">
       </div>
-      <div class="fg full"><label class="flabel">Notes</label><textarea class="ftextarea" id="e-notes"></textarea></div>
+      <div class="fg full"><label class="flbl">Notes</label><textarea class="fta" id="e-notes"></textarea></div>
     </div>
     <input type="hidden" id="e-row">
-    <button class="btn-save" id="btn-update" onclick="updateMatch()">💾 UPDATE PREDICTION</button>
+    <button class="btn-sv" id="btn-upd" onclick="updateMatch()">💾 UPDATE PREDICTION</button>
   </div>
 </div>
 
-<!-- SLIDE EDIT MODAL -->
-<div class="modal-overlay" id="slide-modal">
+<!-- SLIDE MODAL -->
+<div class="moverlay" id="slide-modal">
   <div class="modal">
-    <button class="modal-close" onclick="closeModal('slide-modal')">✕</button>
+    <button class="mclose" onclick="closeModal('slide-modal')">✕</button>
     <div class="modal-title">🖼️ Edit <span>Slide</span></div>
     <div class="fgrid">
-      <div class="fg full"><label class="flabel">Tag Text</label><input class="finput" id="sm-tag" type="text"></div>
-      <div class="fg full"><label class="flabel">Title Line 1</label><input class="finput" id="sm-h1" type="text"></div>
-      <div class="fg full"><label class="flabel">Title Line 2 (green highlight)</label><input class="finput" id="sm-h2" type="text"></div>
-      <div class="fg full"><label class="flabel">Description</label><textarea class="ftextarea" id="sm-desc"></textarea></div>
-      <div class="fg full"><label class="flabel">Button Text</label><input class="finput" id="sm-btn" type="text"></div>
+      <div class="fg full"><label class="flbl">Tag Text</label><input class="fi" id="sm-tag" type="text"></div>
+      <div class="fg full"><label class="flbl">Title Line 1</label><input class="fi" id="sm-h1" type="text"></div>
+      <div class="fg full"><label class="flbl">Title Line 2 (green)</label><input class="fi" id="sm-h2" type="text"></div>
+      <div class="fg full"><label class="flbl">Description</label><textarea class="fta" id="sm-desc"></textarea></div>
+      <div class="fg full"><label class="flbl">Button Text</label><input class="fi" id="sm-btn" type="text"></div>
       <div class="fg full">
-        <label class="flabel">Background Image URL</label>
-        <input class="finput" id="sm-img-url" type="text" placeholder="https://images.unsplash.com/...">
-        <img id="sm-img-preview" style="width:100%;max-height:130px;object-fit:cover;border-radius:6px;margin-top:10px;display:none">
+        <label class="flbl">Background Image URL</label>
+        <input class="fi" id="sm-bg" type="text" placeholder="https://... or Google Drive share link">
+        <div class="hint">✅ Accepts: Unsplash URLs, Google Drive share links (drive.google.com/file/d/...)</div>
+        <img id="sm-prev" style="width:100%;max-height:120px;object-fit:cover;border-radius:6px;margin-top:8px;display:none">
       </div>
     </div>
     <input type="hidden" id="sm-idx">
-    <button class="btn-save" onclick="saveSlide()">💾 SAVE SLIDE</button>
+    <button class="btn-sv" onclick="saveSlide()">💾 SAVE SLIDE</button>
   </div>
 </div>
 
 <!-- HEADER -->
 <header>
-  <div class="logo" onclick="showPage('home')">
-    <img id="logo-ico" class="logo-ico" src="" alt="">
+  <div class="logo" onclick="nav('home')">
+    <img id="logo-img" src="" alt="">
     KEYX PREDICTER <span class="logo-tag">AI TIPS</span>
   </div>
   <nav>
-    <a id="nav-home" class="active" onclick="showPage('home')">Home</a>
-    <a id="nav-pred" onclick="showPage('predictions')">Predictions</a>
-    <a id="nav-today" onclick="showPage('predictions')">Today</a>
-    <button class="btn-adm" onclick="showPage('admin')">⚙ Admin</button>
+    <a id="nh" class="on" onclick="nav('home')">Home</a>
+    <a id="np" onclick="nav('predictions')">Predictions</a>
+    <a id="nt" onclick="nav('predictions')">Today</a>
+    <button class="btn-adm" onclick="nav('admin')">⚙ Admin</button>
   </nav>
 </header>
 
-<!-- PAGE: HOME -->
-<div id="page-home" class="page active">
+<!-- HOME -->
+<div id="ph" class="page on">
   <div class="hero">
-    <div id="slide-0" class="slide active">
-      <div class="slide-content">
-        <div class="slide-tag" id="s0-tag"></div>
-        <h2><span id="s0-h1"></span><br><span id="s0-h2" style="color:var(--green)"></span></h2>
-        <p id="s0-p"></p>
-        <button class="btn-main" id="s0-btn" onclick="showPage('predictions')"></button>
+    <div id="sl0" class="slide on">
+      <div class="sc">
+        <div class="sc-tag" id="s0t"></div>
+        <h2><span id="s0h1"></span><br><span id="s0h2"></span></h2>
+        <p id="s0p"></p>
+        <button class="btn-cta" id="s0b" onclick="nav('predictions')"></button>
       </div>
     </div>
-    <div id="slide-1" class="slide">
-      <div class="slide-content">
-        <div class="slide-tag" id="s1-tag"></div>
-        <h2><span id="s1-h1"></span><br><span id="s1-h2" style="color:var(--green)"></span></h2>
-        <p id="s1-p"></p>
-        <button class="btn-main" id="s1-btn" onclick="showPage('predictions')"></button>
+    <div id="sl1" class="slide">
+      <div class="sc">
+        <div class="sc-tag" id="s1t"></div>
+        <h2><span id="s1h1"></span><br><span id="s1h2"></span></h2>
+        <p id="s1p"></p>
+        <button class="btn-cta" id="s1b" onclick="nav('predictions')"></button>
       </div>
     </div>
-    <div id="slide-2" class="slide">
-      <div class="slide-content">
-        <div class="slide-tag" id="s2-tag"></div>
-        <h2><span id="s2-h1"></span><br><span id="s2-h2" style="color:var(--green)"></span></h2>
-        <p id="s2-p"></p>
-        <button class="btn-main" id="s2-btn" onclick="showPage('predictions')"></button>
+    <div id="sl2" class="slide">
+      <div class="sc">
+        <div class="sc-tag" id="s2t"></div>
+        <h2><span id="s2h1"></span><br><span id="s2h2"></span></h2>
+        <p id="s2p"></p>
+        <button class="btn-cta" id="s2b" onclick="nav('predictions')"></button>
       </div>
     </div>
-    <div class="slide-dots" id="dots">
-      <div class="dot active" onclick="goSlide(0)"></div>
-      <div class="dot" onclick="goSlide(1)"></div>
-      <div class="dot" onclick="goSlide(2)"></div>
+    <div class="dots">
+      <div class="dot on" onclick="goSl(0)"></div>
+      <div class="dot" onclick="goSl(1)"></div>
+      <div class="dot" onclick="goSl(2)"></div>
     </div>
   </div>
-
-  <div class="ticker-bar"><div class="ticker-track" id="ticker-home"></div></div>
-
-  <div class="stats-strip">
-    <div class="stat-item"><div class="stat-num" id="stat-acc">85%</div><div class="stat-label">Accuracy Rate</div></div>
-    <div class="stat-item"><div class="stat-num">1.2K+</div><div class="stat-label">Tips This Month</div></div>
-    <div class="stat-item"><div class="stat-num">12</div><div class="stat-label">Leagues Covered</div></div>
-    <div class="stat-item"><div class="stat-num">50K+</div><div class="stat-label">Happy Users</div></div>
+  <div class="ticker"><div class="ticker-inner" id="tk1"></div></div>
+  <div class="stats">
+    <div class="stat"><div class="stat-n" id="stat-acc">85%</div><div class="stat-l">Accuracy Rate</div></div>
+    <div class="stat"><div class="stat-n">1.2K+</div><div class="stat-l">Tips This Month</div></div>
+    <div class="stat"><div class="stat-n">12</div><div class="stat-l">Leagues Covered</div></div>
+    <div class="stat"><div class="stat-n">50K+</div><div class="stat-l">Happy Users</div></div>
   </div>
-
-  <div class="section">
-    <div class="section-header">
-      <div class="section-title">TODAY'S <span>TOP PICKS</span></div>
-      <div class="acc-badge">🎯 Live from Sheets</div>
+  <div class="sec">
+    <div class="sec-hd">
+      <div class="sec-title">TODAY'S <span>TOP PICKS</span></div>
+      <div class="badge">🎯 Live from Sheets</div>
     </div>
-    <div id="home-previews" class="preview-grid">
-      <div class="loading-spinner" style="grid-column:1/-1"><div class="spinner"></div> LOADING TIPS...</div>
+    <div id="home-prev" class="prev-grid">
+      <div class="spin-wrap" style="grid-column:1/-1"><div class="spin"></div> LOADING...</div>
     </div>
-    <div style="text-align:center;margin-top:28px">
-      <button class="btn-main" onclick="showPage('predictions')">VIEW ALL PREDICTIONS →</button>
+    <div style="text-align:center;margin-top:24px">
+      <button class="btn-cta" onclick="nav('predictions')">VIEW ALL PREDICTIONS →</button>
     </div>
   </div>
 </div>
 
-<!-- PAGE: PREDICTIONS -->
-<div id="page-predictions" class="page">
-  <div class="ticker-bar"><div class="ticker-track" id="ticker-pred"></div></div>
-  <div class="section">
-    <div class="section-header">
-      <div class="section-title">ALL <span>PREDICTIONS</span></div>
-      <div class="acc-badge" id="pred-count-badge">🎯 Live Data</div>
+<!-- PREDICTIONS -->
+<div id="pp" class="page">
+  <div class="ticker"><div class="ticker-inner" id="tk2"></div></div>
+  <div class="sec">
+    <div class="sec-hd">
+      <div class="sec-title">ALL <span>PREDICTIONS</span></div>
+      <div class="badge" id="pcnt">🎯 Live Data</div>
     </div>
-    <div class="filter-tabs">
-      <button class="filter-tab active" onclick="filterPred(this,'all')">All</button>
-      <button class="filter-tab" onclick="filterPred(this,'Premier League')">Premier League</button>
-      <button class="filter-tab" onclick="filterPred(this,'La Liga')">La Liga</button>
-      <button class="filter-tab" onclick="filterPred(this,'Champions League')">UCL</button>
-      <button class="filter-tab" onclick="filterPred(this,'Serie A')">Serie A</button>
-      <button class="filter-tab" onclick="filterPred(this,'Bundesliga')">Bundesliga</button>
+    <div class="ftabs">
+      <button class="ftab on" onclick="doFilter(this,'all')">All</button>
+      <button class="ftab" onclick="doFilter(this,'Premier League')">Premier League</button>
+      <button class="ftab" onclick="doFilter(this,'La Liga')">La Liga</button>
+      <button class="ftab" onclick="doFilter(this,'Champions League')">UCL</button>
+      <button class="ftab" onclick="doFilter(this,'Serie A')">Serie A</button>
+      <button class="ftab" onclick="doFilter(this,'Bundesliga')">Bundesliga</button>
     </div>
-    <div id="pred-loading" class="loading-spinner"><div class="spinner"></div> LOADING...</div>
-    <div id="pred-list" class="predictions-grid" style="display:none"></div>
-    <div id="pred-empty" class="empty-state" style="display:none">
-      <div class="icon">⚽</div>
-      <div>No predictions found.</div>
-      <p>Check back soon or change the filter.</p>
+    <div id="pload" class="spin-wrap"><div class="spin"></div> LOADING...</div>
+    <div id="plist" class="pgrid" style="display:none"></div>
+    <div id="pempty" class="empty" style="display:none">
+      <div class="ei">⚽</div><div>No predictions found.</div><p>Check back soon or change the filter.</p>
     </div>
-    <div id="pred-pagi"></div>
+    <div id="ppagi"></div>
   </div>
 </div>
 
-<!-- PAGE: ADMIN -->
-<div id="page-admin" class="page">
-
-  <!-- LOGIN SCREEN -->
-  <div id="admin-login" class="admin-login-screen">
-    <div class="login-card">
-      <div class="lock-icon">🔐</div>
-      <div class="login-title">ADMIN <span>PANEL</span></div>
-      <div class="login-sub">Injira kugira ngo ugenzure predictions</div>
-      <div class="login-form-group">
+<!-- ADMIN -->
+<div id="pa" class="page">
+  <!-- LOGIN -->
+  <div id="alog" class="alog">
+    <div class="alog-card">
+      <div class="alog-ico">🔐</div>
+      <div class="alog-title">ADMIN <span>PANEL</span></div>
+      <div class="alog-sub">Injira kugira ngo ugenzure predictions</div>
+      <div class="afg">
         <label>USERNAME</label>
-        <input type="text" id="adm-user-input" class="login-input" placeholder="Kim Aristide" autocomplete="username">
+        <input type="text" id="au" class="ainput" placeholder="Kim Aristide" autocomplete="username">
       </div>
-      <div class="login-form-group">
+      <div class="afg">
         <label>PASSWORD</label>
-        <input type="password" id="adm-pass-input" class="login-input" placeholder="••••••••" autocomplete="current-password"
-               onkeydown="if(event.key==='Enter') handleManualLogin()">
+        <input type="password" id="ap" class="ainput" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
       </div>
-      <button class="login-btn" onclick="handleManualLogin()">SIGN IN →</button>
-      <div class="security-note">🔒 Only authorized admins can access this panel.</div>
+      <button class="alog-btn" onclick="doLogin()">SIGN IN →</button>
+      <div class="alog-note">🔒 Authorized admins only</div>
     </div>
   </div>
 
-  <!-- ADMIN DASHBOARD -->
-  <div id="admin-panel" class="admin-wrap" style="display:none">
-
-    <div class="admin-topbar">
-      <div class="admin-user">
-        <div class="admin-avatar">KA</div>
-        <div>
-          <div class="admin-uname">Kim Aristide</div>
-          <div class="admin-uemail">Administrator</div>
-        </div>
+  <!-- DASHBOARD -->
+  <div id="adash" class="awrap" style="display:none">
+    <div class="atop">
+      <div class="auser">
+        <div class="aavt">KA</div>
+        <div><div class="auname">Kim Aristide</div><div class="aurole">Administrator</div></div>
       </div>
-      <div style="display:flex;align-items:center;gap:10px">
-        <span class="connected-badge"><span class="connected-dot"></span> Google Sheets Connected</span>
-        <button class="btn-logout" onclick="adminLogout()">↩ Sign Out</button>
-      </div>
+      <button class="btn-out" onclick="doLogout()">↩ Sign Out</button>
     </div>
 
-    <div class="admin-tabs">
-      <button class="admin-tab active" onclick="adminTab(this,'tab-matches')">⚽ Predictions</button>
-      <button class="admin-tab" onclick="adminTab(this,'tab-slides')">🖼️ Hero Slides</button>
-      <button class="admin-tab" onclick="adminTab(this,'tab-settings')">⚙️ Settings</button>
+    <div class="atabs">
+      <button class="atab on" onclick="aTab(this,'atm')">⚽ Predictions</button>
+      <button class="atab" onclick="aTab(this,'ats')">🖼️ Hero Slides</button>
+      <button class="atab" onclick="aTab(this,'atg')">⚙️ Settings</button>
     </div>
 
-    <!-- TAB: PREDICTIONS -->
-    <div id="tab-matches" class="admin-section active">
-
-      <!-- ADD FORM -->
-      <div class="a-card">
-        <div class="a-card-title">➕ Add <span>New Prediction</span></div>
+    <!-- PREDICTIONS TAB -->
+    <div id="atm" class="asec on">
+      <div class="acard">
+        <div class="acard-title">➕ Add <span>New Prediction</span></div>
         <div class="fgrid">
-          <div class="fg"><label class="flabel">Home Team</label><input class="finput" id="f-home" type="text" placeholder="e.g. Arsenal"></div>
-          <div class="fg"><label class="flabel">Away Team</label><input class="finput" id="f-away" type="text" placeholder="e.g. Chelsea"></div>
+          <div class="fg"><label class="flbl">Home Team</label><input class="fi" id="fh" type="text" placeholder="Arsenal"></div>
+          <div class="fg"><label class="flbl">Away Team</label><input class="fi" id="fa" type="text" placeholder="Chelsea"></div>
           <div class="fg">
-            <label class="flabel">League</label>
-            <select class="fselect" id="f-league">
+            <label class="flbl">League</label>
+            <select class="fs" id="fl">
               <option value="Premier League">⚽ Premier League</option>
               <option value="La Liga">🇪🇸 La Liga</option>
               <option value="Champions League">🌟 Champions League</option>
@@ -489,778 +465,720 @@ footer{background:var(--dark2);border-top:1px solid rgba(255,255,255,.05);text-a
               <option value="Other">🌍 Other</option>
             </select>
           </div>
-          <div class="fg"><label class="flabel">Time</label><input class="finput" id="f-time" type="time" value="16:30"></div>
-          <div class="fg"><label class="flabel">Date</label><input class="finput" id="f-date" type="date"></div>
-          <div class="fg"><label class="flabel">Prediction / Pick</label><input class="finput" id="f-pred" type="text" placeholder="e.g. Home Win, Over 2.5"></div>
-          <div class="fg full"><label class="flabel">Tips (comma-separated)</label><input class="finput" id="f-tips" type="text" placeholder="e.g. Home Win, Over 2.5, BTTS"></div>
+          <div class="fg"><label class="flbl">Time</label><input class="fi" id="ft" type="time" value="16:30"></div>
+          <div class="fg"><label class="flbl">Date</label><input class="fi" id="fd" type="date"></div>
+          <div class="fg"><label class="flbl">Prediction / Pick</label><input class="fi" id="fp" type="text" placeholder="Home Win"></div>
+          <div class="fg full"><label class="flbl">Tips (comma separated)</label><input class="fi" id="fti" type="text" placeholder="Home Win, Over 2.5, BTTS"></div>
           <div class="fg full">
-            <label class="flabel">Confidence: <span id="conf-val">75</span>%</label>
-            <input class="frange" id="f-conf" type="range" min="50" max="99" value="75" oninput="document.getElementById('conf-val').textContent=this.value">
+            <label class="flbl">Confidence: <span id="fcv">75</span>%</label>
+            <input class="frange" id="fc" type="range" min="50" max="99" value="75" oninput="document.getElementById('fcv').textContent=this.value">
           </div>
-          <div class="fg full"><label class="flabel">Notes (optional)</label><textarea class="ftextarea" id="f-notes" placeholder="Extra analysis..."></textarea></div>
+          <div class="fg full"><label class="flbl">Notes (optional)</label><textarea class="fta" id="fn" placeholder="Extra analysis..."></textarea></div>
         </div>
-        <button class="btn-save" id="btn-save" onclick="saveMatch()">💾 SAVE TO GOOGLE SHEETS</button>
+        <button class="btn-sv" id="bsave" onclick="saveMatch()">💾 SAVE TO GOOGLE SHEETS</button>
       </div>
 
-      <!-- EXISTING PREDICTIONS LIST -->
-      <div class="a-card" style="padding:0;overflow:hidden">
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 22px;border-bottom:1px solid rgba(255,255,255,.06)">
-          <div class="a-card-title" style="margin-bottom:0">📋 Current <span>Predictions</span></div>
-          <button onclick="loadAdminMatches()" style="background:transparent;border:1px solid rgba(155,226,60,.3);color:var(--green);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;letter-spacing:1px;padding:5px 13px;border-radius:4px;cursor:pointer;text-transform:uppercase">↻ Refresh</button>
+      <div class="acard" style="padding:0;overflow:hidden">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 20px;border-bottom:1px solid rgba(255,255,255,.05)">
+          <div class="acard-title" style="margin-bottom:0">📋 Current <span>Predictions</span></div>
+          <button onclick="loadAdminList()" style="background:transparent;border:1px solid rgba(155,226,60,.28);color:var(--g);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:10px;letter-spacing:1px;padding:4px 11px;border-radius:4px;cursor:pointer;text-transform:uppercase">↻ Refresh</button>
         </div>
-        <div id="admin-list" style="overflow-x:auto">
-          <div class="loading-spinner"><div class="spinner"></div> LOADING...</div>
+        <div id="alist" style="overflow-x:auto">
+          <div class="spin-wrap"><div class="spin"></div> LOADING...</div>
         </div>
       </div>
     </div>
 
-    <!-- TAB: HERO SLIDES -->
-    <div id="tab-slides" class="admin-section">
-      <div class="a-card">
-        <div class="a-card-title">🖼️ Manage <span>Hero Slides</span></div>
-        <p style="color:var(--muted);font-size:13px;font-weight:600;margin-bottom:18px">Hindura ibisobanuro by'ibiboneka mu slideshow. Ibyo uhindura biba immediately.</p>
-        <div class="slides-grid" id="slides-manager"></div>
+    <!-- SLIDES TAB -->
+    <div id="ats" class="asec">
+      <div class="acard">
+        <div class="acard-title">🖼️ Manage <span>Hero Slides</span></div>
+        <p style="color:var(--mu);font-size:12px;font-weight:600;margin-bottom:16px">Click Edit to change slide content and background image. Supports Google Drive links.</p>
+        <div class="sgrid" id="smgr"></div>
       </div>
     </div>
 
-    <!-- TAB: SETTINGS -->
-    <div id="tab-settings" class="admin-section">
-      <div class="a-card">
-        <div class="a-card-title">⚙️ Site <span>Settings</span></div>
-        <div class="settings-grid">
+    <!-- SETTINGS TAB -->
+    <div id="atg" class="asec">
+      <div class="acard">
+        <div class="acard-title">⚙️ Site <span>Settings</span></div>
+        <div class="sgrid2">
           <div class="fg">
-            <label class="flabel">Site Title (browser tab)</label>
-            <input class="finput" id="site-title" type="text">
+            <label class="flbl">Site Title</label>
+            <input class="fi" id="set-title" type="text">
           </div>
           <div class="fg">
-            <label class="flabel">Accuracy Stat Display</label>
-            <input class="finput" id="site-accuracy" type="text" placeholder="85%">
+            <label class="flbl">Accuracy Stat</label>
+            <input class="fi" id="set-acc" type="text" placeholder="85%">
           </div>
           <div class="fg full">
-            <label class="flabel">Favicon / Logo Icon URL</label>
-            <div style="display:flex;align-items:center;gap:14px;margin-top:8px">
-              <img id="fav-preview" class="favicon-preview" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>" alt="favicon">
+            <label class="flbl">Apps Script URL</label>
+            <input class="fi" id="set-url" type="text">
+            <div class="hint">Your deployed Apps Script URL (exec link)</div>
+          </div>
+          <div class="fg full">
+            <label class="flbl">Favicon / Logo URL</label>
+            <div style="display:flex;align-items:center;gap:12px;margin-top:6px">
+              <img id="fav-prev" class="fav-prev" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>" alt="fav">
               <div>
-                <div style="font-size:12px;color:var(--muted);font-weight:600;margin-bottom:7px">Shown in browser tab and header logo</div>
-                <button onclick="document.getElementById('fav-file').click()" style="background:rgba(155,226,60,.1);border:1px solid rgba(155,226,60,.3);color:var(--green);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;letter-spacing:1.5px;padding:7px 14px;border-radius:4px;cursor:pointer;text-transform:uppercase">📁 Upload Favicon</button>
-                <input type="file" id="fav-file" accept="image/*" style="display:none" onchange="uploadFavicon(this)">
+                <input class="fi" id="set-fav" type="text" placeholder="https://... or Google Drive link" style="margin-bottom:6px">
+                <div class="hint">✅ Paste any image URL or Google Drive share link<br>Google Drive: drive.google.com/file/d/<b>FILE_ID</b>/view</div>
               </div>
             </div>
           </div>
           <div class="fg full">
-            <label class="flabel">Ticker Messages (imwe ku murongo)</label>
-            <textarea class="ftextarea" id="ticker-input" style="min-height:100px" placeholder="Arsenal WIN ✓ — 85% confidence&#10;PSG WIN ✓ — 91% confidence"></textarea>
-          </div>
-          <div class="fg full">
-            <label class="flabel" style="margin-bottom:6px">Google Apps Script URL</label>
-            <div style="display:flex;align-items:center;gap:8px;margin-bottom:8px">
-              <span class="connected-badge"><span class="connected-dot"></span> Script Connected</span>
-            </div>
-            <input class="finput" id="set-scripturl" type="text" placeholder="https://script.google.com/macros/s/AKfycbxTccMDwisr5rk6j488qBg7FmoqRNokpyWvd2tH2lmiCy65RxTACQprXaH3RQcLU0tHfA/exec">
-            <div style="font-size:11px;color:var(--muted);font-weight:600;margin-top:6px;letter-spacing:.5px">
-              ✅ Apps Script URL imeshyizwemo. Urashobora kuyivugurura hano niba uyihindura.
-            </div>
+            <label class="flbl">Ticker Messages (one per line)</label>
+            <textarea class="fta" id="set-ticker" style="min-height:90px"></textarea>
           </div>
         </div>
-        <button class="btn-save" onclick="saveSettings()">💾 SAVE ALL SETTINGS</button>
+        <button class="btn-sv" onclick="saveSettings()">💾 SAVE ALL SETTINGS</button>
       </div>
     </div>
+  </div>
+</div>
 
-  </div><!-- /admin-panel -->
-
-</div><!-- /page-admin -->
-
-<!-- FOOTER -->
 <footer>
-  <div class="footer-logo">KEYX PREDICTER</div>
+  <div class="flogo">KEYX PREDICTER</div>
   <div>© 2025 Keyx Predicter. All rights reserved.</div>
-  <div class="footer-disc">For entertainment purposes only. Please gamble responsibly.</div>
+  <div class="fdisc">For entertainment purposes only. Please gamble responsibly.</div>
 </footer>
 
 <script>
-/* ═══════════════════════════════════════════
-   HARDCODED APPS SCRIPT URL
-   ← This is your deployed script URL
-═══════════════════════════════════════════ */
-const HARDCODED_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxTccMDwisr5rk6j488qBg7FmoqRNokpyWvd2tH2lmiCy65RxTACQprXaH3RQcLU0tHfA/exec';
+/* ═══════════════════
+   CONFIG — your IDs
+═══════════════════ */
+const DEFAULT_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxTccMDwisr5rk6j488qBg7FmoqRNokpyWvd2tH2lmiCy65RxTACQprXaH3RQcLU0tHfA/exec';
 
-/* ═══════════════════════════════════════════
+/* ═══════════════════
    STATE
-═══════════════════════════════════════════ */
-let allMatches = [], filteredMatches = [], sheetRowMap = [];
-let curPage = 1, PER_PAGE = 10, curFilter = 'all';
-let slideEls, dotEls, curSl = 0, slTimer;
+═══════════════════ */
+let ALL = [], FILTERED = [], ROWMAP = [];
+let CUR_PAGE = 1, PER = 10, CUR_FILTER = 'all';
+let SL_ELS, DOT_ELS, CUR_SL = 0, SL_TMR;
 
-// Always use the hardcoded URL; localStorage override is still supported
-let CFG = {
-  SCRIPT_URL: localStorage.getItem('kx_scripturl') || HARDCODED_SCRIPT_URL
-};
-// Ensure localStorage is set on first run so Settings tab shows it
-if (!localStorage.getItem('kx_scripturl')) {
-  localStorage.setItem('kx_scripturl', HARDCODED_SCRIPT_URL);
-}
+function LS(k,v){ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }
+function tryJ(s){ try{ return JSON.parse(s); } catch(e){ return null; } }
 
-let SLIDES   = tryParse(localStorage.getItem('kx_slides')) || defaultSlides();
-let TICKER   = localStorage.getItem('kx_ticker')  || defaultTicker();
-let S_TITLE  = localStorage.getItem('kx_title')   || 'KEYX PREDICTER — AI Football Tips';
-let S_ACC    = localStorage.getItem('kx_acc')     || '85%';
-let FAV_URL  = localStorage.getItem('kx_favicon') || '';
+let SCRIPT_URL = LS('kx_url') || DEFAULT_SCRIPT_URL;
+let SLIDES     = tryJ(LS('kx_slides')) || defSlides();
+let TICKER     = LS('kx_ticker') || defTicker();
+let S_TITLE    = LS('kx_title') || 'KEYX PREDICTER — AI Football Tips';
+let S_ACC      = LS('kx_acc') || '85%';
+let FAV        = LS('kx_fav') || '';
 
-function defaultSlides() {
+/* Ensure script URL is always saved */
+if(!LS('kx_url')) LS('kx_url', DEFAULT_SCRIPT_URL);
+
+function defSlides(){
   return [
-    {tag:'🤖 AI Powered Predictions', h1:'PREDICT', h2:'LIKE A PRO',
-     p:'Smart football predictions powered by real data and AI analysis. Never miss a winning tip.',
-     btn:'VIEW PREDICTIONS →', bg:'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1600'},
-    {tag:'⚽ Daily Tips', h1:"TODAY'S", h2:'BEST PICKS',
+    {tag:'🤖 AI Powered Predictions',h1:'PREDICT',h2:'LIKE A PRO',
+     p:'Smart football predictions powered by real data and AI analysis.',
+     btn:'VIEW PREDICTIONS →',bg:'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1600'},
+    {tag:'⚽ Daily Tips',h1:"TODAY'S",h2:'BEST PICKS',
      p:"Up to 15 high-confidence predictions every day across Europe's top leagues.",
-     btn:"SEE TODAY'S TIPS →", bg:'https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=1600'},
-    {tag:'📊 85% Accuracy Rate', h1:'DATA-DRIVEN', h2:'WINNERS',
-     p:'Our model analyses form, head-to-head records, injuries and more to find the best tips.',
-     btn:'EXPLORE NOW →', bg:'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=1600'},
+     btn:"SEE TODAY'S TIPS →",bg:'https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=1600'},
+    {tag:'📊 85% Accuracy',h1:'DATA-DRIVEN',h2:'WINNERS',
+     p:'Our model analyses form, head-to-head records, injuries and more.',
+     btn:'EXPLORE NOW →',bg:'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=1600'},
   ];
 }
-function defaultTicker() {
+function defTicker(){
   return 'Arsenal WIN ✓ — 85% confidence|Barcelona WIN ✓ — 79% confidence|PSG WIN ✓ — 91% confidence|Inter WIN ✓ — 78% confidence|Man City BTTS ✓ — 88% confidence|Dortmund WIN ✓ — 73% confidence';
 }
-function tryParse(s){ try{ return JSON.parse(s); } catch(e){ return null; } }
 
-/* ═══════════════════════════════════════════
-   INITIALIZATION
-═══════════════════════════════════════════ */
+/* ═══════════════════
+   GOOGLE DRIVE URL CONVERTER
+   Converts share links to direct image URLs
+═══════════════════ */
+function driveImg(url){
+  if(!url) return '';
+  // Already a direct URL or unsplash etc
+  if(!url.includes('drive.google.com')) return url;
+  // Extract file ID from various Drive URL formats
+  let id = '';
+  const m1 = url.match(/\/file\/d\/([a-zA-Z0-9_-]+)/);
+  const m2 = url.match(/id=([a-zA-Z0-9_-]+)/);
+  const m3 = url.match(/\/d\/([a-zA-Z0-9_-]+)/);
+  if(m1) id = m1[1];
+  else if(m2) id = m2[1];
+  else if(m3) id = m3[1];
+  if(!id) return url;
+  return 'https://drive.google.com/uc?export=view&id=' + id;
+}
+
+/* ═══════════════════
+   INIT
+═══════════════════ */
 window.addEventListener('load', () => {
   applySettings();
   renderSlides();
   renderTickers();
-  loadHomePreviews();
-
-  const dEl = document.getElementById('f-date');
-  if(dEl) dEl.valueAsDate = new Date();
-
-  document.getElementById('ticker-input').value  = TICKER.replace(/\|/g, '\n');
-  document.getElementById('site-title').value    = S_TITLE;
-  document.getElementById('site-accuracy').value = S_ACC;
-  document.getElementById('set-scripturl').value = CFG.SCRIPT_URL;
-
-  if (sessionStorage.getItem('keyx_admin_logged') === 'true') {
-    showAdminPanel();
-  }
+  loadHomePrev();
+  const fd = document.getElementById('fd');
+  if(fd) fd.valueAsDate = new Date();
+  // Pre-fill settings
+  document.getElementById('set-title').value  = S_TITLE;
+  document.getElementById('set-acc').value    = S_ACC;
+  document.getElementById('set-url').value    = SCRIPT_URL;
+  document.getElementById('set-ticker').value = TICKER.replace(/\|/g,'\n');
+  document.getElementById('set-fav').value    = FAV;
+  if(sessionStorage.getItem('kx_auth')==='1') showDash();
 });
 
-function applySettings() {
+function applySettings(){
   document.title = S_TITLE;
   document.getElementById('stat-acc').textContent = S_ACC;
-  if (FAV_URL) {
-    document.getElementById('favicon-link').href = FAV_URL;
-    const li = document.getElementById('logo-ico');
-    li.src = FAV_URL; li.style.display = 'block';
-    document.getElementById('fav-preview').src = FAV_URL;
+  if(FAV){
+    const fu = driveImg(FAV);
+    document.getElementById('fav-link').href = fu;
+    const li = document.getElementById('logo-img');
+    li.src = fu; li.style.display = 'block';
+    document.getElementById('fav-prev').src = fu;
   }
 }
 
-/* ═══════════════════════════════════════════
+/* ═══════════════════
    NAVIGATION
-═══════════════════════════════════════════ */
-function showPage(name) {
+═══════════════════ */
+function nav(name){
   ['home','predictions','admin'].forEach(p =>
-    document.getElementById('page-'+p).classList.toggle('active', p === name));
-  document.getElementById('nav-home').classList.toggle('active', name === 'home');
-  document.getElementById('nav-pred').classList.toggle('active', name === 'predictions');
-  document.getElementById('nav-today').classList.toggle('active', name === 'predictions');
-  window.scrollTo({top:0, behavior:'smooth'});
-  if (name === 'predictions') loadPredictions();
-  if (name === 'home') loadHomePreviews();
+    document.getElementById('p'+p[0]).classList.toggle('on', p===name));
+  document.getElementById('nh').classList.toggle('on', name==='home');
+  document.getElementById('np').classList.toggle('on', name==='predictions');
+  document.getElementById('nt').classList.toggle('on', name==='predictions');
+  window.scrollTo({top:0,behavior:'smooth'});
+  if(name==='predictions') loadPredictions();
+  if(name==='home') loadHomePrev();
 }
-
-window.addEventListener('scroll', () => {
-  document.getElementById('scrollTop').style.display = window.scrollY > 400 ? 'flex' : 'none';
+window.addEventListener('scroll',()=>{
+  document.getElementById('scrollTop').style.display = window.scrollY>380?'flex':'none';
 });
 
-/* ═══════════════════════════════════════════
-   NOTIFICATIONS
-═══════════════════════════════════════════ */
-let _notifTimer;
-function notify(msg, type='success') {
+/* ═══════════════════
+   NOTIFY
+═══════════════════ */
+let _nt;
+function notify(msg, type='ok'){
   const el = document.getElementById('notif');
   el.className = 'notif ' + type;
   el.textContent = msg;
   el.classList.add('show');
-  clearTimeout(_notifTimer);
-  _notifTimer = setTimeout(() => el.classList.remove('show'), 3500);
+  clearTimeout(_nt);
+  _nt = setTimeout(()=>el.classList.remove('show'), 3500);
 }
 
-/* ═══════════════════════════════════════════
+/* ═══════════════════
    MODAL
-═══════════════════════════════════════════ */
-function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+═══════════════════ */
+function closeModal(id){ document.getElementById(id).classList.remove('open'); }
 
-/* ═══════════════════════════════════════════
+/* ═══════════════════
    SLIDESHOW
-═══════════════════════════════════════════ */
-function renderSlides() {
-  SLIDES.forEach((s, i) => {
-    const el = document.getElementById('slide-'+i);
+═══════════════════ */
+function renderSlides(){
+  SLIDES.forEach((s,i)=>{
+    const el = document.getElementById('sl'+i);
     if(!el) return;
-    el.style.backgroundImage = `url('${s.bg}')`;
-    document.getElementById('s'+i+'-tag').textContent = s.tag;
-    document.getElementById('s'+i+'-h1').textContent  = s.h1;
-    document.getElementById('s'+i+'-h2').textContent  = s.h2;
-    document.getElementById('s'+i+'-p').textContent   = s.p;
-    document.getElementById('s'+i+'-btn').textContent = s.btn;
+    const bgUrl = driveImg(s.bg);
+    el.style.backgroundImage = `url('${bgUrl}')`;
+    document.getElementById('s'+i+'t').textContent  = s.tag;
+    document.getElementById('s'+i+'h1').textContent = s.h1;
+    document.getElementById('s'+i+'h2').textContent = s.h2;
+    document.getElementById('s'+i+'p').textContent  = s.p;
+    document.getElementById('s'+i+'b').textContent  = s.btn;
   });
-  slideEls = document.querySelectorAll('.slide');
-  dotEls   = document.querySelectorAll('.dot');
-  clearInterval(slTimer);
-  slTimer = setInterval(() => goSlide((curSl+1) % slideEls.length), 4800);
+  SL_ELS  = document.querySelectorAll('.slide');
+  DOT_ELS = document.querySelectorAll('.dot');
+  clearInterval(SL_TMR);
+  SL_TMR = setInterval(()=>goSl((CUR_SL+1)%SL_ELS.length), 5000);
 }
-function goSlide(n) {
-  slideEls[curSl].classList.remove('active'); dotEls[curSl].classList.remove('active');
-  curSl = n;
-  slideEls[curSl].classList.add('active'); dotEls[curSl].classList.add('active');
+function goSl(n){
+  SL_ELS[CUR_SL].classList.remove('on'); DOT_ELS[CUR_SL].classList.remove('on');
+  CUR_SL = n;
+  SL_ELS[CUR_SL].classList.add('on'); DOT_ELS[CUR_SL].classList.add('on');
 }
 
-/* ═══════════════════════════════════════════
-   TICKER
-═══════════════════════════════════════════ */
-function renderTickers() {
+/* ═══════════════════
+   TICKERS
+═══════════════════ */
+function renderTickers(){
   const msgs = TICKER.split('|').filter(Boolean);
-  const html = [...msgs, ...msgs].map(m => `<span>${esc(m)}</span>`).join('');
-  ['ticker-home','ticker-pred'].forEach(id => {
-    const el = document.getElementById(id);
-    if(el) el.innerHTML = html;
+  const html = [...msgs,...msgs].map(m=>`<span>${esc(m)}</span>`).join('');
+  ['tk1','tk2'].forEach(id=>{ const el=document.getElementById(id); if(el) el.innerHTML=html; });
+}
+
+/* ═══════════════════
+   JSONP FETCH (fixes CORS)
+═══════════════════ */
+function jsonpGet(url){
+  return new Promise((res,rej)=>{
+    const cb = '_kx'+Date.now();
+    const s  = document.createElement('script');
+    const to = setTimeout(()=>{ cleanup(); rej(new Error('Timeout')); }, 12000);
+    function cleanup(){ clearTimeout(to); delete window[cb]; s.parentNode&&s.parentNode.removeChild(s); }
+    window[cb] = d=>{ cleanup(); res(d); };
+    s.src = url + (url.includes('?')?'&':'?') + 'callback=' + cb + '&nocache=' + Date.now();
+    s.onerror = ()=>{ cleanup(); rej(new Error('Script error')); };
+    document.head.appendChild(s);
   });
 }
 
-/* ═══════════════════════════════════════════
-   JSONP FETCH — bypasses CORS on GET
-═══════════════════════════════════════════ */
-function jsonpFetch(url) {
-  return new Promise((resolve, reject) => {
-    const cbName = '_kx_cb_' + Date.now();
-    const script = document.createElement('script');
-    const timeout = setTimeout(() => {
-      cleanup();
-      reject(new Error('JSONP timeout'));
-    }, 10000);
-    function cleanup() {
-      clearTimeout(timeout);
-      delete window[cbName];
-      if (script.parentNode) script.parentNode.removeChild(script);
-    }
-    window[cbName] = function(data) {
-      cleanup();
-      resolve(data);
-    };
-    script.src = url + '&callback=' + cbName;
-    script.onerror = () => { cleanup(); reject(new Error('Script load failed')); };
-    document.head.appendChild(script);
-  });
-}
-
-/* ═══════════════════════════════════════════
-   DATA FETCH — via JSONP (no CORS issues)
-═══════════════════════════════════════════ */
-async function fetchData() {
-  if (!CFG.SCRIPT_URL) return [];
+/* ═══════════════════
+   FETCH DATA
+═══════════════════ */
+async function fetchData(){
+  if(!SCRIPT_URL) return [];
   try {
-    const url  = CFG.SCRIPT_URL + '?action=get&nocache=' + Date.now();
-    const data = await jsonpFetch(url);
-    if (!Array.isArray(data)) return [];
-    sheetRowMap = [];
-    return data.map(row => {
-      sheetRowMap.push(row.rowIndex || 0);
+    const data = await jsonpGet(SCRIPT_URL);
+    if(!Array.isArray(data)) return [];
+    ROWMAP = [];
+    return data.map(r=>{
+      ROWMAP.push(r.rowIndex||0);
       return {
-        id:         row.id || '',
-        home:       row.home || '',
-        away:       row.away || '',
-        league:     row.league || '',
-        time:       row.time || '',
-        date:       row.date || '',
-        prediction: row.prediction || '',
-        confidence: parseInt(row.confidence) || 75,
-        tips:       typeof row.tips === 'string'
-                      ? row.tips.split(',').map(t=>t.trim()).filter(Boolean)
-                      : (Array.isArray(row.tips) ? row.tips : []),
-        notes:      row.notes || '',
-        rowIndex:   row.rowIndex || 0
+        id:         r.id||'',
+        home:       r.home||'',
+        away:       r.away||'',
+        league:     r.league||'',
+        time:       r.time||'',
+        date:       r.date||'',
+        prediction: r.prediction||'',
+        confidence: parseInt(r.confidence)||75,
+        tips:       typeof r.tips==='string' ? r.tips.split(',').map(t=>t.trim()).filter(Boolean) : (Array.isArray(r.tips)?r.tips:[]),
+        notes:      r.notes||'',
+        rowIndex:   r.rowIndex||0
       };
     });
-  } catch(e) {
-    console.error('fetchData error:', e);
-    notify('⚠️ Could not load data — see console for details.', 'error');
+  } catch(e){
+    console.error('fetchData:',e);
+    notify('⚠️ Could not load data: '+e.message, 'err');
     return [];
   }
 }
 
-/* ═══════════════════════════════════════════
-   APPS SCRIPT POST — no-cors mode
-   (browser won't read response, but the
-    script still executes server-side)
-═══════════════════════════════════════════ */
-async function scriptPost(payload) {
-  if (!CFG.SCRIPT_URL) {
-    throw new Error('Apps Script URL ntiyashyizwemo. Jya mu Settings tab.');
-  }
-  try {
-    await fetch(CFG.SCRIPT_URL, {
-      method: 'POST',
-      mode:   'no-cors',          // ← key fix: avoids CORS preflight block
-      headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify(payload)
-    });
-  } catch(e) {
-    // no-cors swallows network errors too; re-throw so callers know
-    throw new Error('Network error: ' + e.message);
-  }
-  return true;
+/* ═══════════════════
+   POST (no-cors)
+═══════════════════ */
+async function postData(payload){
+  if(!SCRIPT_URL) throw new Error('No script URL set');
+  await fetch(SCRIPT_URL,{
+    method:'POST', mode:'no-cors',
+    headers:{'Content-Type':'text/plain'},
+    body:JSON.stringify(payload)
+  });
 }
 
-/* ═══════════════════════════════════════════
+/* ═══════════════════
    HOME PREVIEWS
-═══════════════════════════════════════════ */
-const PIMGS = [
+═══════════════════ */
+const IMGS = [
   'https://images.unsplash.com/photo-1459865264687-595d652de67e?w=600',
   'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600',
   'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=600',
 ];
-async function loadHomePreviews() {
-  const c = document.getElementById('home-previews');
-  c.innerHTML = '<div class="loading-spinner" style="grid-column:1/-1"><div class="spinner"></div> LOADING TIPS...</div>';
-  const matches = await fetchData();
-  allMatches = matches;
-  if (matches.length > 0) {
-    c.innerHTML = matches.slice(0,3).map((m,i) => buildPreviewCard(m,i)).join('');
-  } else {
-    c.innerHTML = buildFallbackPreviews();
-  }
+async function loadHomePrev(){
+  const c = document.getElementById('home-prev');
+  c.innerHTML = '<div class="spin-wrap" style="grid-column:1/-1"><div class="spin"></div> LOADING...</div>';
+  const data = await fetchData();
+  ALL = data;
+  c.innerHTML = data.length > 0
+    ? data.slice(0,3).map((m,i)=>prevCard(m,i)).join('')
+    : fallbackPrev();
 }
-function buildPreviewCard(m, i=0) {
-  return `<div class="preview-card" onclick="showPage('predictions')">
-    <img class="preview-img" src="${PIMGS[i%3]}" alt="${esc(m.home)} vs ${esc(m.away)}" loading="lazy">
-    <div class="preview-body">
-      <div class="preview-league">${getLFlag(m.league)} ${esc(m.league||'Football')}</div>
-      <div class="preview-match">${esc(m.home)} vs ${esc(m.away)}</div>
-      <div class="preview-pick"><span>Prediction</span><strong>${esc(m.prediction).toUpperCase()}</strong></div>
-      <div class="mini-bar"><div class="mini-fill" style="width:${m.confidence}%"></div></div>
-      <div class="mini-conf">${m.confidence}% CONFIDENCE</div>
+function prevCard(m,i){
+  return `<div class="prev-card" onclick="nav('predictions')">
+    <img class="prev-img" src="${IMGS[i%3]}" alt="" loading="lazy">
+    <div class="prev-body">
+      <div class="prev-lg">${flag(m.league)} ${esc(m.league||'Football')}</div>
+      <div class="prev-match">${esc(m.home)} vs ${esc(m.away)}</div>
+      <div class="prev-pick"><span>Prediction</span><strong>${esc(m.prediction).toUpperCase()}</strong></div>
+      <div class="mbar"><div class="mfill" style="width:${m.confidence}%"></div></div>
+      <div class="mconf">${m.confidence}% CONFIDENCE</div>
     </div>
   </div>`;
 }
-function buildFallbackPreviews() {
+function fallbackPrev(){
   return [
-    {league:'Premier League', home:'Arsenal',    away:'Chelsea',       prediction:'Home Win',   confidence:85},
-    {league:'La Liga',        home:'Barcelona',  away:'Real Madrid',   prediction:'Both Score', confidence:79},
-    {league:'UCL',            home:'PSG',        away:'Bayern Munich', prediction:'Home Win',   confidence:91},
-  ].map((m,i) => buildPreviewCard(m,i)).join('');
+    {league:'Premier League',home:'Arsenal',away:'Chelsea',prediction:'Home Win',confidence:85},
+    {league:'La Liga',home:'Barcelona',away:'Real Madrid',prediction:'Both Score',confidence:79},
+    {league:'Champions League',home:'PSG',away:'Bayern Munich',prediction:'Home Win',confidence:91},
+  ].map((m,i)=>prevCard(m,i)).join('');
 }
 
-/* ═══════════════════════════════════════════
+/* ═══════════════════
    PREDICTIONS PAGE
-═══════════════════════════════════════════ */
-async function loadPredictions() {
-  document.getElementById('pred-loading').style.display = 'flex';
-  document.getElementById('pred-list').style.display    = 'none';
-  document.getElementById('pred-empty').style.display   = 'none';
-  document.getElementById('pred-pagi').innerHTML = '';
-  const matches = await fetchData();
-  allMatches = matches;
-  applyFilter(curFilter);
+═══════════════════ */
+async function loadPredictions(){
+  document.getElementById('pload').style.display = 'flex';
+  document.getElementById('plist').style.display = 'none';
+  document.getElementById('pempty').style.display = 'none';
+  document.getElementById('ppagi').innerHTML = '';
+  const data = await fetchData();
+  ALL = data;
+  applyFilter(CUR_FILTER);
 }
-function applyFilter(lg) {
-  curFilter = lg;
-  curPage   = 1;
-  filteredMatches = lg === 'all' ? [...allMatches] : allMatches.filter(m => m.league === lg);
-  renderPredCards();
+function applyFilter(lg){
+  CUR_FILTER = lg; CUR_PAGE = 1;
+  FILTERED = lg==='all' ? [...ALL] : ALL.filter(m=>m.league===lg);
+  renderPreds();
 }
-function filterPred(btn, lg) {
-  document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
+function doFilter(btn,lg){
+  document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
   applyFilter(lg);
 }
-function renderPredCards() {
-  const loading = document.getElementById('pred-loading');
-  const list    = document.getElementById('pred-list');
-  const empty   = document.getElementById('pred-empty');
-  const pagi    = document.getElementById('pred-pagi');
-  const badge   = document.getElementById('pred-count-badge');
-  loading.style.display = 'none';
-  if (badge) badge.textContent = '🎯 ' + filteredMatches.length + ' predictions';
-  if (!filteredMatches.length) {
-    list.style.display = 'none';
-    empty.style.display = 'block';
-    return;
-  }
-  const total = filteredMatches.length;
-  const pages = Math.ceil(total / PER_PAGE);
-  const slice = filteredMatches.slice((curPage-1)*PER_PAGE, curPage*PER_PAGE);
-  list.innerHTML = slice.map(buildPredCard).join('');
+function renderPreds(){
+  const load  = document.getElementById('pload');
+  const list  = document.getElementById('plist');
+  const empty = document.getElementById('pempty');
+  const pagi  = document.getElementById('ppagi');
+  const cnt   = document.getElementById('pcnt');
+  load.style.display = 'none';
+  if(cnt) cnt.textContent = '🎯 '+FILTERED.length+' predictions';
+  if(!FILTERED.length){ list.style.display='none'; empty.style.display='block'; return; }
+  const pages = Math.ceil(FILTERED.length/PER);
+  const slice = FILTERED.slice((CUR_PAGE-1)*PER, CUR_PAGE*PER);
+  list.innerHTML = slice.map(buildCard).join('');
   list.style.display = 'grid';
   empty.style.display = 'none';
-  pagi.innerHTML = pages > 1
-    ? `<div class="pagination">
-        <button class="page-btn" onclick="changePage(${curPage-1})" ${curPage===1?'disabled':''}>◀ Prev</button>
-        <span class="page-info">Page ${curPage} of ${pages}</span>
-        <button class="page-btn" onclick="changePage(${curPage+1})" ${curPage===pages?'disabled':''}>Next ▶</button>
+  pagi.innerHTML = pages>1
+    ? `<div class="pagi">
+        <button class="pbtn" onclick="changePg(${CUR_PAGE-1})" ${CUR_PAGE===1?'disabled':''}>◀ Prev</button>
+        <span class="pinfo">Page ${CUR_PAGE} of ${pages}</span>
+        <button class="pbtn" onclick="changePg(${CUR_PAGE+1})" ${CUR_PAGE===pages?'disabled':''}>Next ▶</button>
        </div>` : '';
 }
-function changePage(n) {
-  curPage = n;
-  renderPredCards();
-  window.scrollTo({top:0, behavior:'smooth'});
-}
-function buildPredCard(m) {
-  const cc = m.confidence >= 80 ? 'high' : m.confidence >= 65 ? 'mid' : 'low';
-  const chips = (m.tips||[]).map(t => {
-    const cl = t.toLowerCase().includes('home') ? 'green'
-             : t.toLowerCase().includes('away') ? 'red'
-             : (t.toLowerCase().includes('btts')||t.toLowerCase().includes('both')) ? 'blue'
-             : 'yellow';
+function changePg(n){ CUR_PAGE=n; renderPreds(); window.scrollTo({top:0,behavior:'smooth'}); }
+
+function buildCard(m){
+  const cc = m.confidence>=80?'hi':m.confidence>=65?'md':'lo';
+  const chips = (m.tips||[]).map(t=>{
+    const cl = t.toLowerCase().includes('home')?'cg':t.toLowerCase().includes('away')?'cr':(t.toLowerCase().includes('btts')||t.toLowerCase().includes('both'))?'cb':'cy';
     return `<span class="chip ${cl}">${esc(t)}</span>`;
   }).join('');
-  const dateStr = m.date ? new Date(m.date).toLocaleDateString('en-GB',{day:'2-digit',month:'short'}) : 'Today';
-  return `<div class="pred-card">
-    <div class="pred-card-header">
-      <div class="pred-league">${getLFlag(m.league)} ${esc(m.league||'Football')}</div>
-      <div class="pred-time">⏰ ${esc(dateStr)} ${esc(m.time||'')}</div>
+  const ds = m.date ? new Date(m.date).toLocaleDateString('en-GB',{day:'2-digit',month:'short'}) : 'Today';
+  return `<div class="pc">
+    <div class="pc-hd">
+      <div class="pc-lg">${flag(m.league)} ${esc(m.league||'Football')}</div>
+      <div class="pc-tm">⏰ ${esc(ds)} ${esc(m.time||'')}</div>
     </div>
-    <div class="pred-card-body">
-      <div class="team-side">
-        <div class="team-logo-wrap">${getEmj(m.home)}</div>
-        <div class="team-name">${esc(m.home)}</div>
+    <div class="pc-body">
+      <div class="team">
+        <div class="team-ico">${emj(m.home)}</div>
+        <div class="team-nm">${esc(m.home)}</div>
       </div>
-      <div class="vs-block">
-        <span class="vs-label">VS</span>
-        <span class="vs-time-badge">${esc(m.time||'--:--')}</span>
+      <div class="vs">
+        <span class="vs-lbl">VS</span>
+        <span class="vs-t">${esc(m.time||'--:--')}</span>
       </div>
-      <div class="team-side right">
-        <div class="team-logo-wrap">${getEmj(m.away)}</div>
-        <div class="team-name">${esc(m.away)}</div>
+      <div class="team r">
+        <div class="team-ico">${emj(m.away)}</div>
+        <div class="team-nm">${esc(m.away)}</div>
       </div>
     </div>
-    <div class="pred-card-footer">
+    <div class="pc-ft">
+      <div><div class="pick-lbl">Prediction</div><div class="pick-val">${esc(m.prediction)}</div></div>
       <div>
-        <div class="pred-pick-label">Prediction</div>
-        <div class="pred-pick-value">${esc(m.prediction)}</div>
+        <div class="conf-row"><span>Confidence</span><span>${m.confidence}%</span></div>
+        <div class="cbar"><div class="cfill ${cc}" style="width:${m.confidence}%"></div></div>
       </div>
-      <div>
-        <div class="conf-label"><span>Confidence</span><span>${m.confidence}%</span></div>
-        <div class="conf-bar"><div class="conf-fill ${cc}" style="width:${m.confidence}%"></div></div>
-      </div>
-      ${chips ? `<div class="tip-chips">${chips}</div>` : ''}
-      ${m.notes ? `<div style="font-size:11px;color:var(--muted);font-style:italic;font-weight:600;border-top:1px solid rgba(255,255,255,.05);padding-top:7px">📝 ${esc(m.notes)}</div>` : ''}
+      ${chips?`<div class="chips">${chips}</div>`:''}
+      ${m.notes?`<div class="pc-notes">📝 ${esc(m.notes)}</div>`:''}
     </div>
   </div>`;
 }
 
-/* ═══════════════════════════════════════════
-   ADMIN — LOGIN / LOGOUT
-═══════════════════════════════════════════ */
-function handleManualLogin() {
-  const user = document.getElementById('adm-user-input').value.trim();
-  const pass = document.getElementById('adm-pass-input').value.trim();
-  if (user.toLowerCase() === 'kim aristide' && pass === '25125ABC@kim') {
-    sessionStorage.setItem('keyx_admin_logged', 'true');
-    showAdminPanel();
-    notify('✅ Welcome, Kim Aristide!', 'success');
+/* ═══════════════════
+   ADMIN AUTH
+═══════════════════ */
+function doLogin(){
+  const u = document.getElementById('au').value.trim();
+  const p = document.getElementById('ap').value.trim();
+  if(u.toLowerCase()==='kim aristide' && p==='25125ABC@kim'){
+    sessionStorage.setItem('kx_auth','1');
+    showDash();
+    notify('✅ Welcome, Kim Aristide!','ok');
   } else {
-    notify('❌ Amazina cyangwa Password ntabwo ari byo!', 'error');
-    document.getElementById('adm-pass-input').value = '';
+    notify('❌ Wrong username or password','err');
+    document.getElementById('ap').value='';
   }
 }
-function showAdminPanel() {
-  document.getElementById('admin-login').style.display = 'none';
-  document.getElementById('admin-panel').style.display  = 'block';
-  loadAdminMatches();
+function showDash(){
+  document.getElementById('alog').style.display  = 'none';
+  document.getElementById('adash').style.display = 'block';
+  loadAdminList();
 }
-function adminLogout() {
-  sessionStorage.removeItem('keyx_admin_logged');
-  document.getElementById('admin-login').style.display = 'flex';
-  document.getElementById('admin-panel').style.display  = 'none';
-  notify('👋 Signed out', 'info');
-}
-
-/* ═══════════════════════════════════════════
-   ADMIN — TABS
-═══════════════════════════════════════════ */
-function adminTab(btn, id) {
-  document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById(id).classList.add('active');
-  if (id === 'tab-slides') buildSlidesManager();
-  if (id === 'tab-matches') loadAdminMatches();
+function doLogout(){
+  sessionStorage.removeItem('kx_auth');
+  document.getElementById('alog').style.display  = 'flex';
+  document.getElementById('adash').style.display = 'none';
+  notify('👋 Signed out','inf');
 }
 
-/* ═══════════════════════════════════════════
-   ADMIN — SAVE MATCH
-═══════════════════════════════════════════ */
-async function saveMatch() {
-  const home = fv('f-home'), away = fv('f-away'), pred = fv('f-pred');
-  if (!home || !away || !pred) {
-    notify('⚠️ Home Team, Away Team na Prediction birakenewe!', 'error');
-    return;
-  }
-  const btn = document.getElementById('btn-save');
-  btn.disabled = true; btn.textContent = '⏳ SAVING...';
+/* ═══════════════════
+   ADMIN TABS
+═══════════════════ */
+function aTab(btn,id){
+  document.querySelectorAll('.atab').forEach(t=>t.classList.remove('on'));
+  document.querySelectorAll('.asec').forEach(s=>s.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById(id).classList.add('on');
+  if(id==='ats') buildSlideMgr();
+  if(id==='atm') loadAdminList();
+}
+
+/* ═══════════════════
+   SAVE MATCH
+═══════════════════ */
+async function saveMatch(){
+  const home=fv('fh'), away=fv('fa'), pred=fv('fp');
+  if(!home||!away||!pred){ notify('⚠️ Home, Away and Prediction required','err'); return; }
+  const btn = document.getElementById('bsave');
+  btn.disabled=true; btn.textContent='⏳ SAVING...';
   try {
-    const row = [
+    await postData({action:'add', row:[
       String(Date.now()), home, away,
-      fv('f-league'), fv('f-time'), fv('f-date'), pred,
-      fv('f-conf'), fv('f-tips'), fv('f-notes')
-    ];
-    await scriptPost({action:'add', row});
-    notify('✅ Saved to Google Sheets!', 'success');
+      fv('fl'), fv('ft'), fv('fd'), pred,
+      fv('fc'), fv('fti'), fv('fn')
+    ]});
+    notify('✅ Saved to Google Sheets!','ok');
     clearAddForm();
-    setTimeout(loadAdminMatches, 1500);
-  } catch(e) {
-    notify('❌ ' + e.message, 'error');
+    setTimeout(loadAdminList, 2000);
+  } catch(e){
+    notify('❌ '+e.message,'err');
   } finally {
-    btn.disabled = false; btn.textContent = '💾 SAVE TO GOOGLE SHEETS';
+    btn.disabled=false; btn.textContent='💾 SAVE TO GOOGLE SHEETS';
   }
 }
-function clearAddForm() {
-  ['f-home','f-away','f-pred','f-tips','f-notes'].forEach(id => {
-    document.getElementById(id).value = '';
-  });
-  document.getElementById('f-conf').value = 75;
-  document.getElementById('conf-val').textContent = '75';
-  document.getElementById('f-date').valueAsDate = new Date();
+function clearAddForm(){
+  ['fh','fa','fp','fti','fn'].forEach(id=>{ document.getElementById(id).value=''; });
+  document.getElementById('fc').value=75;
+  document.getElementById('fcv').textContent='75';
+  document.getElementById('fd').valueAsDate=new Date();
 }
 
-/* ═══════════════════════════════════════════
-   ADMIN — LOAD MATCHES LIST
-═══════════════════════════════════════════ */
-async function loadAdminMatches() {
-  const c = document.getElementById('admin-list');
-  if (!c) return;
-  c.innerHTML = '<div class="loading-spinner"><div class="spinner"></div> LOADING...</div>';
-  const matches = await fetchData();
-  allMatches = matches;
-  if (!matches.length) {
-    c.innerHTML = `<div class="empty-state">
-      <div class="icon">📋</div><div>Nta predictions zirahari.</div>
-      <p>Shyiramo imwe ukoresheje form hejuru.</p>
-    </div>`;
+/* ═══════════════════
+   ADMIN LIST
+═══════════════════ */
+async function loadAdminList(){
+  const c = document.getElementById('alist');
+  if(!c) return;
+  c.innerHTML = '<div class="spin-wrap"><div class="spin"></div> LOADING...</div>';
+  const data = await fetchData();
+  ALL = data;
+  if(!data.length){
+    c.innerHTML = `<div class="empty"><div class="ei">📋</div><div>No predictions yet.</div><p>Add one using the form above.</p></div>`;
     return;
   }
-  c.innerHTML = `<table class="matches-table">
-    <thead><tr>
-      <th>Match</th><th>League</th><th>Prediction</th><th>Conf</th><th>Actions</th>
-    </tr></thead>
-    <tbody>
-      ${matches.map((m,i) => `<tr>
-        <td>
-          <div class="td-teams">${esc(m.home)} vs ${esc(m.away)}</div>
-          <div style="font-size:10px;color:var(--muted);margin-top:2px">${esc(m.date||'')} ${esc(m.time||'')}</div>
-        </td>
-        <td><div class="td-league">${getLFlag(m.league)} ${esc(m.league)}</div></td>
-        <td class="td-pred">${esc(m.prediction)}</td>
-        <td class="td-conf">${m.confidence}%</td>
-        <td><div class="td-actions">
-          <button class="btn-edit" onclick="openEditModal(${i})">✏️ Edit</button>
-          <button class="btn-del"  onclick="delMatch(${i},'${esc(m.home+' vs '+m.away)}')">🗑 Del</button>
-        </div></td>
-      </tr>`).join('')}
-    </tbody>
+  c.innerHTML = `<table class="mtbl">
+    <thead><tr><th>Match</th><th>League</th><th>Prediction</th><th>Conf</th><th>Actions</th></tr></thead>
+    <tbody>${data.map((m,i)=>`<tr>
+      <td>
+        <div class="tteam">${esc(m.home)} vs ${esc(m.away)}</div>
+        <div style="font-size:9px;color:var(--mu);margin-top:2px">${esc(m.date||'')} ${esc(m.time||'')}</div>
+      </td>
+      <td><div class="tlg">${flag(m.league)} ${esc(m.league)}</div></td>
+      <td class="tpred">${esc(m.prediction)}</td>
+      <td class="tconf">${m.confidence}%</td>
+      <td><div class="tact">
+        <button class="btn-ed" onclick="openEdit(${i})">✏️ Edit</button>
+        <button class="btn-dl" onclick="delMatch(${i})">🗑 Del</button>
+      </div></td>
+    </tr>`).join('')}</tbody>
   </table>`;
 }
 
-/* ═══════════════════════════════════════════
-   ADMIN — EDIT MATCH
-═══════════════════════════════════════════ */
-function openEditModal(idx) {
-  const m = allMatches[idx];
-  document.getElementById('e-home').value   = m.home || '';
-  document.getElementById('e-away').value   = m.away || '';
-  document.getElementById('e-pred').value   = m.prediction || '';
-  document.getElementById('e-time').value   = m.time || '';
-  document.getElementById('e-date').value   = m.date || '';
-  document.getElementById('e-tips').value   = (m.tips||[]).join(', ');
-  document.getElementById('e-notes').value  = m.notes || '';
-  document.getElementById('e-conf').value   = m.confidence || 75;
-  document.getElementById('e-cv').textContent = m.confidence || 75;
-  document.getElementById('e-league').value = m.league || 'Premier League';
-  document.getElementById('e-row').value    = m.rowIndex || sheetRowMap[idx] || 0;
+/* ═══════════════════
+   EDIT MATCH
+═══════════════════ */
+function openEdit(idx){
+  const m = ALL[idx];
+  document.getElementById('e-home').value  = m.home||'';
+  document.getElementById('e-away').value  = m.away||'';
+  document.getElementById('e-pred').value  = m.prediction||'';
+  document.getElementById('e-time').value  = m.time||'';
+  document.getElementById('e-date').value  = m.date||'';
+  document.getElementById('e-tips').value  = (m.tips||[]).join(', ');
+  document.getElementById('e-notes').value = m.notes||'';
+  document.getElementById('e-conf').value  = m.confidence||75;
+  document.getElementById('ecv').textContent = m.confidence||75;
+  document.getElementById('e-league').value = m.league||'Premier League';
+  document.getElementById('e-row').value   = m.rowIndex||ROWMAP[idx]||0;
   document.getElementById('edit-modal').classList.add('open');
 }
-async function updateMatch() {
+async function updateMatch(){
   const rowNum = parseInt(document.getElementById('e-row').value);
   const home   = document.getElementById('e-home').value.trim();
   const away   = document.getElementById('e-away').value.trim();
   const pred   = document.getElementById('e-pred').value.trim();
-  if (!home || !away || !pred) { notify('⚠️ Fill required fields', 'error'); return; }
-  const row = [
-    String(Date.now()), home, away,
-    document.getElementById('e-league').value,
-    document.getElementById('e-time').value,
-    document.getElementById('e-date').value,
-    pred, document.getElementById('e-conf').value,
-    document.getElementById('e-tips').value,
-    document.getElementById('e-notes').value
-  ];
-  const btn = document.getElementById('btn-update');
-  btn.disabled = true; btn.textContent = '⏳ UPDATING...';
+  if(!home||!away||!pred){ notify('⚠️ Fill required fields','err'); return; }
+  const btn = document.getElementById('btn-upd');
+  btn.disabled=true; btn.textContent='⏳ UPDATING...';
   try {
-    await scriptPost({action:'update', rowIndex:rowNum, row});
-    notify('✅ Prediction yavuguruwe!', 'success');
+    await postData({action:'update', rowIndex:rowNum, row:[
+      String(Date.now()), home, away,
+      document.getElementById('e-league').value,
+      document.getElementById('e-time').value,
+      document.getElementById('e-date').value,
+      pred,
+      document.getElementById('e-conf').value,
+      document.getElementById('e-tips').value,
+      document.getElementById('e-notes').value
+    ]});
+    notify('✅ Updated!','ok');
     closeModal('edit-modal');
-    setTimeout(loadAdminMatches, 1500);
-  } catch(e) {
-    notify('❌ ' + e.message, 'error');
+    setTimeout(loadAdminList, 2000);
+  } catch(e){
+    notify('❌ '+e.message,'err');
   } finally {
-    btn.disabled = false; btn.textContent = '💾 UPDATE PREDICTION';
+    btn.disabled=false; btn.textContent='💾 UPDATE PREDICTION';
   }
 }
 
-/* ═══════════════════════════════════════════
-   ADMIN — DELETE MATCH
-═══════════════════════════════════════════ */
-async function delMatch(idx, label) {
-  if (!confirm('Delete "' + label + '"?\n\nIyi ntabwo ishobora gusubizwa.')) return;
-  const rowIndex = allMatches[idx].rowIndex || sheetRowMap[idx];
+/* ═══════════════════
+   DELETE MATCH
+═══════════════════ */
+async function delMatch(idx){
+  const m = ALL[idx];
+  if(!confirm('Delete "'+m.home+' vs '+m.away+'"?\nThis cannot be undone.')) return;
   try {
-    await scriptPost({action:'delete', rowIndex});
-    notify('🗑 Deleted: ' + label, 'info');
-    setTimeout(loadAdminMatches, 1500);
-  } catch(e) {
-    notify('❌ ' + e.message, 'error');
+    await postData({action:'delete', rowIndex:m.rowIndex||ROWMAP[idx]});
+    notify('🗑 Deleted','inf');
+    setTimeout(loadAdminList, 2000);
+  } catch(e){
+    notify('❌ '+e.message,'err');
   }
 }
 
-/* ═══════════════════════════════════════════
+/* ═══════════════════
    SLIDES MANAGER
-═══════════════════════════════════════════ */
-function buildSlidesManager() {
-  document.getElementById('slides-manager').innerHTML = SLIDES.map((s,i) => `
-    <div class="slide-thumb">
-      <img src="${s.bg}" alt="Slide ${i+1}"
-           style="width:100%;height:110px;object-fit:cover;display:block;filter:brightness(.7)"
+═══════════════════ */
+function buildSlideMgr(){
+  document.getElementById('smgr').innerHTML = SLIDES.map((s,i)=>`
+    <div class="sthumb">
+      <img class="sthumb-img" src="${driveImg(s.bg)}" alt="Slide ${i+1}"
            onerror="this.src='https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400'">
-      <div class="slide-thumb-body">
-        <div class="slide-thumb-title">Slide ${i+1}: ${esc(s.h1)} ${esc(s.h2)}</div>
-        <div style="font-size:10px;color:var(--muted);font-weight:600">${esc(s.tag)}</div>
-        <div class="slide-thumb-actions">
-          <button class="btn-edit" onclick="openSlideModal(${i})">✏️ Edit</button>
-          <button class="btn-del"  onclick="resetSlide(${i})">↺ Reset</button>
+      <div class="sthumb-body">
+        <div class="sthumb-title">Slide ${i+1}: ${esc(s.h1)} ${esc(s.h2)}</div>
+        <div style="font-size:9px;color:var(--mu);font-weight:600">${esc(s.tag)}</div>
+        <div class="sthumb-acts">
+          <button class="btn-ed" onclick="openSlideEdit(${i})">✏️ Edit</button>
+          <button class="btn-dl" onclick="resetSlide(${i})">↺ Reset</button>
         </div>
       </div>
     </div>`).join('');
 }
-function openSlideModal(i) {
+function openSlideEdit(i){
   const s = SLIDES[i];
   document.getElementById('sm-tag').value  = s.tag;
   document.getElementById('sm-h1').value   = s.h1;
   document.getElementById('sm-h2').value   = s.h2;
   document.getElementById('sm-desc').value = s.p;
   document.getElementById('sm-btn').value  = s.btn;
-  const url = s.bg;
-  document.getElementById('sm-img-url').value = url;
-  const prev = document.getElementById('sm-img-preview');
-  prev.src = url; prev.style.display = 'block';
-  document.getElementById('sm-idx').value = i;
+  document.getElementById('sm-bg').value   = s.bg;
+  const prev = document.getElementById('sm-prev');
+  prev.src = driveImg(s.bg); prev.style.display='block';
+  document.getElementById('sm-idx').value  = i;
   document.getElementById('slide-modal').classList.add('open');
 }
-function saveSlide() {
-  const i = parseInt(document.getElementById('sm-idx').value);
-  const imgUrl = document.getElementById('sm-img-url').value.trim() || SLIDES[i].bg;
+function saveSlide(){
+  const i   = parseInt(document.getElementById('sm-idx').value);
+  const bgRaw = document.getElementById('sm-bg').value.trim() || SLIDES[i].bg;
   SLIDES[i] = {
     tag: document.getElementById('sm-tag').value,
     h1:  document.getElementById('sm-h1').value,
     h2:  document.getElementById('sm-h2').value,
     p:   document.getElementById('sm-desc').value,
     btn: document.getElementById('sm-btn').value,
-    bg:  imgUrl
+    bg:  bgRaw
   };
-  localStorage.setItem('kx_slides', JSON.stringify(SLIDES));
-  renderSlides();
-  buildSlidesManager();
+  LS('kx_slides', JSON.stringify(SLIDES));
+  renderSlides(); buildSlideMgr();
   closeModal('slide-modal');
-  notify('✅ Slide '+(i+1)+' yavuguruwe!', 'success');
+  notify('✅ Slide '+(i+1)+' saved!','ok');
 }
-function resetSlide(i) {
-  if (!confirm('Reset slide '+(i+1)+' to default?')) return;
-  SLIDES[i] = defaultSlides()[i];
-  localStorage.setItem('kx_slides', JSON.stringify(SLIDES));
-  renderSlides(); buildSlidesManager();
-  notify('↺ Slide '+(i+1)+' reset to default', 'info');
-}
-
-/* ═══════════════════════════════════════════
-   FAVICON
-═══════════════════════════════════════════ */
-function uploadFavicon(input) {
-  if (!input.files[0]) return;
-  const reader = new FileReader();
-  reader.onload = e => {
-    FAV_URL = e.target.result;
-    localStorage.setItem('kx_favicon', FAV_URL);
-    document.getElementById('favicon-link').href = FAV_URL;
-    document.getElementById('fav-preview').src   = FAV_URL;
-    const li = document.getElementById('logo-ico');
-    li.src = FAV_URL; li.style.display = 'block';
-    notify('✅ Favicon yavuguruwe!', 'success');
-  };
-  reader.readAsDataURL(input.files[0]);
+function resetSlide(i){
+  if(!confirm('Reset slide '+(i+1)+' to default?')) return;
+  SLIDES[i] = defSlides()[i];
+  LS('kx_slides', JSON.stringify(SLIDES));
+  renderSlides(); buildSlideMgr();
+  notify('↺ Slide '+(i+1)+' reset','inf');
 }
 
-/* ═══════════════════════════════════════════
-   SETTINGS — SAVE
-═══════════════════════════════════════════ */
-function saveSettings() {
-  const newUrl = document.getElementById('set-scripturl').value.trim();
-  if (newUrl) CFG.SCRIPT_URL = newUrl;
-  TICKER  = document.getElementById('ticker-input').value.trim().split('\n').filter(Boolean).join('|');
-  S_TITLE = document.getElementById('site-title').value.trim() || 'KEYX PREDICTER';
-  S_ACC   = document.getElementById('site-accuracy').value.trim() || '85%';
+// Live preview in slide modal
+document.addEventListener('input', e=>{
+  if(e.target.id==='sm-bg'){
+    const prev = document.getElementById('sm-prev');
+    const url  = driveImg(e.target.value);
+    prev.src = url; prev.style.display = url?'block':'none';
+  }
+  if(e.target.id==='set-fav'){
+    const url = driveImg(e.target.value);
+    if(url) document.getElementById('fav-prev').src = url;
+  }
+});
 
-  localStorage.setItem('kx_scripturl', CFG.SCRIPT_URL);
-  localStorage.setItem('kx_ticker',    TICKER);
-  localStorage.setItem('kx_title',     S_TITLE);
-  localStorage.setItem('kx_acc',       S_ACC);
+/* ═══════════════════
+   SETTINGS SAVE
+═══════════════════ */
+function saveSettings(){
+  const newUrl = document.getElementById('set-url').value.trim();
+  if(newUrl){ SCRIPT_URL = newUrl; LS('kx_url', SCRIPT_URL); }
+
+  S_TITLE = document.getElementById('set-title').value.trim() || 'KEYX PREDICTER';
+  S_ACC   = document.getElementById('set-acc').value.trim()   || '85%';
+  TICKER  = document.getElementById('set-ticker').value.trim().split('\n').filter(Boolean).join('|');
+  FAV     = document.getElementById('set-fav').value.trim();
+
+  LS('kx_title',   S_TITLE);
+  LS('kx_acc',     S_ACC);
+  LS('kx_ticker',  TICKER);
+  LS('kx_fav',     FAV);
 
   document.title = S_TITLE;
   document.getElementById('stat-acc').textContent = S_ACC;
   renderTickers();
-  notify('✅ Settings zachunzwe!', 'success');
+
+  if(FAV){
+    const fu = driveImg(FAV);
+    document.getElementById('fav-link').href = fu;
+    const li = document.getElementById('logo-img');
+    li.src = fu; li.style.display = 'block';
+    document.getElementById('fav-prev').src = fu;
+  }
+
+  notify('✅ Settings saved!','ok');
 }
 
-/* ═══════════════════════════════════════════
+/* ═══════════════════
    HELPERS
-═══════════════════════════════════════════ */
-function fv(id)  { return document.getElementById(id)?.value?.trim() || ''; }
-function esc(s)  {
-  if (!s) return '';
+═══════════════════ */
+function fv(id){ return document.getElementById(id)?.value?.trim()||''; }
+function esc(s){
+  if(!s) return '';
   return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 }
-function getLFlag(l) {
-  if (!l) return '⚽';
-  const ll = l.toLowerCase();
-  if (ll.includes('premier') || ll.includes('epl'))  return '⚽';
-  if (ll.includes('la liga'))                         return '🇪🇸';
-  if (ll.includes('champions') || ll.includes('ucl')) return '🌟';
-  if (ll.includes('serie'))                           return '🇮🇹';
-  if (ll.includes('bundesliga'))                      return '🇩🇪';
-  if (ll.includes('ligue'))                           return '🇫🇷';
+function flag(l){
+  if(!l) return '⚽';
+  const v = l.toLowerCase();
+  if(v.includes('premier')||v.includes('epl'))  return '⚽';
+  if(v.includes('la liga'))                      return '🇪🇸';
+  if(v.includes('champions')||v.includes('ucl')) return '🌟';
+  if(v.includes('serie'))                        return '🇮🇹';
+  if(v.includes('bundesliga'))                   return '🇩🇪';
+  if(v.includes('ligue'))                        return '🇫🇷';
   return '🌍';
 }
-function getEmj(team) {
-  if (!team) return '⚽';
-  const t = team.toLowerCase();
-  if (t.includes('arsenal') || t.includes('liverpool') || t.includes('dortmund')) return '🔴';
-  if (t.includes('chelsea') || t.includes('man city')  || t.includes('inter'))    return '🔵';
-  if (t.includes('barcelona'))                                                     return '🔵🔴';
-  if (t.includes('real madrid') || t.includes('juventus') || t.includes('spurs')) return '⚪';
-  if (t.includes('psg'))                                                           return '🔵🔴';
-  if (t.includes('bayern'))                                                        return '🔴⚪';
+function emj(t){
+  if(!t) return '⚽';
+  const v = t.toLowerCase();
+  if(v.includes('arsenal')||v.includes('liverpool')||v.includes('dortmund')) return '🔴';
+  if(v.includes('chelsea')||v.includes('man city')||v.includes('inter'))    return '🔵';
+  if(v.includes('barcelona'))  return '🔵🔴';
+  if(v.includes('real madrid')||v.includes('juventus')||v.includes('spurs')) return '⚪';
+  if(v.includes('psg'))        return '🔵🔴';
+  if(v.includes('bayern'))     return '🔴⚪';
   return '⚽';
 }
-
-document.addEventListener('input', e => {
-  if (e.target.id === 'sm-img-url') {
-    const prev = document.getElementById('sm-img-preview');
-    prev.src = e.target.value;
-    prev.style.display = e.target.value ? 'block' : 'none';
-  }
-});
 </script>
 </body>
-  </html>
+</html>
