@@ -527,6 +527,19 @@ footer{background:var(--d2);border-top:1px solid rgba(255,255,255,.04);text-alig
             </div>
           </div>
           <div class="fg full">
+            <label class="flbl">🖼️ Slide 1 Background Image URL</label>
+            <input class="fi" id="set-s0bg" type="text" placeholder="https://... or Google Drive link">
+            <div class="hint">Saved to Google Sheet — loads for all users</div>
+          </div>
+          <div class="fg full">
+            <label class="flbl">🖼️ Slide 2 Background Image URL</label>
+            <input class="fi" id="set-s1bg" type="text" placeholder="https://... or Google Drive link">
+          </div>
+          <div class="fg full">
+            <label class="flbl">🖼️ Slide 3 Background Image URL</label>
+            <input class="fi" id="set-s2bg" type="text" placeholder="https://... or Google Drive link">
+          </div>
+          <div class="fg full">
             <label class="flbl">Ticker Messages (one per line)</label>
             <textarea class="fta" id="set-ticker" style="min-height:90px"></textarea>
           </div>
@@ -622,6 +635,10 @@ window.addEventListener('load', () => {
   document.getElementById('set-url').value    = SCRIPT_URL;
   document.getElementById('set-ticker').value = TICKER.replace(/\|/g,'\n');
   document.getElementById('set-fav').value    = FAV;
+  // Pre-fill slide bg fields
+  if(document.getElementById('set-s0bg')) document.getElementById('set-s0bg').value = SLIDES[0]?.bg||'';
+  if(document.getElementById('set-s1bg')) document.getElementById('set-s1bg').value = SLIDES[1]?.bg||'';
+  if(document.getElementById('set-s2bg')) document.getElementById('set-s2bg').value = SLIDES[2]?.bg||'';
   if(sessionStorage.getItem('kx_auth')==='1') showDash();
 });
 
@@ -724,15 +741,46 @@ function jsonpGet(url){
 }
 
 /* ═══════════════════
-   FETCH DATA
+   FETCH DATA + SETTINGS FROM SHEET
 ═══════════════════ */
 async function fetchData(){
   if(!SCRIPT_URL) return [];
   try {
-    const data = await jsonpGet(SCRIPT_URL);
-    if(!Array.isArray(data)) return [];
+    const resp = await jsonpGet(SCRIPT_URL);
+
+    // New format: {predictions:[], settings:{}}
+    // Old format: [] (array directly) — keep backward compat
+    let rows     = Array.isArray(resp) ? resp : (resp.predictions || []);
+    let settings = (!Array.isArray(resp) && resp.settings) ? resp.settings : {};
+
+    // Apply sheet settings — favicon
+    if(settings.favicon){
+      const fu = driveImg(settings.favicon);
+      document.getElementById('fav-link').href = fu;
+      const li = document.getElementById('logo-img');
+      li.src = fu; li.style.display = 'block';
+      LS('kx_fav', settings.favicon);
+    }
+
+    // Apply sheet settings — slide backgrounds
+    [0,1,2].forEach(i=>{
+      const key = 'slide'+i+'_bg';
+      if(settings[key]){
+        SLIDES[i].bg = settings[key];
+      }
+    });
+    renderSlides();
+
+    // Apply sheet settings — favicon settings field preview
+    if(settings.favicon){
+      const el = document.getElementById('set-fav');
+      if(el) el.value = settings.favicon;
+      const prev = document.getElementById('fav-prev');
+      if(prev) prev.src = driveImg(settings.favicon);
+    }
+
     ROWMAP = [];
-    return data.map(r=>{
+    return rows.map(r=>{
       ROWMAP.push(r.rowIndex||0);
       return {
         id:         r.id||'',
@@ -1118,7 +1166,7 @@ document.addEventListener('input', e=>{
 });
 
 /* ═══════════════════
-   SETTINGS SAVE
+   SETTINGS SAVE — saves to Sheet + localStorage
 ═══════════════════ */
 function saveSettings(){
   const newUrl = document.getElementById('set-url').value.trim();
@@ -1129,14 +1177,24 @@ function saveSettings(){
   TICKER  = document.getElementById('set-ticker').value.trim().split('\n').filter(Boolean).join('|');
   FAV     = document.getElementById('set-fav').value.trim();
 
+  // Slide backgrounds from settings fields
+  const s0bg = document.getElementById('set-s0bg')?.value.trim() || '';
+  const s1bg = document.getElementById('set-s1bg')?.value.trim() || '';
+  const s2bg = document.getElementById('set-s2bg')?.value.trim() || '';
+  if(s0bg){ SLIDES[0].bg = s0bg; }
+  if(s1bg){ SLIDES[1].bg = s1bg; }
+  if(s2bg){ SLIDES[2].bg = s2bg; }
+
   LS('kx_title',   S_TITLE);
   LS('kx_acc',     S_ACC);
   LS('kx_ticker',  TICKER);
   LS('kx_fav',     FAV);
+  LS('kx_slides',  JSON.stringify(SLIDES));
 
   document.title = S_TITLE;
   document.getElementById('stat-acc').textContent = S_ACC;
   renderTickers();
+  renderSlides();
 
   if(FAV){
     const fu = driveImg(FAV);
@@ -1146,7 +1204,20 @@ function saveSettings(){
     document.getElementById('fav-prev').src = fu;
   }
 
-  notify('✅ Settings saved!','ok');
+  // Post settings to Google Sheet
+  const sheetSettings = {};
+  if(FAV) sheetSettings.favicon = FAV;
+  if(s0bg) sheetSettings.slide0_bg = s0bg;
+  if(s1bg) sheetSettings.slide1_bg = s1bg;
+  if(s2bg) sheetSettings.slide2_bg = s2bg;
+
+  if(Object.keys(sheetSettings).length > 0){
+    postData({action:'saveSettings', settings: sheetSettings})
+      .then(()=> notify('✅ Settings saved to Sheet!','ok'))
+      .catch(()=> notify('✅ Settings saved locally!','ok'));
+  } else {
+    notify('✅ Settings saved!','ok');
+  }
 }
 
 /* ═══════════════════
