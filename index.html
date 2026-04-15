@@ -9,288 +9,283 @@
 <style>
 :root{
   --red:#dc2626;--red2:#b91c1c;--yellow:#facc15;--yellow2:#f59e0b;
-  --black:#111111;--dark:#1a1a1a;--gray:#f3f4f6;--gray2:#e5e7eb;
-  --white:#ffffff;--text:#111111;--muted:#6b7280;--green:#16a34a;
-  --r:10px;
+  --black:#111111;--dark:#1c1c1c;--gray:#f4f4f5;--gray2:#e4e4e7;
+  --white:#ffffff;--text:#111111;--muted:#71717a;--green:#16a34a;
+  --r:12px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
 body{font-family:'Rajdhani',sans-serif;background:var(--gray);color:var(--text);overflow-x:hidden;min-height:100vh}
 ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--red);border-radius:2px}
 
-/* ── HEADER ── */
-header{position:fixed;top:0;width:100%;height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;background:var(--black);z-index:9000;box-shadow:0 2px 12px rgba(0,0,0,.4)}
-.logo{font-family:'Bebas Neue',sans-serif;font-size:21px;color:var(--yellow);letter-spacing:4px;display:flex;align-items:center;gap:8px;cursor:pointer}
-.logo img{width:26px;height:26px;border-radius:4px;object-fit:cover;display:none}
-.logo-tag{font-size:8px;font-family:'Space Mono',monospace;color:var(--black);background:var(--yellow);padding:2px 7px;border-radius:3px;letter-spacing:2px;font-weight:700}
+/* HEADER */
+header{position:fixed;top:0;width:100%;height:54px;display:flex;align-items:center;justify-content:space-between;padding:0 18px;background:var(--black);z-index:9000;box-shadow:0 2px 16px rgba(0,0,0,.5)}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--yellow);letter-spacing:4px;display:flex;align-items:center;gap:8px;cursor:pointer;flex-shrink:0}
+.logo img{width:24px;height:24px;border-radius:4px;object-fit:cover;display:none}
+.logo-tag{font-size:7px;font-family:'Space Mono',monospace;color:var(--black);background:var(--yellow);padding:2px 6px;border-radius:3px;letter-spacing:1.5px;font-weight:700}
 nav{display:flex;align-items:center;gap:2px}
-nav a{padding:5px 13px;color:rgba(255,255,255,.6);font-weight:700;font-size:11px;letter-spacing:1.5px;border-radius:4px;cursor:pointer;transition:all .2s;text-transform:uppercase}
+nav a{padding:5px 12px;color:rgba(255,255,255,.55);font-weight:700;font-size:11px;letter-spacing:1.5px;border-radius:4px;cursor:pointer;transition:all .2s;text-transform:uppercase;white-space:nowrap}
 nav a:hover{color:#fff}
 nav a.on{background:var(--red);color:#fff}
 
-/* ── TICKER ── */
+/* TICKER */
 .ticker{background:var(--red);padding:7px 0;overflow:hidden;white-space:nowrap}
-.ticker-inner{display:inline-block;animation:tick 45s linear infinite}
-.ticker-inner span{display:inline-block;color:#fff;font-weight:700;font-size:11px;letter-spacing:1.5px;padding:0 32px}
-.ticker-inner span::before{content:'⚽ '}
+.ticker-inner{display:inline-block;animation:tick 50s linear infinite}
+.ticker-inner span{display:inline-block;color:#fff;font-weight:700;font-size:11px;letter-spacing:1.5px;padding:0 30px}
 @keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-/* ── HERO ── */
-.hero{height:100vh;position:relative;overflow:hidden;padding-top:56px}
-.slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.5s;display:flex;align-items:flex-end;padding:70px 40px}
+/* HERO */
+.hero{height:100vh;position:relative;overflow:hidden;padding-top:54px}
+.slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.5s;display:flex;align-items:flex-end;padding:65px 36px}
 .slide.on{opacity:1}
-.slide::before{content:'';position:absolute;inset:0;background:linear-gradient(160deg,rgba(0,0,0,.88),rgba(0,0,0,.3) 60%,rgba(220,38,38,.4))}
+.slide::before{content:'';position:absolute;inset:0;background:linear-gradient(150deg,rgba(0,0,0,.9),rgba(0,0,0,.3) 60%,rgba(220,38,38,.35))}
 .sc{position:relative;z-index:2;max-width:560px}
-.sc-tag{display:inline-flex;align-items:center;background:var(--yellow);color:var(--black);font-size:10px;font-weight:700;letter-spacing:3px;padding:4px 12px;border-radius:3px;margin-bottom:12px;text-transform:uppercase}
-.sc h2{font-family:'Bebas Neue',sans-serif;font-size:66px;line-height:.9;color:#fff;letter-spacing:2px;margin-bottom:12px}
+.sc-tag{display:inline-flex;align-items:center;background:var(--yellow);color:var(--black);font-size:10px;font-weight:700;letter-spacing:2px;padding:4px 11px;border-radius:3px;margin-bottom:11px;text-transform:uppercase}
+.sc h2{font-family:'Bebas Neue',sans-serif;font-size:62px;line-height:.88;color:#fff;letter-spacing:2px;margin-bottom:11px}
 .sc h2 span{color:var(--yellow)}
-.sc p{font-size:15px;color:rgba(255,255,255,.7);margin-bottom:22px;font-weight:500;line-height:1.5}
-.btn-cta{display:inline-flex;align-items:center;gap:7px;background:var(--red);color:#fff;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;letter-spacing:2px;padding:12px 28px;border:none;cursor:pointer;text-transform:uppercase;border-radius:4px;transition:all .2s}
+.sc p{font-size:14px;color:rgba(255,255,255,.65);margin-bottom:20px;font-weight:500;line-height:1.5}
+.btn-cta{display:inline-flex;align-items:center;gap:6px;background:var(--red);color:#fff;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;letter-spacing:2px;padding:11px 26px;border:none;cursor:pointer;text-transform:uppercase;border-radius:4px;transition:all .2s}
 .btn-cta:hover{background:var(--red2);transform:translateY(-2px);box-shadow:0 10px 28px rgba(220,38,38,.4)}
-.dots{position:absolute;bottom:22px;right:44px;display:flex;gap:6px;z-index:10}
+.dots{position:absolute;bottom:20px;right:40px;display:flex;gap:6px;z-index:10}
 .dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:all .3s}
-.dot.on{background:var(--yellow);width:22px;border-radius:3px}
+.dot.on{background:var(--yellow);width:20px;border-radius:3px}
 
-/* ── STATS STRIP ── */
+/* STATS */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);background:var(--black)}
-.stat{text-align:center;padding:18px 10px;border-right:1px solid rgba(255,255,255,.07)}
+.stat{text-align:center;padding:17px 10px;border-right:1px solid rgba(255,255,255,.06)}
 .stat:last-child{border-right:none}
-.stat-n{font-family:'Bebas Neue',sans-serif;font-size:34px;color:var(--yellow);letter-spacing:2px;line-height:1}
-.stat-l{font-size:9px;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,.45);text-transform:uppercase;margin-top:2px}
+.stat-n{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--yellow);letter-spacing:2px;line-height:1}
+.stat-l{font-size:9px;font-weight:700;letter-spacing:2px;color:rgba(255,255,255,.4);text-transform:uppercase;margin-top:2px}
 
-/* ── PAGES ── */
+/* PAGES */
 .page{display:none}.page.on{display:block}
 #ph{padding-top:0}
-#pp,#pa{padding-top:56px}
-.sec{padding:22px 16px;max-width:1080px;margin:0 auto}
-.sec-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
-.sec-title{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:2px;color:var(--black)}
+#pp,#pt,#pa{padding-top:54px}
+.sec{padding:18px 14px;max-width:900px;margin:0 auto}
+.sec-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:2px;color:var(--black)}
 .sec-title span{color:var(--red)}
-.badge{display:inline-flex;align-items:center;gap:5px;background:var(--yellow);color:var(--black);font-size:9px;font-weight:700;letter-spacing:1px;padding:4px 11px;border-radius:20px;text-transform:uppercase}
+.badge{display:inline-flex;align-items:center;gap:4px;background:var(--yellow);color:var(--black);font-size:9px;font-weight:700;letter-spacing:1px;padding:4px 10px;border-radius:20px;text-transform:uppercase}
+.badge-red{background:var(--red);color:#fff}
 
-/* ── FILTER TABS ── */
-.ftabs{display:flex;gap:5px;margin-bottom:14px;flex-wrap:wrap}
-.ftab{padding:5px 14px;background:var(--white);border:1.5px solid var(--gray2);color:var(--muted);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;letter-spacing:1px;cursor:pointer;border-radius:20px;transition:all .2s;text-transform:uppercase}
+/* FILTER */
+.ftabs{display:flex;gap:5px;margin-bottom:13px;flex-wrap:wrap}
+.ftab{padding:5px 13px;background:var(--white);border:1.5px solid var(--gray2);color:var(--muted);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:10px;letter-spacing:1px;cursor:pointer;border-radius:20px;transition:all .2s;text-transform:uppercase}
 .ftab:hover{border-color:var(--red);color:var(--red)}
 .ftab.on{background:var(--red);border-color:var(--red);color:#fff}
 
-/* ── PREDICTION CARDS (styled like screenshot) ── */
+/* ═══════════════════════
+   PREDICTION CARD
+   (looks like screenshot)
+═══════════════════════ */
 .pgrid{display:grid;gap:10px}
 
-.pc{background:var(--white);border-radius:12px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.08);transition:all .22s;border:1.5px solid var(--gray2)}
-.pc:hover{box-shadow:0 6px 20px rgba(0,0,0,.13);transform:translateY(-2px);border-color:var(--red)}
+.pc{background:var(--white);border-radius:var(--r);overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.07);border:1.5px solid var(--gray2);transition:all .2s}
+.pc:hover{box-shadow:0 4px 18px rgba(0,0,0,.12);transform:translateY(-1px);border-color:var(--red)}
 
-.pc-top{display:flex;align-items:center;justify-content:space-between;padding:8px 14px;background:var(--black);border-radius:10px 10px 0 0}
-.pc-league{display:flex;align-items:center;gap:6px;font-size:10px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,.7);text-transform:uppercase}
-.pc-league-flag{font-size:14px}
-.pc-date{font-size:10px;font-weight:700;color:var(--yellow);letter-spacing:.5px}
+/* TOP BAR - black like screenshot */
+.pc-top{display:flex;align-items:center;justify-content:space-between;padding:7px 13px;background:var(--black)}
+.pc-top-left{display:flex;align-items:center;gap:7px}
+.pc-flag{font-size:15px}
+.pc-league-name{font-size:10px;font-weight:700;letter-spacing:1.5px;color:rgba(255,255,255,.65);text-transform:uppercase}
+.pc-round{font-size:9px;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:1px}
+.pc-datetime{font-size:10px;font-weight:700;color:var(--yellow)}
 
-/* Teams row */
-.pc-teams{display:flex;align-items:center;justify-content:space-between;padding:12px 14px 6px}
-.pc-team-block{flex:1}
+/* TEAMS ROW */
+.pc-teams{display:flex;align-items:center;justify-content:space-between;padding:11px 13px 8px}
+.pc-team-names{flex:1}
 .pc-home{font-size:15px;font-weight:700;color:var(--black);line-height:1.2}
-.pc-away{font-size:14px;font-weight:600;color:var(--muted);line-height:1.2;margin-top:2px}
-.pc-time-badge{background:var(--yellow);color:var(--black);font-weight:700;font-size:10px;letter-spacing:.5px;padding:3px 9px;border-radius:4px;white-space:nowrap;flex-shrink:0}
+.pc-away{font-size:13px;font-weight:600;color:var(--muted);line-height:1.2;margin-top:1px}
 
-/* Stats row — 1/X/2 probs, pred badge, score, avg goals, coef */
-.pc-stats{display:grid;grid-template-columns:repeat(3,1fr) auto auto auto auto;align-items:center;padding:8px 14px;gap:6px;border-top:1px solid var(--gray2);background:#fafafa}
+/* PROB GRID + BADGE — exactly like screenshot */
+.pc-data{display:flex;align-items:center;padding:0 13px 10px;gap:10px}
 
-.prob-col{text-align:center}
-.prob-label{font-size:8px;font-weight:700;letter-spacing:1px;color:var(--muted);text-transform:uppercase;display:block;margin-bottom:2px}
-.prob-val{font-size:15px;font-weight:700;color:var(--black)}
-.prob-val.bold{color:var(--black);font-size:16px}
+.prob-group{display:flex;gap:8px;align-items:center}
+.prob-item{text-align:center;min-width:28px}
+.prob-lbl{display:block;font-size:8px;font-weight:700;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-bottom:1px}
+.prob-num{font-size:16px;font-weight:700;color:var(--muted);line-height:1}
+.prob-num.win{color:var(--black);font-size:17px}
 
-.pred-badge{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:17px;font-weight:700;flex-shrink:0;border:2px solid transparent}
-.pred-badge.b1{background:var(--yellow);color:var(--black)}
-.pred-badge.bx{background:var(--black);color:var(--yellow)}
-.pred-badge.b2{background:var(--red);color:#fff}
-.pred-badge.bbtts{background:#7c3aed;color:#fff;font-size:9px;letter-spacing:.5px}
-.pred-badge.bover{background:var(--green);color:#fff;font-size:9px;letter-spacing:.5px}
-.pred-badge.bother{background:var(--muted);color:#fff;font-size:10px}
+/* Prediction badge circle */
+.pred-circle{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:16px;font-weight:700;flex-shrink:0;margin:0 4px}
+.pred-circle.c1{background:var(--yellow);color:var(--black)}
+.pred-circle.cx{background:var(--black);color:var(--yellow)}
+.pred-circle.c2{background:var(--red);color:#fff}
+.pred-circle.cbtts{background:#7c3aed;color:#fff;font-size:9px;font-family:'Rajdhani',sans-serif;font-weight:700;letter-spacing:.5px}
+.pred-circle.cover{background:var(--green);color:#fff;font-size:9px;font-family:'Rajdhani',sans-serif;font-weight:700}
+.pred-circle.cother{background:var(--muted);color:#fff;font-size:9px;font-family:'Rajdhani',sans-serif}
 
-.stat-mini{text-align:center;flex-shrink:0}
-.stat-mini-lbl{font-size:7px;font-weight:700;letter-spacing:1px;color:var(--muted);text-transform:uppercase;display:block;margin-bottom:1px}
-.stat-mini-val{font-size:12px;font-weight:700;color:var(--black)}
+.pc-extras{display:flex;gap:10px;align-items:center;margin-left:auto}
+.pc-extra-item{text-align:center}
+.pc-extra-lbl{display:block;font-size:7px;font-weight:700;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-bottom:1px}
+.pc-extra-val{font-size:12px;font-weight:700;color:var(--black)}
 
-/* Footer row — tips, notes, video */
-.pc-footer{padding:8px 14px;border-top:1px solid var(--gray2);display:flex;align-items:center;gap:8px;flex-wrap:wrap}
-.pc-chip{font-size:8px;font-weight:700;letter-spacing:1px;padding:2px 9px;border-radius:20px;text-transform:uppercase}
-.pc-chip.cr{background:#fee2e2;color:var(--red);border:1px solid #fca5a5}
-.pc-chip.cy{background:#fef9c3;color:#92400e;border:1px solid #fde68a}
-.pc-chip.cg{background:#dcfce7;color:#15803d;border:1px solid #86efac}
-.pc-chip.cb{background:#dbeafe;color:#1d4ed8;border:1px solid #93c5fd}
-.pc-notes{font-size:10px;color:var(--muted);font-style:italic;font-weight:600;flex:1}
-.pc-video{display:inline-flex;align-items:center;gap:4px;background:var(--red);color:#fff;font-weight:700;font-size:9px;letter-spacing:1px;padding:3px 10px;border-radius:4px;text-decoration:none;text-transform:uppercase;transition:background .2s;flex-shrink:0}
-.pc-video:hover{background:var(--red2)}
-.pc-video svg{width:10px;height:10px;fill:#fff}
-
-/* Confidence bar */
-.conf-wrap{padding:0 14px 10px}
+/* CONFIDENCE BAR */
+.pc-conf{padding:0 13px 10px}
 .conf-row{display:flex;justify-content:space-between;font-size:8px;font-weight:700;letter-spacing:1px;color:var(--muted);text-transform:uppercase;margin-bottom:3px}
-.conf-row span:last-child{color:var(--red);font-size:10px}
+.conf-pct{color:var(--red)!important;font-size:10px!important}
 .cbar{height:4px;background:var(--gray2);border-radius:2px;overflow:hidden}
-.cfill{height:100%;border-radius:2px;transition:width .8s}
+.cfill{height:100%;border-radius:2px}
 .cfill.hi{background:linear-gradient(90deg,#15803d,#22c55e)}
 .cfill.md{background:linear-gradient(90deg,#d97706,var(--yellow))}
 .cfill.lo{background:linear-gradient(90deg,var(--red2),var(--red))}
 
-/* ── PAGINATION ── */
-.pagi{display:flex;justify-content:center;align-items:center;gap:9px;margin-top:22px}
-.pbtn{padding:8px 22px;background:var(--white);border:1.5px solid var(--red);color:var(--red);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;letter-spacing:1.5px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase}
+/* FOOTER ROW */
+.pc-footer{display:flex;align-items:center;gap:6px;flex-wrap:wrap;padding:8px 13px;border-top:1px solid var(--gray2);background:#fafafa}
+.pc-chip{font-size:8px;font-weight:700;letter-spacing:.5px;padding:2px 8px;border-radius:20px;text-transform:uppercase}
+.chip-r{background:#fee2e2;color:var(--red);border:1px solid #fca5a5}
+.chip-y{background:#fef9c3;color:#92400e;border:1px solid #fde68a}
+.chip-g{background:#dcfce7;color:#15803d;border:1px solid #86efac}
+.chip-b{background:#dbeafe;color:#1d4ed8;border:1px solid #93c5fd}
+.pc-note{font-size:10px;color:var(--muted);font-style:italic;font-weight:600;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pc-vid{display:inline-flex;align-items:center;gap:4px;background:var(--red);color:#fff;font-weight:700;font-size:8px;letter-spacing:1px;padding:3px 9px;border-radius:4px;text-decoration:none;text-transform:uppercase;transition:background .2s;flex-shrink:0}
+.pc-vid:hover{background:var(--red2)}
+.pc-vid svg{width:9px;height:9px;fill:#fff}
+
+/* PAGINATION */
+.pagi{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:20px}
+.pbtn{padding:7px 20px;background:var(--white);border:1.5px solid var(--red);color:var(--red);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:10px;letter-spacing:1.5px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase}
 .pbtn:hover{background:var(--red);color:#fff}
 .pbtn:disabled{opacity:.3;cursor:not-allowed}
 .pinfo{font-size:10px;color:var(--muted);font-weight:700}
 
-/* ── HOME PREVIEW GRID ── */
-.prev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-@media(max-width:860px){.prev-grid{grid-template-columns:1fr}}
-.prev-card{background:var(--white);border:1.5px solid var(--gray2);border-radius:12px;overflow:hidden;cursor:pointer;transition:all .22s;box-shadow:0 2px 8px rgba(0,0,0,.06)}
-.prev-card:hover{border-color:var(--red);transform:translateY(-2px);box-shadow:0 8px 24px rgba(220,38,38,.15)}
-.prev-img{width:100%;height:130px;object-fit:cover;filter:brightness(.85);transition:filter .22s;display:block}
+/* HOME PREVIEW GRID */
+.prev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:760px){.prev-grid{grid-template-columns:1fr}}
+.prev-card{background:var(--white);border:1.5px solid var(--gray2);border-radius:var(--r);overflow:hidden;cursor:pointer;transition:all .2s;box-shadow:0 1px 5px rgba(0,0,0,.06)}
+.prev-card:hover{border-color:var(--red);transform:translateY(-2px);box-shadow:0 6px 18px rgba(220,38,38,.12)}
+.prev-img{width:100%;height:120px;object-fit:cover;filter:brightness(.82);transition:filter .2s;display:block}
 .prev-card:hover .prev-img{filter:brightness(1)}
-.prev-body{padding:12px}
-.prev-lg{font-size:9px;font-weight:700;letter-spacing:2px;color:var(--red);text-transform:uppercase;margin-bottom:3px}
-.prev-match{font-size:13px;font-weight:700;color:var(--black);margin-bottom:6px}
+.prev-body{padding:11px}
+.prev-lg{font-size:9px;font-weight:700;letter-spacing:1.5px;color:var(--red);text-transform:uppercase;margin-bottom:3px}
+.prev-match{font-size:13px;font-weight:700;color:var(--black);margin-bottom:5px}
 .prev-pick{display:flex;justify-content:space-between;align-items:center}
-.prev-pick span{font-size:10px;font-weight:600;color:var(--muted)}
+.prev-pick span{font-size:9px;font-weight:600;color:var(--muted)}
 .prev-pick strong{color:var(--red);font-size:11px}
-.mbar{height:3px;background:var(--gray2);border-radius:2px;margin-top:7px;overflow:hidden}
+.mbar{height:2px;background:var(--gray2);border-radius:2px;margin-top:6px;overflow:hidden}
 .mfill{height:100%;background:var(--red);border-radius:2px}
 .mconf{font-size:8px;color:var(--muted);margin-top:3px;font-weight:700;letter-spacing:1px}
 
-/* ── LOADING / EMPTY ── */
+/* TODAY BANNER */
+.today-banner{background:var(--black);padding:12px 14px;display:flex;align-items:center;justify-content:space-between;max-width:900px;margin:0 auto 14px;border-radius:var(--r)}
+.today-date{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--yellow);letter-spacing:2px}
+.today-count{font-size:11px;font-weight:700;color:rgba(255,255,255,.6);letter-spacing:1px}
+
+/* LOADING / EMPTY */
 .spin-wrap{display:flex;align-items:center;justify-content:center;padding:44px;gap:9px;color:var(--muted);font-weight:700;letter-spacing:2px;font-size:11px}
 .spin{width:20px;height:20px;border:2.5px solid var(--gray2);border-top-color:var(--red);border-radius:50%;animation:sp .7s linear infinite}
 @keyframes sp{to{transform:rotate(360deg)}}
-.empty{text-align:center;padding:52px 16px;color:var(--muted)}
-.empty .ei{font-size:42px;margin-bottom:11px}
-.empty p{font-size:11px;margin-top:4px;opacity:.7}
+.empty{text-align:center;padding:48px 16px;color:var(--muted)}
+.empty .ei{font-size:40px;margin-bottom:10px}
+.empty p{font-size:11px;margin-top:3px;opacity:.65}
 
-/* ══════════════════════════════
-   ADMIN (hidden, accessed from footer)
-══════════════════════════════ */
-.alog{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 56px);padding:20px;background:var(--gray)}
-.alog-card{background:var(--white);border:1.5px solid var(--gray2);border-radius:14px;padding:36px 40px;max-width:400px;width:100%;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,.1)}
-.alog-ico{font-size:44px;margin-bottom:8px}
-.alog-title{font-family:'Bebas Neue',sans-serif;font-size:34px;letter-spacing:3px;color:var(--black);margin-bottom:5px}
+/* ══════════ ADMIN ══════════ */
+.alog{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 54px);padding:20px;background:var(--gray)}
+.alog-card{background:var(--white);border:1.5px solid var(--gray2);border-radius:14px;padding:34px 38px;max-width:390px;width:100%;text-align:center;box-shadow:0 8px 32px rgba(0,0,0,.09)}
+.alog-ico{font-size:42px;margin-bottom:8px}
+.alog-title{font-family:'Bebas Neue',sans-serif;font-size:32px;letter-spacing:3px;color:var(--black);margin-bottom:4px}
 .alog-title span{color:var(--red)}
-.alog-sub{color:var(--muted);font-size:12px;font-weight:600;letter-spacing:1px;margin-bottom:18px}
-.afg{text-align:left;margin-bottom:13px}
-.afg label{display:block;font-size:9px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:5px}
-.ainput{width:100%;padding:11px 13px;background:var(--gray);border:1.5px solid var(--gray2);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;border-radius:6px;outline:none;transition:border-color .2s}
+.alog-sub{color:var(--muted);font-size:12px;font-weight:600;letter-spacing:1px;margin-bottom:16px}
+.afg{text-align:left;margin-bottom:12px}
+.afg label{display:block;font-size:9px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:4px}
+.ainput{width:100%;padding:10px 12px;background:var(--gray);border:1.5px solid var(--gray2);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;border-radius:6px;outline:none;transition:border-color .2s}
 .ainput:focus{border-color:var(--red)}
-.alog-btn{width:100%;margin-top:4px;padding:12px;background:var(--red);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:2px;border:none;cursor:pointer;border-radius:6px;transition:all .2s}
+.alog-btn{width:100%;margin-top:3px;padding:11px;background:var(--red);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:2px;border:none;cursor:pointer;border-radius:6px;transition:all .2s}
 .alog-btn:hover{background:var(--red2);transform:translateY(-1px)}
-.alog-note{font-size:9px;color:var(--muted);letter-spacing:1px;margin-top:14px;font-weight:600}
-
-/* ADMIN DASHBOARD */
-.awrap{max-width:940px;margin:0 auto;padding:24px 16px}
-.atop{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding-bottom:13px;border-bottom:1.5px solid var(--gray2)}
-.auser{display:flex;align-items:center;gap:10px}
-.aavt{width:36px;height:36px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-family:'Bebas Neue',sans-serif;font-size:13px;border:2px solid var(--red2)}
+.alog-note{font-size:9px;color:var(--muted);letter-spacing:1px;margin-top:12px;font-weight:600}
+.awrap{max-width:920px;margin:0 auto;padding:20px 14px}
+.atop{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;padding-bottom:12px;border-bottom:1.5px solid var(--gray2)}
+.auser{display:flex;align-items:center;gap:9px}
+.aavt{width:34px;height:34px;border-radius:50%;background:var(--red);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-family:'Bebas Neue',sans-serif;font-size:13px}
 .auname{font-weight:700;font-size:13px;color:var(--black)}
-.aurole{font-size:10px;color:var(--muted)}
-.btn-out{padding:6px 14px;background:#fee2e2;border:1.5px solid #fca5a5;color:var(--red);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:10px;letter-spacing:1.5px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase}
+.aurole{font-size:9px;color:var(--muted)}
+.btn-out{padding:6px 13px;background:#fee2e2;border:1.5px solid #fca5a5;color:var(--red);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:10px;letter-spacing:1.5px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase}
 .btn-out:hover{background:var(--red);color:#fff}
-.atabs{display:flex;gap:4px;margin-bottom:18px;flex-wrap:wrap}
-.atab{padding:7px 16px;background:var(--white);border:1.5px solid var(--gray2);color:var(--muted);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:11px;letter-spacing:1.5px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase}
+.atabs{display:flex;gap:4px;margin-bottom:16px;flex-wrap:wrap}
+.atab{padding:6px 14px;background:var(--white);border:1.5px solid var(--gray2);color:var(--muted);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:10px;letter-spacing:1.5px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase}
 .atab:hover{color:var(--red);border-color:var(--red)}
 .atab.on{background:var(--red);border-color:var(--red);color:#fff}
 .asec{display:none}.asec.on{display:block}
-.acard{background:var(--white);border:1.5px solid var(--gray2);border-radius:11px;padding:22px;margin-bottom:18px;box-shadow:0 2px 8px rgba(0,0,0,.05)}
-.acard-title{font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:2px;color:var(--black);margin-bottom:16px}
+.acard{background:var(--white);border:1.5px solid var(--gray2);border-radius:10px;padding:20px;margin-bottom:16px;box-shadow:0 1px 5px rgba(0,0,0,.05)}
+.acard-title{font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:2px;color:var(--black);margin-bottom:14px}
 .acard-title span{color:var(--red)}
-.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px}
-@media(max-width:600px){.fgrid{grid-template-columns:1fr}}
-.fg{display:flex;flex-direction:column;gap:5px}
+.fgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:580px){.fgrid{grid-template-columns:1fr}}
+.fg{display:flex;flex-direction:column;gap:4px}
 .fg.full{grid-column:1/-1}
 .flbl{font-size:9px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase}
-.fi,.fs,.fta{background:var(--gray);border:1.5px solid var(--gray2);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;padding:9px 12px;border-radius:6px;transition:border-color .2s;outline:none;width:100%}
+.fi,.fs,.fta{background:var(--gray);border:1.5px solid var(--gray2);color:var(--text);font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:600;padding:8px 11px;border-radius:6px;transition:border-color .2s;outline:none;width:100%}
 .fi:focus,.fs:focus,.fta:focus{border-color:var(--red)}
 .fs option{background:var(--white)}
-.fta{resize:vertical;min-height:58px}
+.fta{resize:vertical;min-height:56px}
 .frange{width:100%;-webkit-appearance:none;height:4px;background:var(--gray2);border-radius:2px;outline:none;cursor:pointer}
-.frange::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--red);cursor:pointer}
-.btn-sv{width:100%;margin-top:14px;padding:12px;background:var(--red);color:#fff;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;border-radius:6px;transition:all .2s}
+.frange::-webkit-slider-thumb{-webkit-appearance:none;width:15px;height:15px;border-radius:50%;background:var(--red);cursor:pointer}
+.btn-sv{width:100%;margin-top:13px;padding:11px;background:var(--red);color:#fff;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:13px;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;border-radius:6px;transition:all .2s}
 .btn-sv:hover{background:var(--red2);transform:translateY(-1px)}
 .btn-sv:disabled{opacity:.45;cursor:not-allowed;transform:none}
-
-/* MATCHES TABLE */
 .mtbl{width:100%;border-collapse:collapse}
-.mtbl th{padding:9px 12px;text-align:left;font-size:9px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase;border-bottom:1.5px solid var(--gray2);background:var(--gray)}
-.mtbl td{padding:9px 12px;font-size:12px;font-weight:600;border-bottom:1px solid var(--gray2);vertical-align:middle}
+.mtbl th{padding:8px 11px;text-align:left;font-size:9px;font-weight:700;letter-spacing:2px;color:var(--muted);text-transform:uppercase;border-bottom:1.5px solid var(--gray2);background:var(--gray)}
+.mtbl td{padding:9px 11px;font-size:12px;font-weight:600;border-bottom:1px solid var(--gray2);vertical-align:middle}
 .mtbl tr:last-child td{border-bottom:none}
 .mtbl tr:hover td{background:#fef9f9}
-.tteam{color:var(--black);font-weight:700;font-size:13px}
-.tlg{color:var(--red);font-size:9px;letter-spacing:1.5px;text-transform:uppercase}
+.tteam{color:var(--black);font-weight:700;font-size:12px}
+.tlg{color:var(--red);font-size:9px;letter-spacing:1px;text-transform:uppercase}
 .tpred{color:var(--red);font-weight:700}
-.tconf{color:var(--muted);font-size:10px}
-.tact{display:flex;gap:5px}
-.btn-ed{padding:3px 9px;background:#dbeafe;border:1px solid #93c5fd;color:#1d4ed8;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:9px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase}
+.tact{display:flex;gap:4px}
+.btn-ed{padding:3px 8px;background:#dbeafe;border:1px solid #93c5fd;color:#1d4ed8;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:9px;cursor:pointer;border-radius:3px;transition:all .2s;text-transform:uppercase}
 .btn-ed:hover{background:#1d4ed8;color:#fff}
-.btn-dl{padding:3px 9px;background:#fee2e2;border:1px solid #fca5a5;color:var(--red);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:9px;cursor:pointer;border-radius:4px;transition:all .2s;text-transform:uppercase}
+.btn-dl{padding:3px 8px;background:#fee2e2;border:1px solid #fca5a5;color:var(--red);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:9px;cursor:pointer;border-radius:3px;transition:all .2s;text-transform:uppercase}
 .btn-dl:hover{background:var(--red);color:#fff}
-
-/* SLIDES MANAGER */
-.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-@media(max-width:660px){.sgrid{grid-template-columns:1fr}}
+.sgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
+@media(max-width:640px){.sgrid{grid-template-columns:1fr}}
 .sthumb{border-radius:8px;overflow:hidden;border:1.5px solid var(--gray2);transition:border-color .2s}
 .sthumb:hover{border-color:var(--red)}
-.sthumb-img{width:100%;height:100px;object-fit:cover;filter:brightness(.7);display:block}
-.sthumb-body{padding:9px;background:var(--white)}
-.sthumb-title{font-size:11px;font-weight:700;color:var(--black);margin-bottom:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.sthumb-acts{display:flex;gap:4px;margin-top:7px}
-.hint{font-size:10px;color:var(--muted);font-weight:600;margin-top:5px;line-height:1.6}
+.sthumb-img{width:100%;height:95px;object-fit:cover;filter:brightness(.65);display:block}
+.sthumb-body{padding:8px;background:var(--white)}
+.sthumb-title{font-size:10px;font-weight:700;color:var(--black);margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sthumb-acts{display:flex;gap:4px;margin-top:6px}
+.hint{font-size:10px;color:var(--muted);font-weight:600;margin-top:4px;line-height:1.5}
 .hint b{color:var(--red)}
-.sheet-badge{display:inline-flex;align-items:center;gap:5px;background:#dcfce7;border:1px solid #86efac;color:#15803d;font-size:9px;font-weight:700;letter-spacing:1.5px;padding:3px 10px;border-radius:20px;text-transform:uppercase;margin-bottom:10px}
+.prev-box{display:flex;align-items:flex-start;gap:9px;margin-top:6px}
+.fav-prev{width:44px;height:44px;border-radius:8px;object-fit:cover;border:2px solid var(--gray2);flex-shrink:0}
+.sheet-badge{display:inline-flex;align-items:center;gap:5px;background:#dcfce7;border:1px solid #86efac;color:#15803d;font-size:9px;font-weight:700;letter-spacing:1.5px;padding:3px 9px;border-radius:20px;text-transform:uppercase;margin-bottom:9px}
 .dot-pulse{width:6px;height:6px;border-radius:50%;background:#15803d;animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.fav-prev{width:46px;height:46px;border-radius:8px;object-fit:cover;border:2px solid var(--gray2);flex-shrink:0}
-.prev-box{display:flex;align-items:center;gap:10px;margin-top:7px}
-
-/* NOTIFICATION */
-.notif{position:fixed;top:64px;right:14px;padding:10px 16px;border-radius:8px;font-weight:700;font-size:11px;letter-spacing:1px;z-index:99999;transform:translateX(220%);transition:transform .4s cubic-bezier(.34,1.56,.64,1);max-width:300px;pointer-events:none;box-shadow:0 4px 16px rgba(0,0,0,.15)}
+.notif{position:fixed;top:62px;right:14px;padding:10px 15px;border-radius:8px;font-weight:700;font-size:11px;letter-spacing:1px;z-index:99999;transform:translateX(220%);transition:transform .4s cubic-bezier(.34,1.56,.64,1);max-width:290px;pointer-events:none;box-shadow:0 4px 16px rgba(0,0,0,.12)}
 .notif.show{transform:translateX(0)}
 .notif.ok{background:#dcfce7;border:1.5px solid #86efac;color:#15803d}
 .notif.err{background:#fee2e2;border:1.5px solid #fca5a5;color:var(--red)}
 .notif.inf{background:#dbeafe;border:1.5px solid #93c5fd;color:#1d4ed8}
-
-/* MODAL */
-.moverlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);z-index:99000;display:none;align-items:center;justify-content:center;padding:16px}
+.moverlay{position:fixed;inset:0;background:rgba(0,0,0,.6);backdrop-filter:blur(4px);z-index:99000;display:none;align-items:center;justify-content:center;padding:14px}
 .moverlay.open{display:flex}
-.modal{background:var(--white);border:1.5px solid var(--gray2);border-radius:13px;padding:24px;width:100%;max-width:560px;max-height:92vh;overflow-y:auto;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.2)}
-.modal-title{font-family:'Bebas Neue',sans-serif;font-size:23px;letter-spacing:2px;color:var(--black);margin-bottom:16px}
+.modal{background:var(--white);border:1.5px solid var(--gray2);border-radius:13px;padding:22px;width:100%;max-width:560px;max-height:92vh;overflow-y:auto;position:relative;box-shadow:0 20px 60px rgba(0,0,0,.18)}
+.modal-title{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;color:var(--black);margin-bottom:15px}
 .modal-title span{color:var(--red)}
-.mclose{position:absolute;top:13px;right:14px;background:var(--gray);border:none;color:var(--muted);font-size:18px;cursor:pointer;line-height:1;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.mclose{position:absolute;top:12px;right:12px;background:var(--gray);border:none;color:var(--muted);font-size:16px;cursor:pointer;line-height:1;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center}
 .mclose:hover{background:var(--red);color:#fff}
-
-/* FOOTER */
-footer{background:var(--black);text-align:center;padding:22px;font-size:10px;color:rgba(255,255,255,.35);letter-spacing:1px}
-.flogo{font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--yellow);letter-spacing:4px;margin-bottom:6px}
-.fdisc{font-size:9px;color:rgba(255,255,255,.2);margin-top:5px}
+footer{background:var(--black);text-align:center;padding:20px;font-size:10px;color:rgba(255,255,255,.3);letter-spacing:1px}
+.flogo{font-family:'Bebas Neue',sans-serif;font-size:17px;color:var(--yellow);letter-spacing:4px;margin-bottom:5px}
+.fdisc{font-size:9px;color:rgba(255,255,255,.18);margin-top:4px}
 .f-year{cursor:pointer;transition:color .2s;user-select:none}
-.f-year:hover{color:var(--yellow)}
-
-#scrollTop{position:fixed;bottom:18px;right:18px;width:36px;height:36px;background:var(--red);color:#fff;font-size:14px;border-radius:50%;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;border:none;box-shadow:0 4px 12px rgba(220,38,38,.4);transition:all .2s}
-#scrollTop:hover{background:var(--red2);transform:translateY(-2px)}
-
-@media(max-width:720px){
-  header{padding:0 14px}
-  .sc h2{font-size:46px}
+.f-year:hover{color:rgba(255,255,255,.7)}
+#scrollTop{position:fixed;bottom:16px;right:16px;width:34px;height:34px;background:var(--red);color:#fff;font-size:13px;border-radius:50%;cursor:pointer;display:none;align-items:center;justify-content:center;z-index:999;border:none;box-shadow:0 3px 10px rgba(220,38,38,.4)}
+#scrollTop:hover{background:var(--red2)}
+@media(max-width:680px){
+  header{padding:0 12px}
+  .sc h2{font-size:44px}
   .stats{grid-template-columns:repeat(2,1fr)}
-  .sec{padding:18px 12px}
-  .awrap{padding:18px 12px}
-  .slide{padding:36px 18px}
-  .pc-stats{grid-template-columns:repeat(3,1fr);gap:4px}
+  .sec{padding:14px 10px}
+  .awrap{padding:14px 10px}
+  .slide{padding:32px 16px}
+  .pc-data{flex-wrap:wrap}
 }
 </style>
 </head>
 <body>
-
 <div id="notif" class="notif"></div>
 <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">▲</button>
 
-<!-- ══ EDIT PREDICTION MODAL ══ -->
+<!-- EDIT MODAL -->
 <div class="moverlay" id="edit-modal">
   <div class="modal">
     <button class="mclose" onclick="closeModal('edit-modal')">✕</button>
@@ -311,16 +306,16 @@ footer{background:var(--black);text-align:center;padding:22px;font-size:10px;col
       </div>
       <div class="fg"><label class="flbl">Time</label><input class="fi" id="e-time" type="time"></div>
       <div class="fg"><label class="flbl">Date</label><input class="fi" id="e-date" type="date"></div>
-      <div class="fg"><label class="flbl">Prediction (1/X/2/BTTS/Over)</label><input class="fi" id="e-pred" type="text"></div>
-      <div class="fg"><label class="flbl">Prob 1 (%)</label><input class="fi" id="e-p1" type="number" min="0" max="100" placeholder="22"></div>
-      <div class="fg"><label class="flbl">Prob X (%)</label><input class="fi" id="e-px" type="number" min="0" max="100" placeholder="36"></div>
-      <div class="fg"><label class="flbl">Prob 2 (%)</label><input class="fi" id="e-p2" type="number" min="0" max="100" placeholder="43"></div>
+      <div class="fg"><label class="flbl">Prediction (1 / X / 2 / BTTS)</label><input class="fi" id="e-pred" type="text"></div>
+      <div class="fg"><label class="flbl">Prob 1 (%)</label><input class="fi" id="e-p1" type="number" min="0" max="100"></div>
+      <div class="fg"><label class="flbl">Prob X (%)</label><input class="fi" id="e-px" type="number" min="0" max="100"></div>
+      <div class="fg"><label class="flbl">Prob 2 (%)</label><input class="fi" id="e-p2" type="number" min="0" max="100"></div>
       <div class="fg"><label class="flbl">Correct Score</label><input class="fi" id="e-score" type="text" placeholder="0-2"></div>
       <div class="fg"><label class="flbl">Avg Goals</label><input class="fi" id="e-avg" type="text" placeholder="2.16"></div>
-      <div class="fg"><label class="flbl">Coefficient / Odds</label><input class="fi" id="e-coef" type="text" placeholder="1.85"></div>
-      <div class="fg"><label class="flbl">Conditions (weather)</label><input class="fi" id="e-cond" type="text" placeholder="14° ☁️"></div>
+      <div class="fg"><label class="flbl">Coefficient</label><input class="fi" id="e-coef" type="text" placeholder="1.85"></div>
+      <div class="fg"><label class="flbl">Conditions</label><input class="fi" id="e-cond" type="text" placeholder="14° ☁️"></div>
       <div class="fg full"><label class="flbl">Tips (comma separated)</label><input class="fi" id="e-tips" type="text"></div>
-      <div class="fg full"><label class="flbl">Video URL (YouTube/analysis link)</label><input class="fi" id="e-video" type="text" placeholder="https://youtube.com/..."></div>
+      <div class="fg full"><label class="flbl">Video URL</label><input class="fi" id="e-video" type="text" placeholder="https://youtube.com/..."></div>
       <div class="fg full">
         <label class="flbl">Confidence: <span id="ecv">75</span>%</label>
         <input class="frange" id="e-conf" type="range" min="50" max="99" value="75" oninput="document.getElementById('ecv').textContent=this.value">
@@ -332,13 +327,13 @@ footer{background:var(--black);text-align:center;padding:22px;font-size:10px;col
   </div>
 </div>
 
-<!-- ══ SLIDE MODAL ══ -->
+<!-- SLIDE MODAL -->
 <div class="moverlay" id="slide-modal">
   <div class="modal">
     <button class="mclose" onclick="closeModal('slide-modal')">✕</button>
     <div class="modal-title">🖼️ Edit <span>Slide</span></div>
     <div class="fgrid">
-      <div class="fg full"><label class="flbl">Tag Text</label><input class="fi" id="sm-tag" type="text"></div>
+      <div class="fg full"><label class="flbl">Tag</label><input class="fi" id="sm-tag" type="text"></div>
       <div class="fg full"><label class="flbl">Title Line 1</label><input class="fi" id="sm-h1" type="text"></div>
       <div class="fg full"><label class="flbl">Title Line 2 (yellow)</label><input class="fi" id="sm-h2" type="text"></div>
       <div class="fg full"><label class="flbl">Description</label><textarea class="fta" id="sm-desc"></textarea></div>
@@ -346,29 +341,29 @@ footer{background:var(--black);text-align:center;padding:22px;font-size:10px;col
       <div class="fg full">
         <label class="flbl">Background Image URL</label>
         <input class="fi" id="sm-bg" type="text" placeholder="https://... or Google Drive link">
-        <div class="hint">✅ Paste Unsplash URL or Drive link: drive.google.com/file/d/<b>ID</b>/view</div>
-        <img id="sm-prev" style="width:100%;max-height:120px;object-fit:cover;border-radius:6px;margin-top:8px;display:none">
+        <div class="hint">Drive: drive.google.com/file/d/<b>ID</b>/view</div>
+        <img id="sm-prev" style="width:100%;max-height:110px;object-fit:cover;border-radius:6px;margin-top:7px;display:none">
       </div>
     </div>
     <input type="hidden" id="sm-idx">
-    <button class="btn-sv" onclick="saveSlide()">💾 SAVE SLIDE TO SHEET</button>
+    <button class="btn-sv" onclick="saveSlide()">💾 SAVE TO SHEET</button>
   </div>
 </div>
 
-<!-- ══ HEADER ══ -->
+<!-- HEADER -->
 <header>
   <div class="logo" onclick="nav('home')">
     <img id="logo-img" src="" alt="">
-    KEYX PREDICTER <span class="logo-tag">AI TIPS</span>
+    KEYX <span class="logo-tag">AI TIPS</span>
   </div>
   <nav>
     <a id="nh" class="on" onclick="nav('home')">Home</a>
     <a id="np" onclick="nav('predictions')">Predictions</a>
-    <a id="nt" onclick="nav('predictions')">Today</a>
+    <a id="nt" onclick="nav('today')">Today</a>
   </nav>
 </header>
 
-<!-- ══ HOME PAGE ══ -->
+<!-- HOME PAGE -->
 <div id="ph" class="page on">
   <div class="hero">
     <div id="sl0" class="slide on">
@@ -395,31 +390,29 @@ footer{background:var(--black);text-align:center;padding:22px;font-size:10px;col
       <div class="dot" onclick="goSl(2)"></div>
     </div>
   </div>
-
   <div class="ticker"><div class="ticker-inner" id="tk1"></div></div>
-
   <div class="stats">
     <div class="stat"><div class="stat-n" id="stat-acc">85%</div><div class="stat-l">Accuracy</div></div>
     <div class="stat"><div class="stat-n">1.2K+</div><div class="stat-l">Tips/Month</div></div>
     <div class="stat"><div class="stat-n">12</div><div class="stat-l">Leagues</div></div>
     <div class="stat"><div class="stat-n">50K+</div><div class="stat-l">Users</div></div>
   </div>
-
   <div class="sec">
     <div class="sec-hd">
-      <div class="sec-title">TODAY'S <span>TOP PICKS</span></div>
+      <div class="sec-title">LATEST <span>TOP PICKS</span></div>
       <div class="badge">🎯 Live</div>
     </div>
     <div id="home-prev" class="prev-grid">
       <div class="spin-wrap" style="grid-column:1/-1"><div class="spin"></div> LOADING...</div>
     </div>
-    <div style="text-align:center;margin-top:20px">
-      <button class="btn-cta" onclick="nav('predictions')">VIEW ALL PREDICTIONS →</button>
+    <div style="display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap">
+      <button class="btn-cta" onclick="nav('predictions')">ALL PREDICTIONS →</button>
+      <button class="btn-cta" style="background:var(--black)" onclick="nav('today')">TODAY'S TIPS →</button>
     </div>
   </div>
 </div>
 
-<!-- ══ PREDICTIONS PAGE ══ -->
+<!-- ALL PREDICTIONS PAGE -->
 <div id="pp" class="page">
   <div class="ticker"><div class="ticker-inner" id="tk2"></div></div>
   <div class="sec">
@@ -438,15 +431,31 @@ footer{background:var(--black);text-align:center;padding:22px;font-size:10px;col
     <div id="pload" class="spin-wrap"><div class="spin"></div> LOADING...</div>
     <div id="plist" class="pgrid" style="display:none"></div>
     <div id="pempty" class="empty" style="display:none">
-      <div class="ei">⚽</div><div>No predictions found.</div><p>Check back soon or change the filter.</p>
+      <div class="ei">⚽</div><div style="font-weight:700">No predictions found.</div><p>Add predictions from Admin panel.</p>
     </div>
     <div id="ppagi"></div>
   </div>
 </div>
 
-<!-- ══ ADMIN PAGE (HIDDEN) ══ -->
+<!-- TODAY PAGE -->
+<div id="pt" class="page">
+  <div class="ticker"><div class="ticker-inner" id="tk3"></div></div>
+  <div class="sec">
+    <div id="today-banner" class="today-banner">
+      <div class="today-date" id="today-date-label">TODAY</div>
+      <div class="today-count" id="today-count">Loading...</div>
+    </div>
+    <div id="tload" class="spin-wrap"><div class="spin"></div> LOADING...</div>
+    <div id="tlist" class="pgrid" style="display:none"></div>
+    <div id="tempty" class="empty" style="display:none">
+      <div class="ei">📅</div><div style="font-weight:700">No tips for today.</div><p>Check back later or view all predictions.</p>
+      <button class="btn-cta" style="margin-top:14px" onclick="nav('predictions')">View All Predictions</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADMIN PAGE -->
 <div id="pa" class="page">
-  <!-- LOGIN -->
   <div id="alog" class="alog">
     <div class="alog-card">
       <div class="alog-ico">🔐</div>
@@ -459,11 +468,10 @@ footer{background:var(--black);text-align:center;padding:22px;font-size:10px;col
         <input type="password" id="ap" class="ainput" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()">
       </div>
       <button class="alog-btn" onclick="doLogin()">SIGN IN →</button>
-      <div class="alog-note">🔒 Admins only</div>
+      <div class="alog-note">🔒 Admins only — access via footer</div>
     </div>
   </div>
 
-  <!-- DASHBOARD -->
   <div id="adash" class="awrap" style="display:none">
     <div class="atop">
       <div class="auser">
@@ -498,29 +506,29 @@ footer{background:var(--black);text-align:center;padding:22px;font-size:10px;col
           </div>
           <div class="fg"><label class="flbl">Time</label><input class="fi" id="ft" type="time" value="16:30"></div>
           <div class="fg"><label class="flbl">Date</label><input class="fi" id="fd" type="date"></div>
-          <div class="fg"><label class="flbl">Prediction (1/X/2/BTTS/Over 2.5)</label><input class="fi" id="fp" type="text" placeholder="2"></div>
+          <div class="fg"><label class="flbl">Prediction (1 / X / 2 / BTTS)</label><input class="fi" id="fp" type="text" placeholder="2"></div>
           <div class="fg"><label class="flbl">Prob 1 (%)</label><input class="fi" id="fp1" type="number" min="0" max="100" placeholder="22"></div>
           <div class="fg"><label class="flbl">Prob X (%)</label><input class="fi" id="fpx" type="number" min="0" max="100" placeholder="36"></div>
           <div class="fg"><label class="flbl">Prob 2 (%)</label><input class="fi" id="fp2" type="number" min="0" max="100" placeholder="43"></div>
           <div class="fg"><label class="flbl">Correct Score</label><input class="fi" id="fscore" type="text" placeholder="0-2"></div>
           <div class="fg"><label class="flbl">Avg Goals</label><input class="fi" id="favg" type="text" placeholder="2.16"></div>
-          <div class="fg"><label class="flbl">Coefficient / Odds</label><input class="fi" id="fcoef" type="text" placeholder="1.85"></div>
+          <div class="fg"><label class="flbl">Coefficient</label><input class="fi" id="fcoef" type="text" placeholder="1.85"></div>
           <div class="fg"><label class="flbl">Conditions</label><input class="fi" id="fcond" type="text" placeholder="14° ☁️"></div>
-          <div class="fg full"><label class="flbl">Tips (comma separated)</label><input class="fi" id="fti" type="text" placeholder="Home Win, Over 2.5, BTTS"></div>
-          <div class="fg full"><label class="flbl">Video URL (YouTube / analysis)</label><input class="fi" id="fvid" type="text" placeholder="https://youtube.com/..."></div>
+          <div class="fg full"><label class="flbl">Tips (comma separated)</label><input class="fi" id="fti" type="text" placeholder="Over 2.5, BTTS"></div>
+          <div class="fg full"><label class="flbl">Video URL (YouTube/analysis)</label><input class="fi" id="fvid" type="text" placeholder="https://youtube.com/..."></div>
           <div class="fg full">
             <label class="flbl">Confidence: <span id="fcv">75</span>%</label>
             <input class="frange" id="fc" type="range" min="50" max="99" value="75" oninput="document.getElementById('fcv').textContent=this.value">
           </div>
-          <div class="fg full"><label class="flbl">Notes (optional)</label><textarea class="fta" id="fn" placeholder="Extra analysis..."></textarea></div>
+          <div class="fg full"><label class="flbl">Notes (optional)</label><textarea class="fta" id="fn"></textarea></div>
         </div>
         <button class="btn-sv" id="bsave" onclick="saveMatch()">💾 SAVE TO GOOGLE SHEETS</button>
       </div>
 
       <div class="acard" style="padding:0;overflow:hidden">
-        <div style="display:flex;justify-content:space-between;align-items:center;padding:13px 18px;border-bottom:1.5px solid var(--gray2);background:var(--gray)">
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-bottom:1.5px solid var(--gray2);background:var(--gray)">
           <div class="acard-title" style="margin-bottom:0">📋 Current <span>Predictions</span></div>
-          <button onclick="loadAdminList()" style="background:var(--white);border:1.5px solid var(--red);color:var(--red);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:10px;letter-spacing:1px;padding:4px 12px;border-radius:4px;cursor:pointer;text-transform:uppercase">↻ Refresh</button>
+          <button onclick="loadAdminList()" style="background:var(--white);border:1.5px solid var(--red);color:var(--red);font-family:'Rajdhani',sans-serif;font-weight:700;font-size:10px;letter-spacing:1px;padding:4px 11px;border-radius:4px;cursor:pointer;text-transform:uppercase">↻ Refresh</button>
         </div>
         <div id="alist" style="overflow-x:auto">
           <div class="spin-wrap"><div class="spin"></div> LOADING...</div>
@@ -531,9 +539,8 @@ footer{background:var(--black);text-align:center;padding:22px;font-size:10px;col
     <!-- SLIDES TAB -->
     <div id="ats" class="asec">
       <div class="acard">
-        <div class="acard-title">🖼️ Manage <span>Hero Slides</span></div>
+        <div class="acard-title">🖼️ <span>Hero Slides</span></div>
         <div class="sheet-badge"><span class="dot-pulse"></span> Saved to Google Sheet</div>
-        <p style="color:var(--muted);font-size:12px;font-weight:600;margin-bottom:14px">Backgrounds saved to Settings sheet. Paste image URL or Google Drive link.</p>
         <div class="sgrid" id="smgr"></div>
       </div>
     </div>
@@ -548,11 +555,10 @@ footer{background:var(--black);text-align:center;padding:22px;font-size:10px;col
           <div class="fg"><label class="flbl">Accuracy Stat</label><input class="fi" id="set-acc" type="text" placeholder="85%"></div>
           <div class="fg full"><label class="flbl">Apps Script URL</label>
             <input class="fi" id="set-url" type="text">
-            <div class="hint">Your deployed Apps Script exec URL</div>
           </div>
           <div class="fg full"><label class="flbl">Favicon / Logo URL</label>
             <div class="prev-box">
-              <img id="fav-prev" class="fav-prev" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>" alt="fav">
+              <img id="fav-prev" class="fav-prev" src="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚽</text></svg>" alt="">
               <div style="flex:1">
                 <input class="fi" id="set-fav" type="text" placeholder="https://... or Drive link" style="margin-bottom:4px">
                 <div class="hint">Drive: drive.google.com/file/d/<b>ID</b>/view</div>
@@ -560,7 +566,7 @@ footer{background:var(--black);text-align:center;padding:22px;font-size:10px;col
             </div>
           </div>
           <div class="fg full"><label class="flbl">Ticker Messages (one per line)</label>
-            <textarea class="fta" id="set-ticker" style="min-height:90px"></textarea>
+            <textarea class="fta" id="set-ticker" style="min-height:80px"></textarea>
           </div>
         </div>
         <button class="btn-sv" onclick="saveSettings()">💾 SAVE ALL TO SHEET</button>
@@ -569,16 +575,17 @@ footer{background:var(--black);text-align:center;padding:22px;font-size:10px;col
   </div>
 </div>
 
-<!-- ══ FOOTER ══ -->
+<!-- FOOTER -->
 <footer>
   <div class="flogo">KEYX PREDICTER</div>
-  <div>© <span class="f-year" onclick="triggerAdmin()" title="">2025</span> Keyx Predicter. All rights reserved.</div>
+  <div>© <span class="f-year" onclick="triggerAdmin()">2025</span> Keyx Predicter. All rights reserved.</div>
   <div class="fdisc">For entertainment purposes only. Please gamble responsibly.</div>
 </footer>
 
 <script>
 /* ══════════════════════════════
-   CONFIG
+   YOUR NEW SHEET — Apps Script URL
+   Update this after you deploy new script
 ══════════════════════════════ */
 const DEFAULT_URL = 'https://script.google.com/macros/s/AKfycbxTccMDwisr5rk6j488qBg7FmoqRNokpyWvd2tH2lmiCy65RxTACQprXaH3RQcLU0tHfA/exec';
 
@@ -591,17 +598,17 @@ let SL_ELS, DOT_ELS, CUR_SL=0, SL_TMR;
 let SCRIPT_URL = localStorage.getItem('kx_url') || DEFAULT_URL;
 
 let SLIDES=[
-  {tag:'🤖 AI Powered Predictions',h1:'PREDICT',h2:'LIKE A PRO',p:'Smart football predictions powered by real data and AI analysis.',btn:'VIEW PREDICTIONS →',bg:'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1600'},
-  {tag:'⚽ Daily Tips',h1:"TODAY'S",h2:'BEST PICKS',p:"Up to 15 high-confidence predictions every day across Europe's top leagues.",btn:"SEE TODAY'S TIPS →",bg:'https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=1600'},
+  {tag:'🤖 AI Predictions',h1:'PREDICT',h2:'LIKE A PRO',p:'Smart football predictions powered by real data and AI analysis.',btn:'VIEW PREDICTIONS →',bg:'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=1600'},
+  {tag:'⚽ Daily Tips',h1:"TODAY'S",h2:'BEST PICKS',p:"Up to 15 high-confidence predictions every day.",btn:"TODAY'S TIPS →",bg:'https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=1600'},
   {tag:'📊 85% Accuracy',h1:'DATA-DRIVEN',h2:'WINNERS',p:"Our model analyses form, head-to-head records and injuries.",btn:'EXPLORE NOW →',bg:'https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=1600'},
 ];
-let TICKER='Arsenal WIN ✓ — 85% confidence|Barcelona WIN ✓ — 79% confidence|PSG WIN ✓ — 91% confidence|Inter WIN ✓ — 78% confidence|Man City BTTS ✓ — 88% confidence|Dortmund WIN ✓ — 73% confidence';
+let TICKER='Arsenal WIN ✓ 85%|Barcelona WIN ✓ 79%|PSG WIN ✓ 91%|Inter WIN ✓ 78%|Man City BTTS ✓ 88%|Dortmund WIN ✓ 73%';
 let S_TITLE='KEYX PREDICTER — AI Football Tips', S_ACC='85%', S_FAV='';
 
-if(!localStorage.getItem('kx_url')) localStorage.setItem('kx_url', DEFAULT_URL);
+if(!localStorage.getItem('kx_url')) localStorage.setItem('kx_url',DEFAULT_URL);
 
 /* ══════════════════════════════
-   DRIVE URL CONVERTER
+   DRIVE CONVERTER
 ══════════════════════════════ */
 function driveImg(url){
   if(!url) return '';
@@ -617,55 +624,60 @@ function jsonpGet(url){
   return new Promise((res,rej)=>{
     const cb='_kx'+Date.now();
     const s=document.createElement('script');
-    const to=setTimeout(()=>{cleanup();rej(new Error('Timeout'));},12000);
+    const to=setTimeout(()=>{cleanup();rej(new Error('Timeout — redeploy script'));},15000);
     function cleanup(){clearTimeout(to);delete window[cb];s.parentNode&&s.parentNode.removeChild(s);}
     window[cb]=d=>{cleanup();res(d);};
-    s.src=url+(url.includes('?')?'&':'?')+'callback='+cb+'&nocache='+Date.now();
-    s.onerror=()=>{cleanup();rej(new Error('Script load failed'));};
+    const sep=url.includes('?')?'&':'?';
+    s.src=url+sep+'callback='+cb+'&t='+Date.now();
+    s.onerror=()=>{cleanup();rej(new Error('Network error'));};
     document.head.appendChild(s);
   });
 }
 
 /* ══════════════════════════════
-   FETCH DATA + SETTINGS FROM SHEET
+   FETCH ALL FROM SHEET
 ══════════════════════════════ */
 async function fetchAll(){
   if(!SCRIPT_URL) return {predictions:[],settings:{}};
   try{
     const data=await jsonpGet(SCRIPT_URL);
+    // Support both old array format and new {predictions,settings} format
     if(Array.isArray(data)) return {predictions:data,settings:{}};
-    return {predictions:data.predictions||[],settings:data.settings||{}};
+    if(data && data.predictions) return {predictions:data.predictions,settings:data.settings||{}};
+    return {predictions:[],settings:{}};
   }catch(e){
-    console.error('fetchAll:',e);
+    console.error('[KEYX] fetch error:',e.message);
     notify('⚠️ '+e.message,'err');
     return {predictions:[],settings:{}};
   }
 }
 
 /* ══════════════════════════════
-   APPLY SETTINGS FROM SHEET
+   APPLY SHEET SETTINGS
 ══════════════════════════════ */
 function applySheetSettings(s){
-  if(!s) return;
-  if(s.favicon||s.fav){
-    const fu=driveImg(s.favicon||s.fav);
+  if(!s||Object.keys(s).length===0) return;
+  const fav=s.favicon||s.fav||'';
+  if(fav){
+    const fu=driveImg(fav);
     document.getElementById('fav-link').href=fu;
     const li=document.getElementById('logo-img');li.src=fu;li.style.display='block';
-    document.getElementById('fav-prev').src=fu;S_FAV=s.favicon||s.fav;
+    document.getElementById('fav-prev').src=fu;S_FAV=fav;
   }
   for(let i=0;i<3;i++){
-    if(s['slide'+i+'_bg'])  SLIDES[i].bg  = s['slide'+i+'_bg'];
-    if(s['slide'+i+'_tag']) SLIDES[i].tag = s['slide'+i+'_tag'];
-    if(s['slide'+i+'_h1'])  SLIDES[i].h1  = s['slide'+i+'_h1'];
-    if(s['slide'+i+'_h2'])  SLIDES[i].h2  = s['slide'+i+'_h2'];
-    if(s['slide'+i+'_p'])   SLIDES[i].p   = s['slide'+i+'_p'];
-    if(s['slide'+i+'_btn']) SLIDES[i].btn = s['slide'+i+'_btn'];
+    if(s['slide'+i+'_bg'])  SLIDES[i].bg =s['slide'+i+'_bg'];
+    if(s['slide'+i+'_tag']) SLIDES[i].tag=s['slide'+i+'_tag'];
+    if(s['slide'+i+'_h1'])  SLIDES[i].h1 =s['slide'+i+'_h1'];
+    if(s['slide'+i+'_h2'])  SLIDES[i].h2 =s['slide'+i+'_h2'];
+    if(s['slide'+i+'_p'])   SLIDES[i].p  =s['slide'+i+'_p'];
+    if(s['slide'+i+'_btn']) SLIDES[i].btn=s['slide'+i+'_btn'];
   }
   if(s.title){S_TITLE=s.title;document.title=S_TITLE;}
   if(s.accuracy){S_ACC=s.accuracy;document.getElementById('stat-acc').textContent=S_ACC;}
   if(s.ticker){TICKER=s.ticker;renderTickers();}
-  if(s.script_url){SCRIPT_URL=s.script_url;localStorage.setItem('kx_url',SCRIPT_URL);}
+  if(s.script_url&&s.script_url!==SCRIPT_URL){SCRIPT_URL=s.script_url;localStorage.setItem('kx_url',SCRIPT_URL);}
   renderSlides();
+  // Update settings form
   document.getElementById('set-title').value=S_TITLE;
   document.getElementById('set-acc').value=S_ACC;
   document.getElementById('set-fav').value=S_FAV;
@@ -674,11 +686,73 @@ function applySheetSettings(s){
 }
 
 /* ══════════════════════════════
-   POST (no-cors)
+   POST DATA
 ══════════════════════════════ */
 async function postData(payload){
-  if(!SCRIPT_URL) throw new Error('No script URL');
-  await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'text/plain'},body:JSON.stringify(payload)});
+  if(!SCRIPT_URL) throw new Error('No Script URL — set it in Settings');
+  await fetch(SCRIPT_URL,{
+    method:'POST',mode:'no-cors',
+    headers:{'Content-Type':'text/plain'},
+    body:JSON.stringify(payload)
+  });
+}
+
+/* ══════════════════════════════
+   PARSE ROWS FROM SHEET
+   Columns: 0=id,1=home,2=away,3=league,4=time,5=date,
+   6=prediction,7=confidence,8=tips,9=notes,
+   10=prob1,11=probX,12=prob2,13=score,14=avg,
+   15=coef,16=cond,17=video
+══════════════════════════════ */
+function parseRows(data){
+  if(!Array.isArray(data)) return [];
+  ROWMAP=[];
+  return data.map(r=>{
+    ROWMAP.push(r.rowIndex||0);
+    return {
+      id:       String(r.id||''),
+      home:     String(r.home||''),
+      away:     String(r.away||''),
+      league:   String(r.league||''),
+      time:     String(r.time||''),
+      date:     String(r.date||''),
+      prediction:String(r.prediction||''),
+      confidence:parseInt(r.confidence)||75,
+      tips:     typeof r.tips==='string'?r.tips.split(',').map(t=>t.trim()).filter(Boolean):(Array.isArray(r.tips)?r.tips:[]),
+      notes:    String(r.notes||''),
+      prob1:    String(r.prob1||''),
+      probX:    String(r.probX||r.probx||''),
+      prob2:    String(r.prob2||''),
+      correctScore:String(r.correctScore||r.correct_score||r.score||''),
+      avgGoals: String(r.avgGoals||r.avg_goals||r.avg||''),
+      coefficient:String(r.coefficient||r.coef||''),
+      conditions:String(r.conditions||r.cond||''),
+      videoUrl: String(r.videoUrl||r.video_url||r.video||''),
+      rowIndex: r.rowIndex||0
+    };
+  });
+}
+
+/* ══════════════════════════════
+   TODAY HELPER
+══════════════════════════════ */
+function todayStr(){
+  const d=new Date();
+  return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+}
+function isToday(dateVal){
+  if(!dateVal) return false;
+  const s=String(dateVal);
+  const td=todayStr();
+  // Match YYYY-MM-DD or DD/MM/YYYY or similar
+  if(s.includes(td)) return true;
+  // Try parsing
+  try{
+    const d=new Date(s);
+    if(isNaN(d.getTime())) return false;
+    const ds=d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    return ds===td;
+  }catch(e){return false;}
 }
 
 /* ══════════════════════════════
@@ -699,26 +773,29 @@ window.addEventListener('load',async()=>{
    NAVIGATION
 ══════════════════════════════ */
 function nav(name){
-  ['home','predictions','admin'].forEach(p=>document.getElementById('p'+p[0]).classList.toggle('on',p===name));
+  ['home','predictions','today','admin'].forEach(p=>{
+    const el=document.getElementById('p'+p[0]);
+    if(el) el.classList.toggle('on',p===name);
+  });
   document.getElementById('nh').classList.toggle('on',name==='home');
   document.getElementById('np').classList.toggle('on',name==='predictions');
-  document.getElementById('nt').classList.toggle('on',name==='predictions');
+  document.getElementById('nt').classList.toggle('on',name==='today');
   window.scrollTo({top:0,behavior:'smooth'});
   if(name==='predictions') loadPredictions();
+  if(name==='today') loadToday();
   if(name==='home') loadHomePrev();
 }
 
-/* Hidden admin trigger — click © 2025 in footer */
-let _footerClicks=0,_footerTimer;
+/* Footer click 3x = admin */
+let _fc=0,_ft2;
 function triggerAdmin(){
-  _footerClicks++;
-  clearTimeout(_footerTimer);
-  _footerTimer=setTimeout(()=>{_footerClicks=0;},1500);
-  if(_footerClicks>=3){_footerClicks=0;nav('admin');}
+  _fc++;clearTimeout(_ft2);
+  _ft2=setTimeout(()=>_fc=0,1800);
+  if(_fc>=3){_fc=0;nav('admin');}
 }
 
 window.addEventListener('scroll',()=>{
-  document.getElementById('scrollTop').style.display=window.scrollY>380?'flex':'none';
+  document.getElementById('scrollTop').style.display=window.scrollY>360?'flex':'none';
 });
 
 /* ══════════════════════════════
@@ -759,30 +836,7 @@ function goSl(n){
 function renderTickers(){
   const msgs=TICKER.split('|').filter(Boolean);
   const html=[...msgs,...msgs].map(m=>`<span>${esc(m)}</span>`).join('');
-  ['tk1','tk2'].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML=html;});
-}
-
-/* ══════════════════════════════
-   PARSE ROWS
-══════════════════════════════ */
-function parseRows(data){
-  ROWMAP=[];
-  return data.map(r=>{
-    ROWMAP.push(r.rowIndex||0);
-    return {
-      id:r.id||'',home:r.home||'',away:r.away||'',league:r.league||'',
-      time:r.time||'',date:r.date||'',prediction:r.prediction||'',
-      confidence:parseInt(r.confidence)||75,
-      prob1:r.prob1||'',probX:r.probX||'',prob2:r.prob2||'',
-      correctScore:r.correctScore||r.correct_score||'',
-      avgGoals:r.avgGoals||r.avg_goals||'',
-      coefficient:r.coefficient||r.coef||'',
-      conditions:r.conditions||r.cond||'',
-      videoUrl:r.videoUrl||r.video_url||'',
-      tips:typeof r.tips==='string'?r.tips.split(',').map(t=>t.trim()).filter(Boolean):(Array.isArray(r.tips)?r.tips:[]),
-      notes:r.notes||'',rowIndex:r.rowIndex||0
-    };
-  });
+  ['tk1','tk2','tk3'].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML=html;});
 }
 
 /* ══════════════════════════════
@@ -799,7 +853,15 @@ async function loadHomePrev(){
   const {predictions,settings}=await fetchAll();
   applySheetSettings(settings);
   ALL=parseRows(predictions);
-  c.innerHTML=ALL.length>0?ALL.slice(0,3).map((m,i)=>prevCard(m,i)).join(''):fallback();
+  if(ALL.length>0){
+    c.innerHTML=ALL.slice(0,3).map((m,i)=>prevCard(m,i)).join('');
+  }else{
+    c.innerHTML=`<div class="empty" style="grid-column:1/-1">
+      <div class="ei">⚽</div>
+      <div style="font-weight:700">No predictions yet</div>
+      <p>Add predictions from the Admin panel</p>
+    </div>`;
+  }
 }
 function prevCard(m,i){
   return `<div class="prev-card" onclick="nav('predictions')">
@@ -813,15 +875,9 @@ function prevCard(m,i){
     </div>
   </div>`;
 }
-function fallback(){
-  return [{league:'Premier League',home:'Arsenal',away:'Chelsea',prediction:'1',confidence:85},
-    {league:'La Liga',home:'Barcelona',away:'Real Madrid',prediction:'2',confidence:79},
-    {league:'Champions League',home:'PSG',away:'Bayern Munich',prediction:'1',confidence:91},
-  ].map((m,i)=>prevCard(m,i)).join('');
-}
 
 /* ══════════════════════════════
-   PREDICTIONS PAGE
+   ALL PREDICTIONS PAGE
 ══════════════════════════════ */
 async function loadPredictions(){
   document.getElementById('pload').style.display='flex';
@@ -833,102 +889,138 @@ async function loadPredictions(){
   ALL=parseRows(predictions);
   applyFilter(CUR_FILTER);
 }
-function applyFilter(lg){CUR_FILTER=lg;CUR_PAGE=1;FILTERED=lg==='all'?[...ALL]:ALL.filter(m=>m.league===lg);renderPreds();}
-function doFilter(btn,lg){document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('on'));btn.classList.add('on');applyFilter(lg);}
-function renderPreds(){
-  const load=document.getElementById('pload'),list=document.getElementById('plist');
-  const empty=document.getElementById('pempty'),pagi=document.getElementById('ppagi');
-  const cnt=document.getElementById('pcnt');
-  load.style.display='none';
+function applyFilter(lg){
+  CUR_FILTER=lg;CUR_PAGE=1;
+  FILTERED=lg==='all'?[...ALL]:ALL.filter(m=>m.league===lg);
+  renderPreds('pload','plist','pempty','ppagi','pcnt');
+}
+function doFilter(btn,lg){
+  document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');applyFilter(lg);
+}
+
+/* ══════════════════════════════
+   TODAY PAGE
+══════════════════════════════ */
+async function loadToday(){
+  document.getElementById('tload').style.display='flex';
+  document.getElementById('tlist').style.display='none';
+  document.getElementById('tempty').style.display='none';
+  // Set today label
+  const d=new Date();
+  const opts={weekday:'long',year:'numeric',month:'long',day:'numeric'};
+  document.getElementById('today-date-label').textContent=d.toLocaleDateString('en-GB',opts).toUpperCase();
+  const {predictions,settings}=await fetchAll();
+  applySheetSettings(settings);
+  const todayPreds=parseRows(predictions).filter(m=>isToday(m.date));
+  document.getElementById('today-count').textContent=todayPreds.length+' TIP'+(todayPreds.length!==1?'S':'');
+  document.getElementById('tload').style.display='none';
+  if(todayPreds.length>0){
+    document.getElementById('tlist').innerHTML=todayPreds.map(buildCard).join('');
+    document.getElementById('tlist').style.display='grid';
+  }else{
+    document.getElementById('tempty').style.display='block';
+  }
+}
+
+/* ══════════════════════════════
+   RENDER PREDICTIONS
+══════════════════════════════ */
+function renderPreds(loadId,listId,emptyId,pagiId,cntId){
+  document.getElementById(loadId).style.display='none';
+  const cnt=document.getElementById(cntId);
   if(cnt) cnt.textContent='🎯 '+FILTERED.length+' predictions';
-  if(!FILTERED.length){list.style.display='none';empty.style.display='block';return;}
+  if(!FILTERED.length){
+    document.getElementById(listId).style.display='none';
+    document.getElementById(emptyId).style.display='block';
+    return;
+  }
   const pages=Math.ceil(FILTERED.length/PER);
   const slice=FILTERED.slice((CUR_PAGE-1)*PER,CUR_PAGE*PER);
-  list.innerHTML=slice.map(buildCard).join('');
-  list.style.display='grid';empty.style.display='none';
+  document.getElementById(listId).innerHTML=slice.map(buildCard).join('');
+  document.getElementById(listId).style.display='grid';
+  document.getElementById(emptyId).style.display='none';
+  const pagi=document.getElementById(pagiId);
   pagi.innerHTML=pages>1?`<div class="pagi">
     <button class="pbtn" onclick="changePg(${CUR_PAGE-1})" ${CUR_PAGE===1?'disabled':''}>◀ Prev</button>
     <span class="pinfo">Page ${CUR_PAGE} of ${pages}</span>
     <button class="pbtn" onclick="changePg(${CUR_PAGE+1})" ${CUR_PAGE===pages?'disabled':''}>Next ▶</button>
   </div>`:'';
 }
-function changePg(n){CUR_PAGE=n;renderPreds();window.scrollTo({top:0,behavior:'smooth'});}
+function changePg(n){CUR_PAGE=n;renderPreds('pload','plist','pempty','ppagi','pcnt');window.scrollTo({top:0,behavior:'smooth'});}
 
 /* ══════════════════════════════
-   BUILD PREDICTION CARD
-   (styled like the screenshot)
+   BUILD CARD (like screenshot)
 ══════════════════════════════ */
 function buildCard(m){
-  const pred = (m.prediction||'').trim();
-  const pl   = pred.toLowerCase();
+  const pred=(m.prediction||'').trim();
+  const pl=pred.toLowerCase();
+  let badgeCls='cother',badgeTxt=pred||'?';
+  if(pl==='1'||pl==='home win'||pl==='home')  {badgeCls='c1';badgeTxt='1';}
+  else if(pl==='x'||pl==='draw')              {badgeCls='cx';badgeTxt='X';}
+  else if(pl==='2'||pl==='away win'||pl==='away'){badgeCls='c2';badgeTxt='2';}
+  else if(pl.includes('btts')||pl.includes('both')){badgeCls='cbtts';badgeTxt='BTTS';}
+  else if(pl.includes('over'))                {badgeCls='cover';badgeTxt=pred;}
 
-  // Pick badge style + label
-  let badgeCls='bother', badgeTxt=pred||'?';
-  if(pl==='1')                                        {badgeCls='b1';badgeTxt='1';}
-  else if(pl==='x'||pl==='draw')                      {badgeCls='bx';badgeTxt='X';}
-  else if(pl==='2')                                   {badgeCls='b2';badgeTxt='2';}
-  else if(pl.includes('btts')||pl.includes('both'))   {badgeCls='bbtts';badgeTxt='BTTS';}
-  else if(pl.includes('over')||pl.includes('goals'))  {badgeCls='bover';badgeTxt=pred;}
-  else if(pl.includes('home'))                        {badgeCls='b1';badgeTxt='1';}
-  else if(pl.includes('away'))                        {badgeCls='b2';badgeTxt='2';}
-
-  // Probabilities — bold the highest
   const p1=parseInt(m.prob1)||0, px=parseInt(m.probX)||0, p2=parseInt(m.prob2)||0;
   const maxP=Math.max(p1,px,p2);
-  const p1cls=p1===maxP&&maxP>0?'bold':'';
-  const pxcls=px===maxP&&maxP>0?'bold':'';
-  const p2cls=p2===maxP&&maxP>0?'bold':'';
-
   const cc=m.confidence>=80?'hi':m.confidence>=65?'md':'lo';
-  const ds=m.date?new Date(m.date).toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'2-digit'}):'Today';
+
+  const ds=m.date?(() => {
+    try{
+      const d=new Date(m.date);
+      return isNaN(d.getTime())?m.date:d.toLocaleDateString('en-GB',{day:'2-digit',month:'short'});
+    }catch(e){return m.date;}
+  })():'';
 
   const chips=(m.tips||[]).map(t=>{
-    const cl=t.toLowerCase().includes('home')?'cg':t.toLowerCase().includes('away')?'cr':(t.toLowerCase().includes('btts')||t.toLowerCase().includes('both'))?'cb':'cy';
+    const tl=t.toLowerCase();
+    const cl=tl.includes('home')||tl.includes('win')?'chip-g':tl.includes('away')?'chip-r':(tl.includes('btts')||tl.includes('both'))?'chip-b':'chip-y';
     return `<span class="pc-chip ${cl}">${esc(t)}</span>`;
   }).join('');
 
-  const hasFooter = chips || m.notes || m.videoUrl;
+  const hasFooter=chips||m.notes||m.videoUrl;
+
+  const probRow = (p1>0||px>0||p2>0) ? `
+    <div class="prob-group">
+      <div class="prob-item"><span class="prob-lbl">1</span><span class="prob-num${p1===maxP&&maxP>0?' win':''}">${p1||'—'}</span></div>
+      <div class="prob-item"><span class="prob-lbl">X</span><span class="prob-num${px===maxP&&maxP>0?' win':''}">${px||'—'}</span></div>
+      <div class="prob-item"><span class="prob-lbl">2</span><span class="prob-num${p2===maxP&&maxP>0?' win':''}">${p2||'—'}</span></div>
+    </div>` : '';
 
   return `<div class="pc">
     <div class="pc-top">
-      <div class="pc-league"><span class="pc-league-flag">${flag(m.league)}</span>${esc(m.league||'Football')}</div>
-      <div class="pc-date">${esc(ds)} ${esc(m.time||'')}</div>
+      <div class="pc-top-left">
+        <span class="pc-flag">${flag(m.league)}</span>
+        <span class="pc-league-name">${esc(m.league||'Football')}</span>
+      </div>
+      <span class="pc-datetime">${esc(ds)} ${esc(m.time||'')}</span>
     </div>
     <div class="pc-teams">
-      <div class="pc-team-block">
+      <div class="pc-team-names">
         <div class="pc-home">${esc(m.home)}</div>
         <div class="pc-away">${esc(m.away)}</div>
       </div>
-      <div class="pc-time-badge">${esc(m.time||'--:--')}</div>
+      ${m.time?`<div class="pc-time-badge">${esc(m.time)}</div>`:''}
     </div>
-    <div class="pc-stats">
-      <div class="prob-col">
-        <span class="prob-label">1</span>
-        <span class="prob-val ${p1cls}">${p1||'—'}</span>
+    <div class="pc-data">
+      ${probRow}
+      <div class="pred-circle ${badgeCls}">${esc(badgeTxt)}</div>
+      <div class="pc-extras">
+        ${m.correctScore?`<div class="pc-extra-item"><span class="pc-extra-lbl">Score</span><span class="pc-extra-val">${esc(m.correctScore)}</span></div>`:''}
+        ${m.avgGoals?`<div class="pc-extra-item"><span class="pc-extra-lbl">Avg</span><span class="pc-extra-val">${esc(m.avgGoals)}</span></div>`:''}
+        ${m.coefficient?`<div class="pc-extra-item"><span class="pc-extra-lbl">Coef</span><span class="pc-extra-val">${esc(m.coefficient)}</span></div>`:''}
+        ${m.conditions?`<div class="pc-extra-item"><span class="pc-extra-lbl">Cond</span><span class="pc-extra-val" style="font-size:11px">${esc(m.conditions)}</span></div>`:''}
       </div>
-      <div class="prob-col">
-        <span class="prob-label">X</span>
-        <span class="prob-val ${pxcls}">${px||'—'}</span>
-      </div>
-      <div class="prob-col">
-        <span class="prob-label">2</span>
-        <span class="prob-val ${p2cls}">${p2||'—'}</span>
-      </div>
-      <div class="pred-badge ${badgeCls}">${esc(badgeTxt)}</div>
-      ${m.correctScore?`<div class="stat-mini"><span class="stat-mini-lbl">Score</span><span class="stat-mini-val">${esc(m.correctScore)}</span></div>`:''}
-      ${m.avgGoals?`<div class="stat-mini"><span class="stat-mini-lbl">Avg</span><span class="stat-mini-val">${esc(m.avgGoals)}</span></div>`:''}
-      ${m.coefficient?`<div class="stat-mini"><span class="stat-mini-lbl">Coef</span><span class="stat-mini-val">${esc(m.coefficient)}</span></div>`:''}
     </div>
-    <div class="conf-wrap">
-      <div class="conf-row"><span>CONFIDENCE</span><span>${m.confidence}%</span></div>
+    <div class="pc-conf">
+      <div class="conf-row"><span>CONFIDENCE</span><span class="conf-pct">${m.confidence}%</span></div>
       <div class="cbar"><div class="cfill ${cc}" style="width:${m.confidence}%"></div></div>
     </div>
     ${hasFooter?`<div class="pc-footer">
       ${chips}
-      ${m.notes?`<span class="pc-notes">📝 ${esc(m.notes)}</span>`:''}
-      ${m.videoUrl?`<a class="pc-video" href="${esc(m.videoUrl)}" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg> VIDEO
-      </a>`:''}
+      ${m.notes?`<span class="pc-note">📝 ${esc(m.notes)}</span>`:''}
+      ${m.videoUrl?`<a class="pc-vid" href="${esc(m.videoUrl)}" target="_blank" rel="noopener"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>VIDEO</a>`:''}
     </div>`:''}
   </div>`;
 }
@@ -940,7 +1032,7 @@ function doLogin(){
   const u=document.getElementById('au').value.trim();
   const p=document.getElementById('ap').value.trim();
   if(u.toLowerCase()==='kim aristide'&&p==='25125ABC@kim'){
-    sessionStorage.setItem('kx_auth','1');showDash();notify('✅ Welcome, Kim Aristide!','ok');
+    sessionStorage.setItem('kx_auth','1');showDash();notify('✅ Welcome!','ok');
   }else{notify('❌ Wrong credentials','err');document.getElementById('ap').value='';}
 }
 function showDash(){
@@ -952,8 +1044,7 @@ function doLogout(){
   sessionStorage.removeItem('kx_auth');
   document.getElementById('alog').style.display='flex';
   document.getElementById('adash').style.display='none';
-  notify('👋 Signed out','inf');
-  nav('home');
+  notify('👋 Signed out','inf');nav('home');
 }
 function aTab(btn,id){
   document.querySelectorAll('.atab').forEach(t=>t.classList.remove('on'));
@@ -964,11 +1055,11 @@ function aTab(btn,id){
 }
 
 /* ══════════════════════════════
-   SAVE MATCH (extended fields)
+   SAVE NEW PREDICTION
 ══════════════════════════════ */
 async function saveMatch(){
   const home=fv('fh'),away=fv('fa'),pred=fv('fp');
-  if(!home||!away||!pred){notify('⚠️ Home, Away and Prediction required','err');return;}
+  if(!home||!away||!pred){notify('⚠️ Home, Away, Prediction required','err');return;}
   const btn=document.getElementById('bsave');
   btn.disabled=true;btn.textContent='⏳ SAVING...';
   try{
@@ -978,12 +1069,15 @@ async function saveMatch(){
       fv('fp1'),fv('fpx'),fv('fp2'),
       fv('fscore'),fv('favg'),fv('fcoef'),fv('fcond'),fv('fvid')
     ]});
-    notify('✅ Saved!','ok');clearAddForm();setTimeout(loadAdminList,2000);
+    notify('✅ Saved to Google Sheets!','ok');
+    clearAddForm();setTimeout(loadAdminList,2500);
   }catch(e){notify('❌ '+e.message,'err');}
   finally{btn.disabled=false;btn.textContent='💾 SAVE TO GOOGLE SHEETS';}
 }
 function clearAddForm(){
-  ['fh','fa','fp','fti','fn','fp1','fpx','fp2','fscore','favg','fcoef','fcond','fvid'].forEach(id=>{document.getElementById(id).value='';});
+  ['fh','fa','fp','fti','fn','fp1','fpx','fp2','fscore','favg','fcoef','fcond','fvid'].forEach(id=>{
+    const el=document.getElementById(id);if(el)el.value='';
+  });
   document.getElementById('fc').value=75;document.getElementById('fcv').textContent='75';
   document.getElementById('fd').valueAsDate=new Date();
 }
@@ -996,19 +1090,21 @@ async function loadAdminList(){
   c.innerHTML='<div class="spin-wrap"><div class="spin"></div> LOADING...</div>';
   const {predictions}=await fetchAll();
   ALL=parseRows(predictions);
-  if(!ALL.length){c.innerHTML='<div class="empty"><div class="ei">📋</div><div>No predictions yet.</div></div>';return;}
+  if(!ALL.length){
+    c.innerHTML='<div class="empty"><div class="ei">📋</div><div style="font-weight:700">No predictions yet</div><p>Add one above.</p></div>';
+    return;
+  }
   c.innerHTML=`<table class="mtbl">
-    <thead><tr><th>Match</th><th>League</th><th>Pred</th><th>Probs</th><th>Conf</th><th>Actions</th></tr></thead>
+    <thead><tr><th>Match</th><th>Date</th><th>League</th><th>Pred</th><th>Conf</th><th>Actions</th></tr></thead>
     <tbody>${ALL.map((m,i)=>`<tr>
-      <td><div class="tteam">${esc(m.home)} vs ${esc(m.away)}</div>
-      <div style="font-size:9px;color:var(--muted)">${esc(m.date||'')} ${esc(m.time||'')}</div></td>
+      <td><div class="tteam">${esc(m.home)} vs ${esc(m.away)}</div></td>
+      <td style="font-size:10px;color:var(--muted)">${esc(m.date||'')} ${esc(m.time||'')}</td>
       <td><div class="tlg">${flag(m.league)} ${esc(m.league)}</div></td>
       <td class="tpred">${esc(m.prediction)}</td>
-      <td style="font-size:10px;color:var(--muted)">${m.prob1||'—'} / ${m.probX||'—'} / ${m.prob2||'—'}</td>
-      <td class="tconf">${m.confidence}%</td>
+      <td style="font-size:10px;color:var(--muted)">${m.confidence}%</td>
       <td><div class="tact">
-        <button class="btn-ed" onclick="openEdit(${i})">✏️ Edit</button>
-        <button class="btn-dl" onclick="delMatch(${i})">🗑 Del</button>
+        <button class="btn-ed" onclick="openEdit(${i})">✏️</button>
+        <button class="btn-dl" onclick="delMatch(${i})">🗑</button>
       </div></td>
     </tr>`).join('')}</tbody>
   </table>`;
@@ -1019,15 +1115,11 @@ async function loadAdminList(){
 ══════════════════════════════ */
 function openEdit(idx){
   const m=ALL[idx];
-  const fields={
-    'e-home':m.home,'e-away':m.away,'e-pred':m.prediction,
-    'e-time':m.time,'e-date':m.date,'e-notes':m.notes,
-    'e-p1':m.prob1,'e-px':m.probX,'e-p2':m.prob2,
-    'e-score':m.correctScore,'e-avg':m.avgGoals,
-    'e-coef':m.coefficient,'e-cond':m.conditions,'e-video':m.videoUrl,
-    'e-tips':(m.tips||[]).join(', ')
-  };
-  Object.entries(fields).forEach(([id,val])=>{const el=document.getElementById(id);if(el)el.value=val||'';});
+  const map={'e-home':m.home,'e-away':m.away,'e-pred':m.prediction,'e-time':m.time,'e-date':m.date,
+    'e-notes':m.notes,'e-p1':m.prob1,'e-px':m.probX,'e-p2':m.prob2,
+    'e-score':m.correctScore,'e-avg':m.avgGoals,'e-coef':m.coefficient,
+    'e-cond':m.conditions,'e-video':m.videoUrl,'e-tips':(m.tips||[]).join(', ')};
+  Object.entries(map).forEach(([id,val])=>{const el=document.getElementById(id);if(el)el.value=val||'';});
   document.getElementById('e-conf').value=m.confidence||75;
   document.getElementById('ecv').textContent=m.confidence||75;
   document.getElementById('e-league').value=m.league||'Premier League';
@@ -1060,7 +1152,7 @@ async function updateMatch(){
       document.getElementById('e-cond').value,
       document.getElementById('e-video').value
     ]});
-    notify('✅ Updated!','ok');closeModal('edit-modal');setTimeout(loadAdminList,2000);
+    notify('✅ Updated!','ok');closeModal('edit-modal');setTimeout(loadAdminList,2500);
   }catch(e){notify('❌ '+e.message,'err');}
   finally{btn.disabled=false;btn.textContent='💾 UPDATE PREDICTION';}
 }
@@ -1069,7 +1161,7 @@ async function delMatch(idx){
   if(!confirm('Delete "'+m.home+' vs '+m.away+'"?')) return;
   try{
     await postData({action:'delete',rowIndex:m.rowIndex||ROWMAP[idx]});
-    notify('🗑 Deleted','inf');setTimeout(loadAdminList,2000);
+    notify('🗑 Deleted','inf');setTimeout(loadAdminList,2500);
   }catch(e){notify('❌ '+e.message,'err');}
 }
 
@@ -1083,33 +1175,33 @@ function buildSlideMgr(){
            onerror="this.src='https://images.unsplash.com/photo-1546519638-68e109498ffc?w=400'">
       <div class="sthumb-body">
         <div class="sthumb-title">Slide ${i+1}: ${esc(s.h1)} ${esc(s.h2)}</div>
-        <div style="font-size:9px;color:var(--muted);font-weight:600">${esc(s.tag)}</div>
+        <div style="font-size:9px;color:var(--muted)">${esc(s.tag)}</div>
         <div class="sthumb-acts"><button class="btn-ed" onclick="openSlideEdit(${i})">✏️ Edit</button></div>
       </div>
     </div>`).join('');
 }
 function openSlideEdit(i){
   const s=SLIDES[i];
-  document.getElementById('sm-tag').value=s.tag;document.getElementById('sm-h1').value=s.h1;
-  document.getElementById('sm-h2').value=s.h2;document.getElementById('sm-desc').value=s.p;
-  document.getElementById('sm-btn').value=s.btn;document.getElementById('sm-bg').value=s.bg;
-  const prev=document.getElementById('sm-prev');prev.src=driveImg(s.bg);prev.style.display='block';
+  ['sm-tag','sm-h1','sm-h2','sm-desc','sm-btn','sm-bg'].forEach(id=>{
+    const map={'sm-tag':s.tag,'sm-h1':s.h1,'sm-h2':s.h2,'sm-desc':s.p,'sm-btn':s.btn,'sm-bg':s.bg};
+    document.getElementById(id).value=map[id]||'';
+  });
+  const prev=document.getElementById('sm-prev');
+  prev.src=driveImg(s.bg);prev.style.display='block';
   document.getElementById('sm-idx').value=i;
   document.getElementById('slide-modal').classList.add('open');
 }
 async function saveSlide(){
   const i=parseInt(document.getElementById('sm-idx').value);
   const bgRaw=document.getElementById('sm-bg').value.trim()||SLIDES[i].bg;
-  SLIDES[i]={
-    tag:document.getElementById('sm-tag').value,h1:document.getElementById('sm-h1').value,
+  SLIDES[i]={tag:document.getElementById('sm-tag').value,h1:document.getElementById('sm-h1').value,
     h2:document.getElementById('sm-h2').value,p:document.getElementById('sm-desc').value,
-    btn:document.getElementById('sm-btn').value,bg:bgRaw
-  };
+    btn:document.getElementById('sm-btn').value,bg:bgRaw};
   const settings={};
   ['tag','h1','h2','p','btn'].forEach(k=>settings['slide'+i+'_'+k]=SLIDES[i][k]);
   settings['slide'+i+'_bg']=bgRaw;
-  try{await postData({action:'saveSettings',settings});notify('✅ Slide '+(i+1)+' saved to Sheet!','ok');}
-  catch(e){notify('⚠️ Saved locally only','inf');}
+  try{await postData({action:'saveSettings',settings});notify('✅ Slide '+(i+1)+' saved!','ok');}
+  catch(e){notify('⚠️ Saved locally','inf');}
   renderSlides();buildSlideMgr();closeModal('slide-modal');
 }
 
@@ -1124,11 +1216,9 @@ async function saveSettings(){
   TICKER=document.getElementById('set-ticker').value.trim().split('\n').filter(Boolean).join('|');
   S_FAV=document.getElementById('set-fav').value.trim();
   document.title=S_TITLE;document.getElementById('stat-acc').textContent=S_ACC;renderTickers();
-  if(S_FAV){
-    const fu=driveImg(S_FAV);document.getElementById('fav-link').href=fu;
+  if(S_FAV){const fu=driveImg(S_FAV);document.getElementById('fav-link').href=fu;
     const li=document.getElementById('logo-img');li.src=fu;li.style.display='block';
-    document.getElementById('fav-prev').src=fu;
-  }
+    document.getElementById('fav-prev').src=fu;}
   try{
     await postData({action:'saveSettings',settings:{title:S_TITLE,accuracy:S_ACC,ticker:TICKER,favicon:S_FAV,script_url:SCRIPT_URL}});
     notify('✅ Settings saved to Sheet!','ok');
