@@ -821,100 +821,38 @@ function fallback(){
 }
 
 /* ══════════════════════════════
-   PREDICTIONS PAGE (NEW VERSION)
+   PREDICTIONS PAGE
 ══════════════════════════════ */
 async function loadPredictions(){
   document.getElementById('pload').style.display='flex';
   document.getElementById('plist').style.display='none';
   document.getElementById('pempty').style.display='none';
   document.getElementById('ppagi').innerHTML='';
-  
-  try {
-    const {predictions, settings} = await fetchAll();
-    applySheetSettings(settings);
-    
-    // Hano ALL ihita ifata amakuru avuye muri Sheet nshya
-    ALL = predictions; 
-    
-    // Guhita twerekana byose (all) bwa mbere cyangwa ukabihindura bitewe n'aho ukanze
-    applyFilter(CUR_FILTER, 'all'); 
-  } catch(e) {
-    console.error(e);
-    document.getElementById('pload').style.display='none';
-    document.getElementById('pempty').style.display='block';
-  }
+  const {predictions,settings}=await fetchAll();
+  applySheetSettings(settings);
+  ALL=parseRows(predictions);
+  applyFilter(CUR_FILTER);
 }
-
-// Igice cyahindutse cyane kugira ngo gitandukanye Today na All
-function applyFilter(lg, category = 'all'){
-  CUR_FILTER = lg;
-  CUR_PAGE = 1;
-  
-  // 1. Filita League (nka EPL, Laliga cyangwa All)
-  let temp = lg === 'all' ? [...ALL] : ALL.filter(m => m.league === lg);
-  
-  // 2. Filita "Today" vs "Predictions"
-  // Niba ukanze kuri 'Today', ifata gusa imikino ifite isToday: true
-  if(category === 'today') {
-    FILTERED = temp.filter(m => m.isToday === true);
-  } else {
-    FILTERED = temp;
-  }
-  
-  renderPreds(category);
-}
-
-function doFilter(btn, lg){
-  document.querySelectorAll('.ftab').forEach(t => t.classList.remove('on'));
-  btn.classList.add('on');
-  // Iyo ukanze kuri league tab, dushaka ko iguma muri 'all' Predictions
-  applyFilter(lg, 'all');
-}
-
-function renderPreds(cat = 'all'){
-  const load = document.getElementById('pload'), list = document.getElementById('plist');
-  const empty = document.getElementById('pempty'), pagi = document.getElementById('ppagi');
-  const cnt = document.getElementById('pcnt');
-  
-  load.style.display = 'none';
-  
-  if(cnt) {
-    const txt = cat === 'today' ? "Today's Matches" : "Predictions";
-    cnt.textContent = '🎯 ' + FILTERED.length + ' ' + txt;
-  }
-  
-  if(!FILTERED.length){
-    list.style.display = 'none';
-    empty.style.display = 'block';
-    // Ubutumwa buhinduka bitewe n'icyo ukanze
-    empty.innerHTML = `<div style="text-align:center; padding:40px; color:#aaa;">
-      ${cat === 'today' ? 'No matches available for today.' : 'No predictions found.'}
-    </div>`;
-    pagi.innerHTML = '';
-    return;
-  }
-  
-  const pages = Math.ceil(FILTERED.length / PER);
-  const slice = FILTERED.slice((CUR_PAGE - 1) * PER, CUR_PAGE * PER);
-  
-  // Hano buildCard izakora neza kuko data (ALL) imaze gutunganywa
-  list.innerHTML = slice.map(buildCard).join('');
-  list.style.display = 'grid';
-  empty.style.display = 'none';
-  
-  pagi.innerHTML = pages > 1 ? `<div class="pagi">
+function applyFilter(lg){CUR_FILTER=lg;CUR_PAGE=1;FILTERED=lg==='all'?[...ALL]:ALL.filter(m=>m.league===lg);renderPreds();}
+function doFilter(btn,lg){document.querySelectorAll('.ftab').forEach(t=>t.classList.remove('on'));btn.classList.add('on');applyFilter(lg);}
+function renderPreds(){
+  const load=document.getElementById('pload'),list=document.getElementById('plist');
+  const empty=document.getElementById('pempty'),pagi=document.getElementById('ppagi');
+  const cnt=document.getElementById('pcnt');
+  load.style.display='none';
+  if(cnt) cnt.textContent='🎯 '+FILTERED.length+' predictions';
+  if(!FILTERED.length){list.style.display='none';empty.style.display='block';return;}
+  const pages=Math.ceil(FILTERED.length/PER);
+  const slice=FILTERED.slice((CUR_PAGE-1)*PER,CUR_PAGE*PER);
+  list.innerHTML=slice.map(buildCard).join('');
+  list.style.display='grid';empty.style.display='none';
+  pagi.innerHTML=pages>1?`<div class="pagi">
     <button class="pbtn" onclick="changePg(${CUR_PAGE-1})" ${CUR_PAGE===1?'disabled':''}>◀ Prev</button>
     <span class="pinfo">Page ${CUR_PAGE} of ${pages}</span>
     <button class="pbtn" onclick="changePg(${CUR_PAGE+1})" ${CUR_PAGE===pages?'disabled':''}>Next ▶</button>
-  </div>` : '';
+  </div>`:'';
 }
-
-function changePg(n){
-  CUR_PAGE = n;
-  renderPreds();
-  window.scrollTo({top: 0, behavior: 'smooth'});
-}
-
+function changePg(n){CUR_PAGE=n;renderPreds();window.scrollTo({top:0,behavior:'smooth'});}
 
 /* ══════════════════════════════
    BUILD PREDICTION CARD
