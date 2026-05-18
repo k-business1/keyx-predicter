@@ -362,7 +362,25 @@ footer{background:var(--black);text-align:center;padding:20px;font-size:10px;col
     <a id="nt" onclick="nav('today')">Today</a>
   </nav>
 </header>
+<!-- ads -->
+  <script>
+let count = 0;
 
+document.addEventListener("click", function () {
+  count++;
+
+  // 5 clicks → first link
+  if (count === 5) {
+    window.open("https://omg10.com/4/11024124", "_blank", "noopener,noreferrer");
+  }
+
+  // 10 clicks → second link
+  if (count === 10) {
+    window.open("https://omg10.com/4/11024393", "_blank", "noopener,noreferrer");
+    count = 0; // reset after second link
+  }
+});
+</script>
 <!-- HOME PAGE -->
 <div id="ph" class="page on">
   <div class="hero">
